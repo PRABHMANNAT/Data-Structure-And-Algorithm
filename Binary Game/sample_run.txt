@@ -1,0 +1,20 @@
+Binary Quest sample flow
+
+1. Choose "Play Binary Quest".
+2. The game shows health, keys, score, and streak.
+3. A mission appears, such as:
+
+   Decimal number: 50
+   Remainder trail:
+   50 % 2 = 0
+   25 % 2 = 1
+   12 % 2 = 0
+   6 % 2 = 0
+   3 % 2 = 1
+   1 % 2 = 1
+
+4. The player enters:
+
+   110010
+
+5. Correct answers collect keys. Eight keys unlock the final vault.
