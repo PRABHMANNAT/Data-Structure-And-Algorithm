@@ -305,6 +305,28 @@ ChallengeResult playPlaceValueMission() {
     return {answer == expected, explanation.str()};
 }
 
+ChallengeResult playRandomMission() {
+    int mission = randomInt(1, 5);
+
+    if (mission == 1) {
+        return playDecimalToBinaryMission();
+    }
+
+    if (mission == 2) {
+        return playBinaryToDecimalMission();
+    }
+
+    if (mission == 3) {
+        return playMissingBitMission();
+    }
+
+    if (mission == 4) {
+        return playPowerGateMission();
+    }
+
+    return playPlaceValueMission();
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
