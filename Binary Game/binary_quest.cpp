@@ -327,6 +327,26 @@ ChallengeResult playRandomMission() {
     return playPlaceValueMission();
 }
 
+bool playFinalVault() {
+    int code = randomInt(100, 255);
+    string expected = decimalToBinary(code);
+
+    cout << endl;
+    cout << "========== FINAL VAULT ==========" << endl;
+    cout << "Vault decimal code: " << code << endl;
+    cout << "Convert it to binary to open the vault." << endl;
+
+    string answer = trimLower(readLine("Vault binary code: "));
+
+    if (answer == expected) {
+        cout << "Vault opened. Final code was " << expected << "." << endl;
+        return true;
+    }
+
+    cout << "Vault stayed locked. Correct binary was " << expected << "." << endl;
+    return false;
+}
+
 void playMainGame() {
     Player player;
     showTitle();
@@ -343,6 +363,10 @@ void playMainGame() {
 
     if (player.keys >= KEYS_TO_REACH_VAULT) {
         cout << "You reached the final vault." << endl;
+        if (playFinalVault()) {
+            player.score += 500;
+            cout << "Victory score: " << player.score << endl;
+        }
     } else {
         cout << "Game over. Practice the conversions and try again." << endl;
     }
