@@ -141,6 +141,31 @@ string yesNo(bool value) {
     return value ? "yes" : "no";
 }
 
+void applyResult(Player& player, const ChallengeResult& result) {
+    ++player.roundsPlayed;
+
+    if (result.correct) {
+        ++player.keys;
+        ++player.streak;
+        player.score += CORRECT_SCORE + (player.streak - 1) * STREAK_BONUS;
+        cout << "Correct. Key collected." << endl;
+    } else {
+        --player.health;
+        player.streak = 0;
+        cout << "Wrong. Health lost." << endl;
+    }
+
+    cout << result.explanation << endl;
+}
+
+void showStatus(const Player& player) {
+    cout << endl;
+    cout << "Health: " << player.health << "/" << STARTING_HEALTH << " | ";
+    cout << "Keys: " << player.keys << "/" << KEYS_TO_REACH_VAULT << " | ";
+    cout << "Score: " << player.score << " | ";
+    cout << "Streak: " << player.streak << endl;
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
