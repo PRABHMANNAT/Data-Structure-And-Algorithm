@@ -394,8 +394,28 @@ void practiceMode() {
 }
 
 int main() {
-    cout << "Binary Quest" << endl;
-    cout << "A decimal and binary conversion game." << endl;
+    while (true) {
+        showTitle();
+        cout << "1. Play Binary Quest" << endl;
+        cout << "2. Learn the concept" << endl;
+        cout << "3. Practice conversion" << endl;
+        cout << "4. Exit" << endl;
+
+        int choice = readInt("Choose: ");
+
+        if (choice == 1) {
+            playMainGame();
+        } else if (choice == 2) {
+            showTutorial();
+        } else if (choice == 3) {
+            practiceMode();
+        } else if (choice == 4) {
+            cout << "Goodbye." << endl;
+            break;
+        } else {
+            cout << "Choose a menu option from 1 to 4." << endl;
+        }
+    }
 
     return 0;
 }
