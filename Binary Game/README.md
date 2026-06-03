@@ -70,3 +70,16 @@ pow *= 2;
 ```
 
 That means the places are `1, 2, 4, 8, 16...`.
+
+## Easy Code Structure
+
+The source file is organized into small parts:
+
+- Input helpers read safe menu choices and answers.
+- Conversion helpers handle decimal-to-binary and binary-to-decimal logic.
+- Mission functions each contain one challenge.
+- The game loop tracks health, keys, score, and streak.
+- The final vault is separate from normal missions.
+- `--self-test` checks the most important conversion functions quickly.
+
+This keeps the game complex in features but simple in code flow.
