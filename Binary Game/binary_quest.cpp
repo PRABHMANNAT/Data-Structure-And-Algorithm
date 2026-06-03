@@ -179,6 +179,32 @@ int randomInt(int low, int high) {
     return dist(rng());
 }
 
+void showTitle() {
+    cout << endl;
+    cout << "======================================" << endl;
+    cout << "          BINARY QUEST" << endl;
+    cout << "======================================" << endl;
+    cout << "Convert, decode, repair, and unlock." << endl;
+}
+
+void showTutorial() {
+    cout << endl;
+    cout << "Core idea:" << endl;
+    cout << "Decimal to binary repeatedly divides by 2." << endl;
+    cout << "% 2 gives the next binary digit." << endl;
+    cout << "/ 2 moves the number to the next step." << endl;
+    cout << endl;
+    cout << "Example for 50:" << endl;
+    cout << "50 % 2 = 0" << endl;
+    cout << "25 % 2 = 1" << endl;
+    cout << "12 % 2 = 0" << endl;
+    cout << " 6 % 2 = 0" << endl;
+    cout << " 3 % 2 = 1" << endl;
+    cout << " 1 % 2 = 1" << endl;
+    cout << "Bottom to top: 110010" << endl;
+    cout << endl;
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
