@@ -237,6 +237,28 @@ ChallengeResult playBinaryToDecimalMission() {
     return {answer == decimal, explanation.str()};
 }
 
+ChallengeResult playMissingBitMission() {
+    int decimal = randomInt(18, 120);
+    string binary = decimalToBinary(decimal);
+    int hiddenIndex = randomInt(0, static_cast<int>(binary.size()) - 1);
+    char expected = binary[hiddenIndex];
+
+    string damaged = binary;
+    damaged[hiddenIndex] = '?';
+
+    cout << endl;
+    cout << "[Repair Mission] Find the missing bit" << endl;
+    cout << "Decimal source: " << decimal << endl;
+    cout << "Damaged binary: " << damaged << endl;
+
+    string answer = trimLower(readLine("Missing bit (0 or 1): "));
+
+    ostringstream explanation;
+    explanation << "The full binary form is " << binary << ", so the missing bit is " << expected << ".";
+
+    return {answer.size() == 1 && answer[0] == expected, explanation.str()};
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
