@@ -14,3 +14,23 @@ The game uses only standard C++ libraries and the same core ideas from the numbe
 The player solves binary missions to unlock gates, collect keys, and open a final vault.
 
 The code is designed to be more interesting than a simple converter, while still keeping the structure easy to read.
+
+## Build And Run
+
+```bash
+g++ "binary_quest.cpp" -o binary_quest
+./binary_quest
+```
+
+On Windows PowerShell:
+
+```powershell
+g++ "binary_quest.cpp" -o binary_quest.exe
+.\binary_quest.exe
+```
+
+Run the built-in checks:
+
+```bash
+./binary_quest --self-test
+```
