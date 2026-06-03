@@ -179,6 +179,18 @@ int randomInt(int low, int high) {
     return dist(rng());
 }
 
+int difficultyMax(const Player& player) {
+    if (player.keys >= 6) {
+        return 255;
+    }
+
+    if (player.keys >= 3) {
+        return 180;
+    }
+
+    return 95;
+}
+
 void showTitle() {
     cout << endl;
     cout << "======================================" << endl;
@@ -205,8 +217,8 @@ void showTutorial() {
     cout << endl;
 }
 
-ChallengeResult playDecimalToBinaryMission() {
-    int decimal = randomInt(12, 95);
+ChallengeResult playDecimalToBinaryMission(int maxDecimal) {
+    int decimal = randomInt(12, maxDecimal);
     string expected = decimalToBinary(decimal);
 
     cout << endl;
@@ -221,8 +233,8 @@ ChallengeResult playDecimalToBinaryMission() {
     return {answer == expected, explanation.str()};
 }
 
-ChallengeResult playBinaryToDecimalMission() {
-    int decimal = randomInt(10, 127);
+ChallengeResult playBinaryToDecimalMission(int maxDecimal) {
+    int decimal = randomInt(10, maxDecimal);
     string binary = decimalToBinary(decimal);
 
     cout << endl;
@@ -237,8 +249,8 @@ ChallengeResult playBinaryToDecimalMission() {
     return {answer == decimal, explanation.str()};
 }
 
-ChallengeResult playMissingBitMission() {
-    int decimal = randomInt(18, 120);
+ChallengeResult playMissingBitMission(int maxDecimal) {
+    int decimal = randomInt(18, maxDecimal);
     string binary = decimalToBinary(decimal);
     int hiddenIndex = randomInt(0, static_cast<int>(binary.size()) - 1);
     char expected = binary[hiddenIndex];
@@ -278,8 +290,8 @@ ChallengeResult playPowerGateMission() {
     return {playerAnswer == expected, explanation.str()};
 }
 
-ChallengeResult playPlaceValueMission() {
-    int decimal = randomInt(20, 150);
+ChallengeResult playPlaceValueMission(int maxDecimal) {
+    int decimal = randomInt(20, maxDecimal);
     string binary = decimalToBinary(decimal);
     int index = randomInt(0, static_cast<int>(binary.size()) - 1);
     int positionFromRight = static_cast<int>(binary.size()) - 1 - index;
@@ -305,26 +317,27 @@ ChallengeResult playPlaceValueMission() {
     return {answer == expected, explanation.str()};
 }
 
-ChallengeResult playRandomMission() {
+ChallengeResult playRandomMission(const Player& player) {
     int mission = randomInt(1, 5);
+    int maxDecimal = difficultyMax(player);
 
     if (mission == 1) {
-        return playDecimalToBinaryMission();
+        return playDecimalToBinaryMission(maxDecimal);
     }
 
     if (mission == 2) {
-        return playBinaryToDecimalMission();
+        return playBinaryToDecimalMission(maxDecimal);
     }
 
     if (mission == 3) {
-        return playMissingBitMission();
+        return playMissingBitMission(maxDecimal);
     }
 
     if (mission == 4) {
         return playPowerGateMission();
     }
 
-    return playPlaceValueMission();
+    return playPlaceValueMission(maxDecimal);
 }
 
 bool playFinalVault() {
@@ -355,7 +368,7 @@ void playMainGame() {
 
     while (player.health > 0 && player.keys < KEYS_TO_REACH_VAULT) {
         showStatus(player);
-        ChallengeResult result = playRandomMission();
+        ChallengeResult result = playRandomMission(player);
         applyResult(player, result);
     }
 
