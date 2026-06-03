@@ -15,6 +15,19 @@ const int KEYS_TO_REACH_VAULT = 8;
 const int CORRECT_SCORE = 100;
 const int STREAK_BONUS = 25;
 
+struct Player {
+    int health = STARTING_HEALTH;
+    int keys = 0;
+    int score = 0;
+    int streak = 0;
+    int roundsPlayed = 0;
+};
+
+struct ChallengeResult {
+    bool correct = false;
+    string explanation;
+};
+
 string trimLower(string text) {
     string result;
 
