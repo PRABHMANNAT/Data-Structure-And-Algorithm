@@ -6,6 +6,7 @@ This repository contains C++ programs for data structure and algorithm practice.
 
 - `Number System/decimal_to_binary.cpp` - Converts a decimal integer to binary.
 - `Number System/decimal_to_binary_place_value.cpp` - Converts a non-negative decimal number to binary using the remainder and place-value method.
+- `Binary Game/binary_quest.cpp` - A C++ console game that teaches decimal and binary conversion through missions.
 
 ## Explanation
 
@@ -45,4 +46,7 @@ g++ "Number System/decimal_to_binary.cpp" -o decimal_to_binary
 
 g++ "Number System/decimal_to_binary_place_value.cpp" -o decimal_to_binary_place_value
 ./decimal_to_binary_place_value
+
+g++ "Binary Game/binary_quest.cpp" -o binary_quest
+./binary_quest
 ```
