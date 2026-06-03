@@ -92,6 +92,17 @@ vector<int> divisionTrail(int number) {
     return trail;
 }
 
+void showDivisionTrail(int number) {
+    cout << "Remainder trail:" << endl;
+
+    while (number > 0) {
+        cout << number << " % 2 = " << number % 2 << endl;
+        number /= 2;
+    }
+
+    cout << "Read the remainders from bottom to top." << endl;
+}
+
 bool isBinaryString(const string& text) {
     if (text.empty()) {
         return false;
@@ -224,6 +235,7 @@ ChallengeResult playDecimalToBinaryMission(int maxDecimal) {
     cout << endl;
     cout << "[Gate Mission] Convert decimal to binary" << endl;
     cout << "Decimal number: " << decimal << endl;
+    showDivisionTrail(decimal);
 
     string answer = trimLower(readLine("Binary answer: "));
 
