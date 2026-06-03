@@ -327,6 +327,27 @@ ChallengeResult playRandomMission() {
     return playPlaceValueMission();
 }
 
+void playMainGame() {
+    Player player;
+    showTitle();
+
+    cout << "Goal: collect " << KEYS_TO_REACH_VAULT << " keys before health reaches 0." << endl;
+
+    while (player.health > 0 && player.keys < KEYS_TO_REACH_VAULT) {
+        showStatus(player);
+        ChallengeResult result = playRandomMission();
+        applyResult(player, result);
+    }
+
+    showStatus(player);
+
+    if (player.keys >= KEYS_TO_REACH_VAULT) {
+        cout << "You reached the final vault." << endl;
+    } else {
+        cout << "Game over. Practice the conversions and try again." << endl;
+    }
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
