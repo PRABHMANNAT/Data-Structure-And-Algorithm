@@ -205,6 +205,22 @@ void showTutorial() {
     cout << endl;
 }
 
+ChallengeResult playDecimalToBinaryMission() {
+    int decimal = randomInt(12, 95);
+    string expected = decimalToBinary(decimal);
+
+    cout << endl;
+    cout << "[Gate Mission] Convert decimal to binary" << endl;
+    cout << "Decimal number: " << decimal << endl;
+
+    string answer = trimLower(readLine("Binary answer: "));
+
+    ostringstream explanation;
+    explanation << decimal << " in binary is " << expected << ".";
+
+    return {answer == expected, explanation.str()};
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
