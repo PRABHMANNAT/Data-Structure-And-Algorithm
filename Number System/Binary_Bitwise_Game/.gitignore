@@ -1,0 +1,16 @@
+# build artefacts
+*.o
+*.obj
+*.exe
+bitrealm
+
+# game runtime
+scores.txt
+
+# editor / OS clutter
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
