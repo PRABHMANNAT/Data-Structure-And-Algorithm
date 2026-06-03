@@ -45,3 +45,28 @@ Run the built-in checks:
 6. Final vault binary code
 
 Each correct answer gives a key. Wrong answers reduce health. A streak gives bonus score, so correct answers in a row matter.
+
+## How The Core Conversion Works
+
+For decimal to binary, the game uses this idea:
+
+```cpp
+while (number > 0) {
+    int rem = number % 2;
+    binary.push_back('0' + rem);
+    number /= 2;
+}
+```
+
+The digits are collected from right to left, so the program reverses them at the end.
+
+For binary to decimal, the game reads from right to left:
+
+```cpp
+if (binary[i] == '1') {
+    answer += pow;
+}
+pow *= 2;
+```
+
+That means the places are `1, 2, 4, 8, 16...`.
