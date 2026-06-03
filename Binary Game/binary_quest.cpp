@@ -108,6 +108,26 @@ int binaryToDecimal(const string& binary) {
     return answer;
 }
 
+bool isPowerOfTwo(int number) {
+    if (number <= 0) {
+        return false;
+    }
+
+    while (number > 1) {
+        if (number % 2 != 0) {
+            return false;
+        }
+
+        number /= 2;
+    }
+
+    return true;
+}
+
+string yesNo(bool value) {
+    return value ? "yes" : "no";
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
