@@ -372,6 +372,27 @@ void playMainGame() {
     }
 }
 
+void practiceMode() {
+    cout << endl;
+    cout << "Practice Mode" << endl;
+    cout << "Enter -1 to return to the menu." << endl;
+
+    while (true) {
+        int decimal = readInt("Decimal number: ");
+
+        if (decimal == -1) {
+            return;
+        }
+
+        if (decimal < 0) {
+            cout << "Use non-negative numbers in this practice mode." << endl;
+            continue;
+        }
+
+        cout << decimal << " -> " << decimalToBinary(decimal) << endl;
+    }
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
