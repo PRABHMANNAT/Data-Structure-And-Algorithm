@@ -278,6 +278,33 @@ ChallengeResult playPowerGateMission() {
     return {playerAnswer == expected, explanation.str()};
 }
 
+ChallengeResult playPlaceValueMission() {
+    int decimal = randomInt(20, 150);
+    string binary = decimalToBinary(decimal);
+    int index = randomInt(0, static_cast<int>(binary.size()) - 1);
+    int positionFromRight = static_cast<int>(binary.size()) - 1 - index;
+    int placeValue = 1;
+
+    for (int i = 0; i < positionFromRight; ++i) {
+        placeValue *= 2;
+    }
+
+    int expected = (binary[index] == '1') ? placeValue : 0;
+
+    cout << endl;
+    cout << "[Place Mission] Find the decimal value of one binary position" << endl;
+    cout << "Binary number: " << binary << " (decimal " << decimal << ")" << endl;
+    cout << "Position from left: " << index + 1 << " contains bit '" << binary[index] << "'" << endl;
+
+    int answer = readInt("Decimal value of that position: ");
+
+    ostringstream explanation;
+    explanation << "That position has place value " << placeValue
+                << ", so its contribution is " << expected << ".";
+
+    return {answer == expected, explanation.str()};
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
