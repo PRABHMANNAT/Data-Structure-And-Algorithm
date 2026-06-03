@@ -79,6 +79,35 @@ vector<int> divisionTrail(int number) {
     return trail;
 }
 
+bool isBinaryString(const string& text) {
+    if (text.empty()) {
+        return false;
+    }
+
+    for (char ch : text) {
+        if (ch != '0' && ch != '1') {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int binaryToDecimal(const string& binary) {
+    int answer = 0;
+    int pow = 1;
+
+    for (int i = static_cast<int>(binary.size()) - 1; i >= 0; --i) {
+        if (binary[i] == '1') {
+            answer += pow;
+        }
+
+        pow *= 2;
+    }
+
+    return answer;
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
