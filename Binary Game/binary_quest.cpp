@@ -51,6 +51,34 @@ int readInt(const string& prompt) {
     }
 }
 
+string decimalToBinary(int number) {
+    if (number == 0) {
+        return "0";
+    }
+
+    string binary;
+
+    while (number > 0) {
+        int rem = number % 2;
+        binary.push_back(static_cast<char>('0' + rem));
+        number /= 2;
+    }
+
+    reverse(binary.begin(), binary.end());
+    return binary;
+}
+
+vector<int> divisionTrail(int number) {
+    vector<int> trail;
+
+    while (number > 0) {
+        trail.push_back(number % 2);
+        number /= 2;
+    }
+
+    return trail;
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
