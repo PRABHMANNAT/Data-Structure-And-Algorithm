@@ -259,6 +259,25 @@ ChallengeResult playMissingBitMission() {
     return {answer.size() == 1 && answer[0] == expected, explanation.str()};
 }
 
+ChallengeResult playPowerGateMission() {
+    vector<int> candidates = {2, 4, 8, 16, 32, 64, 3, 6, 12, 24, 48, 96};
+    int number = candidates[randomInt(0, static_cast<int>(candidates.size()) - 1)];
+    bool expected = isPowerOfTwo(number);
+
+    cout << endl;
+    cout << "[Power Gate] Is this number a power of 2?" << endl;
+    cout << "Number: " << number << " (" << decimalToBinary(number) << " in binary)" << endl;
+
+    string answer = trimLower(readLine("Type yes or no: "));
+    bool playerAnswer = answer == "yes" || answer == "y";
+
+    ostringstream explanation;
+    explanation << number << " is " << (expected ? "" : "not ")
+                << "a power of 2. Answer: " << yesNo(expected) << ".";
+
+    return {playerAnswer == expected, explanation.str()};
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
