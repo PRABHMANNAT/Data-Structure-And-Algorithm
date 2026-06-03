@@ -418,7 +418,26 @@ void practiceMode() {
     }
 }
 
-int main() {
+bool runSelfTests() {
+    return decimalToBinary(0) == "0"
+        && decimalToBinary(1) == "1"
+        && decimalToBinary(8) == "1000"
+        && decimalToBinary(50) == "110010"
+        && binaryToDecimal("110010") == 50
+        && binaryToDecimal("11111111") == 255
+        && isBinaryString("10101")
+        && !isBinaryString("10201")
+        && isPowerOfTwo(64)
+        && !isPowerOfTwo(96);
+}
+
+int main(int argc, char* argv[]) {
+    if (argc > 1 && string(argv[1]) == "--self-test") {
+        bool passed = runSelfTests();
+        cout << (passed ? "Self-tests passed." : "Self-tests failed.") << endl;
+        return passed ? 0 : 1;
+    }
+
     while (true) {
         showTitle();
         cout << "1. Play Binary Quest" << endl;
