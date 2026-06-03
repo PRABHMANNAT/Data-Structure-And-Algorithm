@@ -166,6 +166,19 @@ void showStatus(const Player& player) {
     cout << "Streak: " << player.streak << endl;
 }
 
+mt19937& rng() {
+    static mt19937 engine(static_cast<unsigned int>(
+        chrono::steady_clock::now().time_since_epoch().count()
+    ));
+
+    return engine;
+}
+
+int randomInt(int low, int high) {
+    uniform_int_distribution<int> dist(low, high);
+    return dist(rng());
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
