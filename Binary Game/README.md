@@ -34,3 +34,14 @@ Run the built-in checks:
 ```bash
 ./binary_quest --self-test
 ```
+
+## Mission Types
+
+1. Decimal to binary gate
+2. Binary to decimal decoder
+3. Missing-bit repair
+4. Power-of-two gate
+5. Binary place-value challenge
+6. Final vault binary code
+
+Each correct answer gives a key. Wrong answers reduce health. A streak gives bonus score, so correct answers in a row matter.
