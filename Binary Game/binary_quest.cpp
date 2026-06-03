@@ -221,6 +221,22 @@ ChallengeResult playDecimalToBinaryMission() {
     return {answer == expected, explanation.str()};
 }
 
+ChallengeResult playBinaryToDecimalMission() {
+    int decimal = randomInt(10, 127);
+    string binary = decimalToBinary(decimal);
+
+    cout << endl;
+    cout << "[Decoder Mission] Convert binary to decimal" << endl;
+    cout << "Binary number: " << binary << endl;
+
+    int answer = readInt("Decimal answer: ");
+
+    ostringstream explanation;
+    explanation << binary << " equals " << decimal << " in decimal.";
+
+    return {answer == decimal, explanation.str()};
+}
+
 int main() {
     cout << "Binary Quest" << endl;
     cout << "A decimal and binary conversion game." << endl;
