@@ -1,49 +1,28 @@
-# Data Structure And Algorithm
+# Data Structures and Algorithms
 
-This repository contains C++ programs for data structure and algorithm practice.
+A hands-on collection of data-structure and algorithm projects in C++ and Python. The repository progresses from number-system fundamentals to reusable data structures and an applied graph-routing project.
 
-## Programs
+## What you can explore
 
-- `Number System/decimal_to_binary.cpp` - Converts a decimal integer to binary.
-- `Number System/decimal_to_binary_place_value.cpp` - Converts a non-negative decimal number to binary using the remainder and place-value method.
-- `Binary Game/binary_quest.cpp` - A C++ console game that teaches decimal and binary conversion through missions.
+| Area | Project | Concepts |
+| --- | --- | --- |
+| C++ foundations | Number System | Decimal-to-binary conversion and positional representation |
+| C++ practice | Binary Game | Interactive binary-conversion challenges |
+| Python data structures | Intermediate Data Structures | Arrays, linked lists, stacks, queues, trees, heaps, graphs, tries, and union-find |
+| Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
 
-## Python projects
-
-- `intermediate_data_structures/` - Dependency-free implementations of intermediate data structures with unit tests and a runnable demo.
-- `advanced_delivery_network/` - An advanced delivery-route planner that applies graphs, indexed priority queues, tries, disjoint sets, caches, and streaming collections.
-
-## Explanation
-
-The place-value method divides the decimal number by `2` repeatedly, stores each remainder, and places it into the answer using `pow`.
-
-For `50`:
+## Repository layout
 
 ```text
-50 % 2 = 0
-25 % 2 = 1
-12 % 2 = 0
- 6 % 2 = 0
- 3 % 2 = 1
- 1 % 2 = 1
+Binary Game/                  C++ binary-learning console game
+Number System/                C++ number-system exercises
+intermediate_data_structures/ Python implementations of core data structures
+advanced_delivery_network/    Graph-based delivery route-planning project
 ```
 
-Reading the remainders from bottom to top gives:
+## Run the C++ exercises
 
-```text
-50(decimal) = 110010(binary)
-```
-
-In the code:
-
-- `% 2` gives the next binary digit.
-- `/ 2` moves to the next step.
-- `pow *= 10` moves to the next output position.
-- `ans` builds the final binary-looking number.
-
-This method is mainly for learning because large answers can overflow numeric types. For large numbers, storing the binary result as a `string` is better.
-
-## Run
+From the repository root, compile either number-system exercise with a C++ compiler:
 
 ```bash
 g++ "Number System/decimal_to_binary.cpp" -o decimal_to_binary
@@ -51,7 +30,29 @@ g++ "Number System/decimal_to_binary.cpp" -o decimal_to_binary
 
 g++ "Number System/decimal_to_binary_place_value.cpp" -o decimal_to_binary_place_value
 ./decimal_to_binary_place_value
+```
 
+Run the binary game with:
+
+```bash
 g++ "Binary Game/binary_quest.cpp" -o binary_quest
 ./binary_quest
 ```
+
+## Run the Python projects
+
+The Python projects have no third-party dependencies and require Python 3.10 or newer.
+
+```bash
+python -m unittest discover -s intermediate_data_structures/tests -v
+python intermediate_data_structures/examples/demo.py
+
+python -m unittest discover -s advanced_delivery_network/tests -v
+python advanced_delivery_network/examples/demo.py
+```
+
+## Learning path
+
+Start with binary conversion to understand representations. Next, explore the intermediate implementations to see how collections, trees, heaps, and graphs work internally. Finish with the delivery-network planner to see those structures combined in a practical shortest-path application.
+
+Each Python project includes focused unit tests, a runnable demo, and documentation on the relevant operations and complexity trade-offs.
