@@ -1,0 +1,12 @@
+{
+  "stops": [
+    {"code": "WH", "name": "Warehouse"},
+    {"code": "CT", "name": "City Terminal"},
+    {"code": "CU", "name": "Customer"}
+  ],
+  "connections": [
+    {"first": "WH", "second": "CT", "minutes": 7},
+    {"first": "CT", "second": "CU", "minutes": 5},
+    {"first": "WH", "second": "CU", "minutes": 18}
+  ]
+}
