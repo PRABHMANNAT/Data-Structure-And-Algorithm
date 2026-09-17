@@ -8,6 +8,11 @@ This repository contains C++ programs for data structure and algorithm practice.
 - `Number System/decimal_to_binary_place_value.cpp` - Converts a non-negative decimal number to binary using the remainder and place-value method.
 - `Binary Game/binary_quest.cpp` - A C++ console game that teaches decimal and binary conversion through missions.
 
+## Python projects
+
+- `intermediate_data_structures/` - Dependency-free implementations of intermediate data structures with unit tests and a runnable demo.
+- `advanced_delivery_network/` - An advanced delivery-route planner that applies graphs, indexed priority queues, tries, disjoint sets, caches, and streaming collections.
+
 ## Explanation
 
 The place-value method divides the decimal number by `2` repeatedly, stores each remainder, and places it into the answer using `pow`.
