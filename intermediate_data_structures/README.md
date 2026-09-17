@@ -11,8 +11,8 @@ A dependency-free learning project implementing practical, intermediate-level da
 ## Quick start
 
 ```bash
-python -m unittest discover -s tests -v
-python examples/demo.py
+python -m unittest discover -s intermediate_data_structures/tests -v
+python intermediate_data_structures/examples/demo.py
 ```
 
 The project uses only the Python standard library and targets Python 3.10+.
