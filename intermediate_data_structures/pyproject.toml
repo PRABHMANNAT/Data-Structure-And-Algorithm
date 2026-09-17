@@ -1,0 +1,5 @@
+[project]
+name = "intermediate-data-structures"
+version = "0.1.0"
+description = "Educational Python implementations of intermediate data structures"
+requires-python = ">=3.10"
