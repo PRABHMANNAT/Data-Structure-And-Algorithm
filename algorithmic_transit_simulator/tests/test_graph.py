@@ -14,3 +14,7 @@ class GraphTests(unittest.TestCase):
     def test_connection_requires_known_endpoints(self):
         with self.assertRaises(UnknownStopError):
             TransitGraph().add_connection(Connection("x", "a", "b", 1, 2, "L"))
+
+    def test_unknown_stop_cannot_be_queried_for_departures(self):
+        with self.assertRaises(UnknownStopError):
+            TransitGraph().departures_from("missing")
