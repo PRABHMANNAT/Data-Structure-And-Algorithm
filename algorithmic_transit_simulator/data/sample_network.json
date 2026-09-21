@@ -1,0 +1,14 @@
+{
+  "stops": [
+    {"id": "north", "name": "North Gate"},
+    {"id": "central", "name": "Central Exchange"},
+    {"id": "harbor", "name": "Harbor Point"},
+    {"id": "park", "name": "Park Lane"}
+  ],
+  "connections": [
+    {"id": "blue-1", "origin": "north", "destination": "central", "departure": 480, "arrival": 492, "line": "Blue", "fare": 3},
+    {"id": "blue-2", "origin": "central", "destination": "harbor", "departure": 496, "arrival": 508, "line": "Blue", "fare": 3},
+    {"id": "green-1", "origin": "north", "destination": "park", "departure": 482, "arrival": 495, "line": "Green", "fare": 2},
+    {"id": "green-2", "origin": "park", "destination": "harbor", "departure": 500, "arrival": 515, "line": "Green", "fare": 2}
+  ]
+}
