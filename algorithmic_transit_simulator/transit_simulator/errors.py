@@ -8,3 +8,7 @@ class UnknownStopError(TransitError):
 
 class InvalidConnectionError(TransitError):
     """Raised when a connection violates timetable rules."""
+
+
+class NoRouteError(TransitError):
+    """Raised by callers that require a journey to exist."""
