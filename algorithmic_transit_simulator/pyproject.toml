@@ -1,0 +1,8 @@
+[project]
+name = "algorithmic-transit-simulator"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Data-structure driven transit planning and simulation"
+
+[tool.unittest]
+start-directory = "tests"
