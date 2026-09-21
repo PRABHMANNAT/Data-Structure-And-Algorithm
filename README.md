@@ -52,7 +52,7 @@ python intermediate_data_structures/examples/demo.py
 python -m unittest discover -s advanced_delivery_network/tests -v
 python advanced_delivery_network/examples/demo.py
 
-python -m unittest discover -s algorithmic_transit_simulator/tests -v
+python -m unittest discover -s algorithmic_transit_simulator/tests -t algorithmic_transit_simulator -v
 python algorithmic_transit_simulator/examples/demo.py
 ```
 
