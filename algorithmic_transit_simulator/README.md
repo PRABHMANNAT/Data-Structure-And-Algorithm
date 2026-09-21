@@ -9,6 +9,12 @@ python -m unittest discover -s algorithmic_transit_simulator/tests -v
 python algorithmic_transit_simulator/examples/demo.py
 ```
 
+Use the CLI with the sample network:
+
+```bash
+python -m transit_simulator.cli algorithmic_transit_simulator/data/sample_network.json north harbor 470
+```
+
 The project is intentionally implemented with core data structures rather than third-party packages so the algorithms remain inspectable.
 
 ## Features
