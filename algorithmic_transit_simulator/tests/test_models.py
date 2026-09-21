@@ -13,6 +13,10 @@ class ModelTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             Connection("bad", "a", "b", 10, 9, "Blue")
 
+    def test_connection_rejects_nonpositive_capacity(self):
+        with self.assertRaises(ValueError):
+            Connection("bad", "a", "b", 1, 2, "Blue", capacity=0)
+
     def test_journey_aggregates_arrival_and_fare(self):
         trip = Connection("c1", "a", "b", 10, 25, "Blue", fare=4)
         self.assertEqual((Journey((trip,)).arrival, Journey((trip,)).fare), (25, 4))
