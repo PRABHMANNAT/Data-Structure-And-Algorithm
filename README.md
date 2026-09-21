@@ -10,6 +10,7 @@ A hands-on collection of data-structure and algorithm projects in C++ and Python
 | C++ practice | Binary Game | Interactive binary-conversion challenges |
 | Python data structures | Intermediate Data Structures | Arrays, linked lists, stacks, queues, trees, heaps, graphs, tries, and union-find |
 | Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
+| Applied Python | Algorithmic Transit Simulator | Timetable routing, AVL indexes, interval conflicts, disruption simulation, and caching |
 
 ## Repository layout
 
@@ -18,6 +19,7 @@ Binary Game/                  C++ binary-learning console game
 Number System/                C++ number-system exercises
 intermediate_data_structures/ Python implementations of core data structures
 advanced_delivery_network/    Graph-based delivery route-planning project
+algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
 ```
 
 ## Run the C++ exercises
@@ -49,6 +51,9 @@ python intermediate_data_structures/examples/demo.py
 
 python -m unittest discover -s advanced_delivery_network/tests -v
 python advanced_delivery_network/examples/demo.py
+
+python -m unittest discover -s algorithmic_transit_simulator/tests -v
+python algorithmic_transit_simulator/examples/demo.py
 ```
 
 ## Learning path
