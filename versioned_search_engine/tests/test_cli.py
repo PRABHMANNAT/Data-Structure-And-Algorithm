@@ -7,3 +7,5 @@ class CliTests(unittest.TestCase):
   output=io.StringIO()
   with redirect_stdout(output):main([str(Path(__file__).parents[1]/"data"/"sample_documents.json"),"rail"])
   self.assertIn("rail",output.getvalue())
+ def test_returns_success_status(self):
+  self.assertEqual(main([str(Path(__file__).parents[1]/"data"/"sample_documents.json"),"rail"]),0)
