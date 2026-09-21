@@ -21,3 +21,7 @@ class RouterTests(unittest.TestCase):
         graph.add_connection(Connection("too-soon", "b", "c", 11, 14, "Red"))
         graph.add_connection(Connection("valid", "b", "c", 12, 15, "Red"))
         self.assertEqual(EarliestArrivalRouter(graph, 2).route("a", "c", 0).connections[-1].id, "valid")
+
+    def test_returns_none_when_destination_is_unreachable(self):
+        graph = TransitGraph(); graph.add_stop(Stop("a", "A")); graph.add_stop(Stop("b", "B"))
+        self.assertIsNone(EarliestArrivalRouter(graph).route("a", "b", 0))
