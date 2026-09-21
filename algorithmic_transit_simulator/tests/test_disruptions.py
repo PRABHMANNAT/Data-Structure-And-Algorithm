@@ -5,3 +5,5 @@ class DisruptionTests(unittest.TestCase):
  def test_cancels_or_delays_connections(self):
   trip=Connection("x","a","b",5,10,"L");board=DisruptionBoard();board.delay("x",3)
   self.assertEqual(board.apply(trip).arrival,13);board.cancel("x");self.assertIsNone(board.apply(trip))
+ def test_ignores_negative_delay_requests(self):
+  board=DisruptionBoard();board.delay("x",-4);self.assertEqual(board.delays["x"],0)
