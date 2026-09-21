@@ -11,6 +11,7 @@ A hands-on collection of data-structure and algorithm projects in C++ and Python
 | Python data structures | Intermediate Data Structures | Arrays, linked lists, stacks, queues, trees, heaps, graphs, tries, and union-find |
 | Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
 | Applied Python | Algorithmic Transit Simulator | Timetable routing, AVL indexes, interval conflicts, disruption simulation, and caching |
+| Applied Python | Versioned Search Engine | Inverted indexing, Boolean/phrase search, BM25 ranking, autocomplete, and snapshots |
 
 ## Repository layout
 
@@ -20,6 +21,7 @@ Number System/                C++ number-system exercises
 intermediate_data_structures/ Python implementations of core data structures
 advanced_delivery_network/    Graph-based delivery route-planning project
 algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
+versioned_search_engine/     Full-text search and retrieval algorithms project
 ```
 
 ## Run the C++ exercises
