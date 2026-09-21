@@ -5,3 +5,6 @@ class JsonTests(unittest.TestCase):
  def test_round_trips_documents(self):
   with tempfile.TemporaryDirectory() as folder:
    path=f"{folder}/docs.json";dump_documents((Document("a","A","B"),),path);self.assertEqual(load_documents(path)[0].id,"a")
+ def test_preserves_document_links(self):
+  with tempfile.TemporaryDirectory() as folder:
+   path=f"{folder}/docs.json";dump_documents((Document("a","A","B",("b",)),),path);self.assertEqual(load_documents(path)[0].links,("b",))
