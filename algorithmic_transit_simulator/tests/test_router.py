@@ -25,3 +25,8 @@ class RouterTests(unittest.TestCase):
     def test_returns_none_when_destination_is_unreachable(self):
         graph = TransitGraph(); graph.add_stop(Stop("a", "A")); graph.add_stop(Stop("b", "B"))
         self.assertIsNone(EarliestArrivalRouter(graph).route("a", "b", 0))
+
+    def test_accepts_a_connection_at_requested_departure(self):
+        graph = TransitGraph(); graph.add_stop(Stop("a", "A")); graph.add_stop(Stop("b", "B"))
+        graph.add_connection(Connection("exact", "a", "b", 10, 14, "L"))
+        self.assertEqual(EarliestArrivalRouter(graph).route("a", "b", 10).arrival, 14)
