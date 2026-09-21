@@ -7,3 +7,6 @@ class CachedRouterTests(unittest.TestCase):
  def test_reuses_identical_route_query(self):
   router=_Router(); cached=CachedRouter(router);cached.route("a","b",1);cached.route("a","b",1)
   self.assertEqual(router.calls,1)
+ def test_invalidation_forces_a_fresh_query(self):
+  router=_Router(); cached=CachedRouter(router);cached.route("a","b",1);cached.invalidate();cached.route("a","b",1)
+  self.assertEqual(router.calls,2)
