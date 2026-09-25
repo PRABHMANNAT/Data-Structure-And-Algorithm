@@ -1,0 +1,9 @@
+# Go build outputs
+bin/
+*.exe
+*.test
+*.out
+
+# Editor settings
+.vscode/
+.idea/
