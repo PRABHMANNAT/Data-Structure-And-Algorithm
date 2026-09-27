@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from dataclasses import asdict
 from .engine import StreamEngine
 from .model import Event
 
@@ -14,7 +15,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv); engine = StreamEngine(args.window_ms, args.lateness_ms)
     for line in sys.stdin:
         raw = json.loads(line); engine.ingest(Event(**raw))
-    print(json.dumps({"stats": engine.stats().__dict__, "leaders": engine.leaders()}))
+    print(json.dumps({"stats": asdict(engine.stats()), "leaders": engine.leaders()}))
     return 0
 
 
