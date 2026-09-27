@@ -15,6 +15,8 @@ A hands-on collection of data-structure and algorithm projects in C++, Go, and P
 | Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
 | Applied Python | Algorithmic Transit Simulator | Timetable routing, AVL indexes, interval conflicts, disruption simulation, and caching |
 | Applied Python | Versioned Search Engine | Inverted indexing, Boolean/phrase search, BM25 ranking, autocomplete, and snapshots |
+| Advanced Python | StreamShield | Event-time analytics, watermarks, sliding windows, Count-Min Sketches, heavy hitters, and snapshots |
+| Advanced Python | GraphForge | Versioned directed graphs, Dijkstra/A*, SCCs, topological analysis, rollback DSU, and routing caches |
 
 ## Repository layout
 
@@ -28,6 +30,8 @@ go_search_structures/        Search and indexing structures in Go
 advanced_delivery_network/    Graph-based delivery route-planning project
 algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
 versioned_search_engine/     Full-text search and retrieval algorithms project
+streamshield/                Bounded-memory event-time stream analytics engine
+graphforge/                  Versioned graph-routing algorithms toolkit
 ```
 
 ## Featured applied projects
@@ -35,6 +39,16 @@ versioned_search_engine/     Full-text search and retrieval algorithms project
 **Algorithmic Transit Simulator** models a timetable as a graph and plans earliest-arrival journeys with transfer buffers. It also demonstrates AVL trees, interval conflict detection, union-find connectivity analysis, prefix tries, LRU caching, disruption projection, and event simulation.
 
 **Versioned Search Engine** is a dependency-free retrieval system. It combines positional inverted indexes for phrase search, Boolean posting-set operations, BM25 ranking, trie autocomplete, bounded top-k selection, Bloom-filter deduplication, LRU caching, snapshots, and link-graph recommendations.
+
+**StreamShield** is a dependency-free event-time analytics engine. It combines
+monotonic watermarks, exact rolling windows, Count-Min Sketch frequency estimates,
+Misra-Gries candidate tracking, indexed leaderboards, diagnostics, JSONL ingestion,
+and checksum-protected observable-state snapshots.
+
+**GraphForge** is a versioned route-planning toolkit built for reproducible graph
+queries. It provides revision-isolated graph snapshots, Dijkstra and A* routing,
+strongly connected components, topological ordering, rollback union-find, bounded
+alternative-route search, LRU route caching, and transaction-style graph edits.
 
 ## Run the C++ exercises
 
@@ -89,10 +103,18 @@ python algorithmic_transit_simulator/examples/demo.py
 
 python -m unittest discover -s versioned_search_engine/tests -t versioned_search_engine -v
 python versioned_search_engine/examples/demo.py
+
+cd streamshield
+python -m pytest
+python -m streamshield < examples/events.jsonl
+
+cd ../graphforge
+python -m pytest
+python -m graphforge delhi mumbai < examples/network.jsonl
 ```
 
 ## Learning path
 
-Start with binary conversion to understand representations. Next, explore the Go and Python implementations to see how collections, trees, heaps, graphs, and connectivity algorithms work internally. Continue with the delivery-network planner and transit simulator to see graph algorithms combined with operational data structures. Finish with the versioned search engine to study indexing, ranking, caching, and retrieval.
+Start with binary conversion to understand representations. Next, explore the Go and Python implementations to see how collections, trees, heaps, graphs, and connectivity algorithms work internally. Continue with the delivery-network planner and transit simulator to see graph algorithms combined with operational data structures. Finish with the versioned search engine, StreamShield, and GraphForge to study retrieval, real-time streaming, bounded-memory approximation, immutable revisions, and production-style route planning.
 
 Each Python project includes focused unit tests, a runnable demo, and documentation on the relevant operations and complexity trade-offs.
