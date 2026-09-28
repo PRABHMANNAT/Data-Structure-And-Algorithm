@@ -15,6 +15,7 @@ A hands-on collection of data-structure and algorithm projects in C++, Go, and P
 | Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
 | Applied Python | Algorithmic Transit Simulator | Timetable routing, AVL indexes, interval conflicts, disruption simulation, and caching |
 | Applied Python | Versioned Search Engine | Inverted indexing, Boolean/phrase search, BM25 ranking, autocomplete, and snapshots |
+| Interactive web app | RouteLab | Canvas-based grid routing with adjacency lists, Dijkstra, and A* search |
 
 ## Repository layout
 
@@ -28,6 +29,7 @@ go_search_structures/        Search and indexing structures in Go
 advanced_delivery_network/    Graph-based delivery route-planning project
 algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
 versioned_search_engine/     Full-text search and retrieval algorithms project
+map-routing-pathfinding-visualizer/ Interactive Dijkstra and A* canvas visualizer
 ```
 
 ## Featured applied projects
@@ -35,6 +37,8 @@ versioned_search_engine/     Full-text search and retrieval algorithms project
 **Algorithmic Transit Simulator** models a timetable as a graph and plans earliest-arrival journeys with transfer buffers. It also demonstrates AVL trees, interval conflict detection, union-find connectivity analysis, prefix tries, LRU caching, disruption projection, and event simulation.
 
 **Versioned Search Engine** is a dependency-free retrieval system. It combines positional inverted indexes for phrase search, Boolean posting-set operations, BM25 ranking, trie autocomplete, bounded top-k selection, Bloom-filter deduplication, LRU caching, snapshots, and link-graph recommendations.
+
+**RouteLab** turns shortest-path fundamentals into an interactive map. It builds an adjacency list from the grid on each run and animates both Dijkstra's algorithm and A* as they explore toward a destination.
 
 ## Run the C++ exercises
 
