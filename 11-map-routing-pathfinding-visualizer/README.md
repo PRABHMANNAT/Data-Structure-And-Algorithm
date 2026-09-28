@@ -16,9 +16,22 @@ RouteLab is a browser-based canvas visualizer for shortest-path search on a spat
 No dependencies are required. Serve the folder with a static file server, then open the displayed local URL:
 
 ```bash
-cd map-routing-pathfinding-visualizer
+cd 11-map-routing-pathfinding-visualizer/01-source
 python -m http.server 8080
 ```
+
+## Project structure
+
+```text
+11-map-routing-pathfinding-visualizer/
+├── 01-source/          Interactive HTML, CSS, JavaScript, and favicon
+├── 02-learning-notes/  Numbered algorithm and implementation notes
+├── dist/               Static deployment bundle
+├── .openai/            Hosting configuration
+└── README.md           Setup, controls, and algorithm overview
+```
+
+`01-source` is the editable application. `dist` is the matching static bundle used for deployment.
 
 ## How the algorithms differ
 
@@ -31,7 +44,7 @@ Both implementations use an adjacency list and a binary min-heap, with `O((V + E
 
 ## Guided notes
 
-The [`docs`](docs) folder contains a 59-part learning guide that follows the implementation from grid modeling and heap mechanics through A*, rendering, accessibility, and validation.
+The [`02-learning-notes`](02-learning-notes) folder contains a 59-part learning guide that follows the implementation from grid modeling and heap mechanics through A*, rendering, accessibility, and validation.
 
 ## Controls
 

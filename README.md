@@ -29,7 +29,7 @@ go_search_structures/        Search and indexing structures in Go
 advanced_delivery_network/    Graph-based delivery route-planning project
 algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
 versioned_search_engine/     Full-text search and retrieval algorithms project
-map-routing-pathfinding-visualizer/ Interactive Dijkstra and A* canvas visualizer
+11-map-routing-pathfinding-visualizer/ Numbered Dijkstra and A* canvas visualizer
 ```
 
 ## Featured applied projects
