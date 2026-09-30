@@ -1,0 +1,5 @@
+export const puzzles = [
+  { id:"starter", title:"Starter Stack", difficulty:"Easy", grid:["#C#S#####","CAT#OIL##","#R#N#####","#########","#S#S#####","SUN#SIP##","#N#R#####"], clues:{ CAT:"Small pet with whiskers", OIL:"Cooking or engine liquid", CAR:"Road vehicle", SIN:"Wrongdoing", SUN:"Our nearest star", SIP:"Take a small drink", SIR:"Polite title for a man" } },
+  { id:"arrays", title:"Array Avenue", difficulty:"Medium", grid:["#D#R#####","DOG#RAT##","#G#N#####","#########","#M#B#####","MAP#BEE##","#P#D#####"], clues:{ DOG:"A loyal canine", RAT:"Small rodent", DOG:"A loyal canine", RAN:"Moved quickly on foot", MAP:"A visual guide to a place", BEE:"Honey-making insect", BED:"A place to sleep" } },
+  { id:"graphs", title:"Graph Garden", difficulty:"Medium", grid:["#H#T#####","HEN#OAR##","#N#N#####","#########","#P#M#####","PEN#MAP##","#N#P#####"], clues:{ HEN:"Adult female chicken", OAR:"Boat paddle", TAN:"Brownish skin colour", PEN:"Writing tool", MAP:"Chart of a location", NAP:"Short sleep" } }
+];
