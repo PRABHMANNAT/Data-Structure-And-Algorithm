@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A keyboard-friendly crossword puzzle game with algorithm learning notes." />
+    <meta name="theme-color" content="#12233f" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Crossword Lab</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">Data Structures × Wordplay</p>
+          <h1>Crossword Lab</h1>
+        </div>
+        <div class="header-actions">
+          <label class="select-label" for="puzzle-picker">Puzzle
+            <select id="puzzle-picker" aria-label="Choose a crossword puzzle"></select>
+          </label>
+          <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle colour theme">◐</button>
+        </div>
+      </header>
+
+      <section class="game-summary" aria-label="Puzzle status">
+        <div><span class="summary-label">Puzzle</span><strong id="puzzle-title">Loading…</strong></div>
+        <div><span class="summary-label">Progress</span><strong id="progress-label">0%</strong></div>
+        <div><span class="summary-label">Time</span><strong id="timer">00:00</strong></div>
+        <button id="pause-button" class="secondary-button" type="button">Pause</button>
+      </section>
+
+      <section class="progress-track" aria-label="Puzzle completion"><span id="progress-bar"></span></section>
+      <p id="announcement" class="sr-only" aria-live="polite"></p>
+
+      <section class="play-area" aria-label="Crossword game">
+        <div class="board-panel">
+          <div id="crossword-board" class="crossword-board" role="grid" aria-label="Crossword grid"></div>
+          <div class="current-clue" aria-live="polite">
+            <span id="current-clue-number">1 Across</span>
+            <strong id="current-clue-text">Choose a square to begin.</strong>
+          </div>
+        </div>
+        <aside class="clue-panel" aria-label="Crossword clues">
+          <div class="clue-tabs" role="tablist" aria-label="Clue direction">
+            <button class="tab-button is-selected" id="across-tab" role="tab" aria-selected="true" type="button">Across</button>
+            <button class="tab-button" id="down-tab" role="tab" aria-selected="false" type="button">Down</button>
+          </div>
+          <ol id="clue-list" class="clue-list" aria-label="Across clues"></ol>
+        </aside>
+      </section>
+
+      <section class="control-panel" aria-label="Game controls">
+        <div class="control-group"><h2>Check</h2><button data-action="check-cell" type="button">Cell</button><button data-action="check-word" type="button">Word</button><button data-action="check-puzzle" type="button">Puzzle</button></div>
+        <div class="control-group"><h2>Reveal</h2><button data-action="reveal-cell" type="button">Cell</button><button data-action="reveal-word" type="button">Word</button><button data-action="reveal-puzzle" type="button">Puzzle</button></div>
+        <div class="control-group"><h2>Manage</h2><button data-action="clear-word" type="button">Clear word</button><button data-action="reset" type="button">Reset</button><button data-action="help" type="button">Keyboard help</button></div>
+      </section>
+
+      <dialog id="help-dialog">
+        <form method="dialog"><button class="dialog-close" aria-label="Close help">×</button></form>
+        <h2>Keyboard shortcuts</h2>
+        <ul><li>Type a letter to fill the selected square.</li><li>Arrow keys move; Space switches direction.</li><li>Backspace clears the previous square.</li><li>Tab moves through clues; Enter opens the selected clue.</li></ul>
+      </dialog>
+    </main>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
