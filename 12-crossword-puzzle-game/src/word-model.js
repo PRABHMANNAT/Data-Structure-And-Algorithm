@@ -1,0 +1,4 @@
+import { DIRECTIONS } from "./config.js";
+import { cellsFor, startsWord } from "./puzzle-utils.js";
+export function buildWords(puzzle) { const words=[]; let number=1; for(let row=0;row<puzzle.grid.length;row++) for(let col=0;col<puzzle.grid[row].length;col++) { const across=startsWord(puzzle,row,col,DIRECTIONS.ACROSS), down=startsWord(puzzle,row,col,DIRECTIONS.DOWN); if(!across&&!down) continue; const cellNumber=number++; for(const direction of [DIRECTIONS.ACROSS,DIRECTIONS.DOWN]) if(direction===DIRECTIONS.ACROSS?across:down) { const cells=cellsFor(puzzle,row,col,direction); const answer=cells.map(cell=>cell.answer).join(""); words.push({id:`${row}:${col}:${direction}`,number:cellNumber,direction,cells,answer,clue:puzzle.clues[answer] ?? `A ${answer.length}-letter word`}); } return words; }
+export const wordAt = (words,row,col,direction) => words.find(word => word.direction===direction && word.cells.some(cell=>cell.row===row&&cell.col===col));
