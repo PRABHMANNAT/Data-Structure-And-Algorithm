@@ -10,6 +10,16 @@ It uses only the Python standard library at runtime.
 From this directory, run:
 
 ```powershell
+python -m plagiarism_detector.web --port 8000
+```
+
+Open `http://127.0.0.1:8000/` in your browser. Choose source files or load the
+sample pair, then select **Analyze files**. The server binds to your computer's
+loopback address, and uploaded files remain in memory during the comparison.
+
+The command-line workflow is also available:
+
+```powershell
 python -m plagiarism_detector examples/submissions
 python -m plagiarism_detector examples/submissions --format html --output report.html
 python -m unittest discover -s tests -v

@@ -15,3 +15,6 @@ plagiarism-detect = "plagiarism_detector.cli:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["plagiarism_detector*"]
+
+[tool.setuptools.package-data]
+plagiarism_detector = ["web_ui.html"]
