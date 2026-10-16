@@ -15,6 +15,7 @@ A hands-on collection of data-structure and algorithm projects in C++, Go, and P
 | Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
 | Applied Python | Algorithmic Transit Simulator | Timetable routing, AVL indexes, interval conflicts, disruption simulation, and caching |
 | Applied Python | Versioned Search Engine | Inverted indexing, Boolean/phrase search, BM25 ranking, autocomplete, and snapshots |
+| Applied Python | Plagiarism Detection System | Token normalization, winnowing fingerprints, inverted indexing, and explainable source similarity |
 | Python string algorithms | String Algorithms Lab | KMP, Z search, Aho–Corasick, suffix arrays, rolling hashes, and sequence dynamic programming |
 | Interactive web app | RouteLab | Canvas-based grid routing with adjacency lists, Dijkstra, and A* search |
 
@@ -30,6 +31,7 @@ go_search_structures/        Search and indexing structures in Go
 advanced_delivery_network/    Graph-based delivery route-planning project
 algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
 versioned_search_engine/     Full-text search and retrieval algorithms project
+plagiarism_detection_system/ Explainable source-code similarity detector
 string_algorithms_lab/       Exact and multi-pattern string algorithms project
 11-map-routing-pathfinding-visualizer/ Numbered Dijkstra and A* canvas visualizer
 ```
@@ -39,6 +41,8 @@ string_algorithms_lab/       Exact and multi-pattern string algorithms project
 **Algorithmic Transit Simulator** models a timetable as a graph and plans earliest-arrival journeys with transfer buffers. It also demonstrates AVL trees, interval conflict detection, union-find connectivity analysis, prefix tries, LRU caching, disruption projection, and event simulation.
 
 **Versioned Search Engine** is a dependency-free retrieval system. It combines positional inverted indexes for phrase search, Boolean posting-set operations, BM25 ranking, trie autocomplete, bounded top-k selection, Bloom-filter deduplication, LRU caching, snapshots, and link-graph recommendations.
+
+**Plagiarism Detection System** compares source files with normalized tokens, stable winnowing fingerprints, indexed candidate lookup, and source-line evidence. Its scores help a human review similar submissions.
 
 **String Algorithms Lab** compares five exact matchers and adds Aho–Corasick multi-pattern search, suffix indexes, streaming matchers, palindromes, edit distance, and sequence algorithms. Its tests cross-check optimized search methods against a simple reference matcher.
 
@@ -98,6 +102,11 @@ python algorithmic_transit_simulator/examples/demo.py
 python -m unittest discover -s versioned_search_engine/tests -t versioned_search_engine -v
 python versioned_search_engine/examples/demo.py
 
+cd plagiarism_detection_system
+python -m unittest discover -s tests -v
+python -m examples.demo
+cd ..
+
 cd string_algorithms_lab
 python -m unittest discover -s tests -v
 python -m examples.demo
@@ -105,6 +114,6 @@ python -m examples.demo
 
 ## Learning path
 
-Start with binary conversion to understand representations. Next, explore the Go and Python implementations to see how collections, trees, heaps, graphs, and connectivity algorithms work internally. Continue with the delivery-network planner and transit simulator to see graph algorithms combined with operational data structures. Study the versioned search engine for retrieval, then use String Algorithms Lab to compare the underlying string-matching and sequence techniques.
+Start with binary conversion to understand representations. Next, explore the Go and Python implementations to see how collections, trees, heaps, graphs, and connectivity algorithms work internally. Continue with the delivery-network planner and transit simulator to see graph algorithms combined with operational data structures. Study the versioned search engine for retrieval, then use String Algorithms Lab to compare the underlying string-matching and sequence techniques. Finish with the plagiarism detector to see token indexing applied to a real review workflow.
 
 Each Python project includes focused unit tests, a runnable demo, and documentation on the relevant operations and complexity trade-offs.

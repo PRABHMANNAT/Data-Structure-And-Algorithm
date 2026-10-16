@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dsa-plagiarism-detector"
+version = "1.0.0"
+description = "Explainable source-code similarity detection using token normalization and winnowing"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+plagiarism-detect = "plagiarism_detector.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["plagiarism_detector*"]
