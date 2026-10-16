@@ -1,14 +1,15 @@
-"""Deterministic, size-bounded discovery of supported source files."""
+"""Deterministic, size-bounded discovery of supported files."""
 
 from pathlib import Path
 
+from .ingest import document_from_bytes
 from .languages import language_for
 from .models import SourceDocument
 
 DEFAULT_EXCLUDES = {".git", ".venv", "venv", "node_modules", "__pycache__", "dist", "build"}
 
 
-def discover(root: str | Path, max_bytes: int = 1_000_000,
+def discover(root: str | Path, max_bytes: int = 8_000_000,
              excludes: set[str] | None = None) -> list[SourceDocument]:
     path = Path(root).resolve()
     if not path.exists():
@@ -25,8 +26,8 @@ def discover(root: str | Path, max_bytes: int = 1_000_000,
         if language is None or candidate.stat().st_size > max_bytes:
             continue
         try:
-            text = candidate.read_text(encoding="utf-8")
-        except (UnicodeDecodeError, OSError):
+            document = document_from_bytes(str(candidate), candidate.read_bytes())
+        except (ValueError, OSError):
             continue
-        documents.append(SourceDocument(str(candidate), text, language))
+        documents.append(document)
     return documents

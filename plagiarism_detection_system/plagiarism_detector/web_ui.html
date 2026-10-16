@@ -22,12 +22,12 @@
 <body>
   <header class="top"><div class="shell">
     <nav class="nav"><div class="brand"><span class="brandmark">⌕</span> SourceLens</div><span class="nav-note">● Local analysis · files stay on this computer</span></nav>
-    <div class="hero"><div class="eyebrow">Plagiarism Detection System</div><h1>Find the overlap.<br>Review the evidence.</h1><p>Compare source files with normalized tokens and winnowing fingerprints. See ranked matches with the lines that need a closer look. <strong>A score is a review signal, not a verdict.</strong></p></div>
+    <div class="hero"><div class="eyebrow">Plagiarism Detection System</div><h1>Find the overlap.<br>Review the evidence.</h1><p>Compare source code, PDFs, Word documents, and plain text with normalized tokens and winnowing fingerprints. See ranked matches with the lines that need a closer look. <strong>A score is a review signal, not a verdict.</strong></p></div>
   </div></header>
   <main class="shell">
     <section class="card workspace" aria-labelledby="workspace-title">
-      <div class="section-head"><div><h2 id="workspace-title">Compare submissions</h2><p class="muted">Choose 2–50 source files. Supported: Python, JavaScript, TypeScript, Java, C, C++, Go, Rust.</p></div></div>
-      <div id="dropzone" class="dropzone"><div class="dropicon">↑</div><b>Drop files here or browse your computer</b><p>Maximum 1 MB per file · analysis runs on localhost</p><input id="fileInput" class="file-input" type="file" multiple accept=".py,.js,.jsx,.ts,.tsx,.java,.c,.h,.cpp,.cc,.hpp,.go,.rs"><button id="browse" class="button secondary" type="button">Browse files</button></div>
+      <div class="section-head"><div><h2 id="workspace-title">Compare submissions</h2><p class="muted">Choose 2–50 files. Supports PDF, DOCX, TXT, Markdown, Python, JavaScript, TypeScript, Java, C, C++, Go, and Rust.</p></div></div>
+      <div id="dropzone" class="dropzone"><div class="dropicon">↑</div><b>Drop files here or browse your computer</b><p>Maximum 8 MB per file · text-based PDFs only · analysis runs on localhost</p><input id="fileInput" class="file-input" type="file" multiple accept=".pdf,.docx,.txt,.md,.py,.js,.jsx,.ts,.tsx,.java,.c,.h,.cpp,.cc,.hpp,.go,.rs"><button id="browse" class="button secondary" type="button">Browse files</button></div>
       <div class="filebar"><h3 id="files-heading">Selected files</h3><button id="sample" class="button secondary" type="button">Load sample pair</button></div>
       <div id="fileList" class="file-list" aria-labelledby="files-heading"><span class="empty">No files selected yet</span></div>
       <div class="controls"><div class="threshold"><label for="threshold">Match threshold</label><input id="threshold" type="range" min="0" max="1" step="0.05" value="0.35"><output id="thresholdValue">35%</output></div><div class="actions"><button id="clear" class="button secondary" type="button">Clear</button><button id="analyze" class="button dark" type="button" disabled>Analyze files →</button></div></div>
@@ -39,27 +39,29 @@
   <script>
     const $ = id => document.getElementById(id);
     let selected = [];
-    const supported = /\.(py|js|jsx|ts|tsx|java|c|h|cpp|cc|hpp|go|rs)$/i;
+    const supported = /\.(pdf|docx|txt|md|py|js|jsx|ts|tsx|java|c|h|cpp|cc|hpp|go|rs)$/i;
     function showError(message){$('error').textContent=message;$('error').style.display=message?'block':'none'}
     function refresh(){
       const list=$('fileList');list.replaceChildren();
       if(!selected.length){const empty=document.createElement('span');empty.className='empty';empty.textContent='No files selected yet';list.append(empty)}
-      selected.forEach(file=>{const chip=document.createElement('span');chip.className='chip';chip.textContent=file.name;const size=document.createElement('small');size.textContent=`${Math.ceil(new TextEncoder().encode(file.content).length/1024)} KB`;chip.append(size);list.append(chip)});
+      selected.forEach(file=>{const chip=document.createElement('span');chip.className='chip';chip.textContent=file.name;const size=document.createElement('small');size.textContent=`${Math.ceil(file.size/1024)} KB`;chip.append(size);list.append(chip)});
       $('analyze').disabled=selected.length<2;
     }
     async function addFiles(fileList){
       showError('');const files=Array.from(fileList);
       try{
-        const loaded=await Promise.all(files.map(async file=>({name:file.name,content:await file.text()})));
-        for(const file of loaded){
+        if(selected.length+files.length>50)throw Error('Choose at most 50 files');
+        const loaded=await Promise.all(files.map(async file=>{
           if(!supported.test(file.name))throw Error(`Unsupported file: ${file.name}`);
-          if(new TextEncoder().encode(file.content).length>1000000)throw Error(`${file.name} exceeds 1 MB`);
-          if(selected.some(item=>item.name===file.name))throw Error(`Duplicate file name: ${file.name}`);
-          selected.push(file);
-        }
-        if(selected.length>50)throw Error('Choose at most 50 files');
-        refresh();
-      }catch(error){selected=[];refresh();showError(error.message)}
+          if(file.size>8000000)throw Error(`${file.name} exceeds 8 MB`);
+          const bytes=new Uint8Array(await file.arrayBuffer());let binary='';
+          for(let index=0;index<bytes.length;index+=32768){binary+=String.fromCharCode(...bytes.subarray(index,index+32768))}
+          return {name:file.name,content_base64:btoa(binary),size:file.size};
+        }));
+        const combined=[...selected,...loaded];
+        if(new Set(combined.map(file=>file.name)).size!==combined.length)throw Error('File names must be unique');
+        selected=combined;refresh();
+      }catch(error){showError(error.message)}
     }
     $('browse').addEventListener('click',()=>$('fileInput').click());
     $('fileInput').addEventListener('change',event=>{addFiles(event.target.files);event.target.value=''});
@@ -72,7 +74,7 @@
     $('sample').addEventListener('click',()=>{
       const original=`def even_square_total(values):\n    total = 0\n    for value in values:\n        if value % 2 == 0:\n            total += value * value\n    return total\n`;
       const renamed=`def calculate(numbers):\n    answer = 0\n    for item in numbers:\n        if item % 2 == 0:\n            answer += item * item\n    return answer\n`;
-      selected=[{name:'original.py',content:original},{name:'renamed.py',content:renamed}];refresh();showError('');$('results').style.display='none';
+      selected=[{name:'original.py',content:original,size:new TextEncoder().encode(original).length},{name:'renamed.py',content:renamed,size:new TextEncoder().encode(renamed).length}];refresh();showError('');$('results').style.display='none';
     });
     function metric(label,value){const el=document.createElement('span');const name=document.createElement('b');name.textContent=label+' ';el.append(name,`${Math.round(value*100)}%`);return el}
     function render(data){
@@ -93,7 +95,7 @@
     }
     $('analyze').addEventListener('click',async()=>{
       showError('');const button=$('analyze');button.disabled=true;button.textContent='Analyzing…';
-      try{const response=await fetch('/api/compare',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({files:selected,threshold:Number($('threshold').value)})});const data=await response.json();if(!response.ok)throw Error(data.error||'Analysis failed');render(data)}
+      try{const body=JSON.stringify({files:selected,threshold:Number($('threshold').value)});if(body.length>32000000)throw Error('Combined files exceed the 32 MB request limit');const response=await fetch('/api/compare',{method:'POST',headers:{'Content-Type':'application/json'},body});const data=await response.json();if(!response.ok)throw Error(data.error||'Analysis failed');render(data)}
       catch(error){showError(error.message)}finally{button.disabled=selected.length<2;button.textContent='Analyze files →'}
     });
   </script>

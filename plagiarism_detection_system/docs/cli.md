@@ -6,7 +6,7 @@ files or directories to compare them in one corpus. Text output is the default;
 writes a standalone review page.
 
 `--threshold 0.6` hides lower-ranked pairs. `--k 7 --window 5` requires longer
-matching fragments. `--max-bytes 500000` limits individual source files, while
+matching fragments. `--max-bytes 500000` limits individual files (default 8 MB), while
 `--exclude generated` skips any directory with that name. Default exclusions
 include `.git`, virtual environments, Node dependencies, build output, and Python
 cache directories.

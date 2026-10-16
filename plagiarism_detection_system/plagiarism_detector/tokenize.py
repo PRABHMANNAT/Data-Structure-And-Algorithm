@@ -65,7 +65,20 @@ def _python(text: str) -> list[Token]:
     return result
 
 
+def _text(text: str) -> list[Token]:
+    """Keep actual prose words so unrelated documents do not all become ID."""
+    newlines = [index for index, char in enumerate(text) if char == "\n"]
+    result = []
+    for match in re.finditer(r"\w+(?:['’]\w+)?", text, re.UNICODE):
+        line = bisect_right(newlines, match.start()) + 1
+        previous_newline = newlines[line - 2] if line > 1 else -1
+        result.append(Token(match.group().casefold(), line, match.start() - previous_newline - 1))
+    return result
+
+
 def normalize_tokens(text: str, language: str) -> list[Token]:
     if language == "python":
         return _python(text)
+    if language == "text":
+        return _text(text)
     return _generic(text)

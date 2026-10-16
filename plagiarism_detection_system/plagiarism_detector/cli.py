@@ -17,7 +17,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--threshold", type=float, default=0.35, help="Minimum score, 0 to 1")
     parser.add_argument("--k", type=int, default=5, help="Tokens in each fingerprint k-gram")
     parser.add_argument("--window", type=int, default=4, help="Winnowing window size")
-    parser.add_argument("--max-bytes", type=int, default=1_000_000)
+    parser.add_argument("--max-bytes", type=int, default=8_000_000)
     parser.add_argument("--exclude", action="append", default=[], help="Directory name to skip")
     return parser
 

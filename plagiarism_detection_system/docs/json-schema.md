@@ -4,7 +4,8 @@ JSON output has one top-level `matches` array. Each match contains `left` and `r
 paths, a blended `score`, component values `containment`, `jaccard`, and `sequence`,
 the `shared_fingerprints` count, and an `evidence` array. Evidence entries contain
 token offsets `left_start` and `right_start`, `length`, and one-based source lines
-`left_line` and `right_line`.
+`left_line` and `right_line`. For PDF and DOCX, those lines refer to extracted
+text rather than original page or Word layout positions.
 
 The paths are the absolute paths returned by file discovery. Library callers can
 provide their own stable path labels. Scores are numbers from zero through one.

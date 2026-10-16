@@ -10,4 +10,5 @@ class LanguageMappingTests(unittest.TestCase):
         self.assertEqual(language_for("answer.tsx"), "typescript")
 
     def test_unknown_extension(self):
-        self.assertIsNone(language_for("answer.txt"))
+        self.assertEqual(language_for("answer.txt"), "text")
+        self.assertIsNone(language_for("answer.xyz"))

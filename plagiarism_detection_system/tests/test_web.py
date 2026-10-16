@@ -1,6 +1,8 @@
 import unittest
+import base64
 
 from plagiarism_detector.web import analyze
+from tests.test_ingest_docx import make_docx
 
 
 class WebAnalysisTests(unittest.TestCase):
@@ -18,7 +20,7 @@ class WebAnalysisTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "between 2 and 50"):
             analyze({"files": []})
         with self.assertRaisesRegex(ValueError, "Unsupported"):
-            analyze({"files": [{"name": "a.txt", "content": "x"},
+            analyze({"files": [{"name": "a.xyz", "content": "x"},
                                {"name": "b.py", "content": "y"}]})
         with self.assertRaisesRegex(ValueError, "unique"):
             analyze({"files": [{"name": "a.py", "content": "x"},
@@ -31,3 +33,16 @@ class WebAnalysisTests(unittest.TestCase):
         ]})
         self.assertEqual((result["matches"][0]["left"], result["matches"][0]["right"]),
                          ("one.py", "two.py"))
+
+    def test_binary_docx_upload_matches_plain_text(self):
+        phrase = "The quick brown fox jumps over the lazy dog"
+        result = analyze({"files": [
+            {"name": "essay.docx", "content_base64": base64.b64encode(make_docx([phrase])).decode()},
+            {"name": "notes.txt", "content": phrase},
+        ]})
+        self.assertEqual(len(result["matches"]), 1)
+
+    def test_invalid_base64_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Invalid encoded content"):
+            analyze({"files": [{"name": "a.pdf", "content_base64": "%%%"},
+                               {"name": "b.txt", "content": "text"}]})

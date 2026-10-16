@@ -14,3 +14,9 @@ decision. The report deliberately says that scores are review signals.
 The CLI reads local files only. It does not upload source or contact external
 services. JSON and HTML reports contain file paths and should be handled with the
 same access controls as the underlying submissions.
+
+Document comparison uses extracted text rather than layout or images. A scanned
+PDF with no text layer needs OCR before the detector can compare it. Password-
+protected PDFs are rejected, and DOCX text outside the main document body may
+not be included. PDF, DOCX, TXT, and Markdown files can match one another, but
+they are not compared against source-code profiles.

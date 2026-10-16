@@ -1,6 +1,6 @@
 # Reviewing a flagged pair
 
-Start with the two original source files and the report's line numbers. Confirm
+Start with the two original files and the report's line numbers. Confirm
 that the matching spans contain distinctive decisions rather than assignment
 scaffolding, standard library idioms, or a common textbook algorithm. Compare
 the full context around each span and note any matching errors, unusual choices,

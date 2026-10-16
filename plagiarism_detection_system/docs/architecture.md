@@ -1,10 +1,11 @@
 # Architecture
 
-The pipeline has five stages: file discovery, token normalization, fingerprinting,
-candidate lookup, and pairwise scoring. `files.discover` reads bounded UTF-8 source
-files in sorted order. `tokenize.normalize_tokens` removes comments and formatting,
+The pipeline has five stages: file discovery and text extraction, token normalization,
+fingerprinting, candidate lookup, and pairwise scoring. `files.discover` reads
+bounded files in sorted order. `ingest` extracts PDF and DOCX text or decodes plain
+text. `tokenize.normalize_tokens` removes code comments and formatting,
 normalizes identifiers to `ID`, numbers to `NUM`, and strings to `STR`, while retaining
-keywords and operators.
+keywords and operators. Its prose profile retains case-folded words.
 
 `fingerprints.kgram_hashes` hashes consecutive token groups with BLAKE2b. `winnow`
 retains the rightmost minimum hash in each sliding window, keeping a compact signature

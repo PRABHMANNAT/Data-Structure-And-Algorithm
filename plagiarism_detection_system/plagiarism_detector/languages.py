@@ -7,6 +7,7 @@ EXTENSIONS = {
     ".ts": "typescript", ".tsx": "typescript", ".java": "java",
     ".c": "c", ".h": "c", ".cpp": "cpp", ".cc": "cpp",
     ".hpp": "cpp", ".go": "go", ".rs": "rust",
+    ".pdf": "text", ".docx": "text", ".txt": "text", ".md": "text",
 }
 
 KEYWORDS = set("""

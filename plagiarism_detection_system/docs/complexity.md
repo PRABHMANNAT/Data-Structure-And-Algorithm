@@ -9,9 +9,9 @@ The straightforward winnowing implementation scans each window, costing
 Candidate retrieval uses postings from the fingerprint index instead of comparing
 all file pairs. For each candidate, set overlap is proportional to fingerprint-set
 size. The longest-common-run dynamic program costs up to `O(L²)` time for token
-streams capped at 2,000 tokens and `O(L)` memory. Evidence search can also cost
-quadratic time for highly repetitive token streams, so large corpora should use
-conservative size limits and review the CLI's `--max-bytes` setting.
+streams capped at 2,000 tokens and `O(L)` memory. Evidence search indexes token
+groups and checks at most 50,000 shared seeds, capping work for repetitive prose.
+Large corpora should still use conservative limits and review `--max-bytes`.
 
 The detector is intended for modest coursework batches. It is not a distributed
 index or a substitute for a specialized large-scale similarity service.

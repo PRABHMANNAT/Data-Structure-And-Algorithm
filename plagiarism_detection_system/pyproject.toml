@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "dsa-plagiarism-detector"
 version = "1.0.0"
-description = "Explainable source-code similarity detection using token normalization and winnowing"
+description = "Explainable source and document similarity detection using token normalization and winnowing"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["pypdf>=6,<7"]
 
 [project.scripts]
 plagiarism-detect = "plagiarism_detector.cli:main"

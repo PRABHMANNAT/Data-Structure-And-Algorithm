@@ -1,17 +1,18 @@
-"""Loopback-only web UI and JSON API for comparing local source files."""
+"""Loopback-only web UI and JSON API for comparing local documents."""
 
 import argparse
+import base64
+import binascii
 import json
 from dataclasses import asdict
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from .engine import Detector, DetectorConfig
-from .languages import language_for
-from .models import SourceDocument
+from .ingest import document_from_bytes
 
-MAX_REQUEST_BYTES = 3_000_000
-MAX_FILE_BYTES = 1_000_000
+MAX_REQUEST_BYTES = 32_000_000
+MAX_FILE_BYTES = 8_000_000
 MAX_FILES = 50
 
 
@@ -21,7 +22,7 @@ def analyze(payload: object) -> dict:
         raise ValueError("Expected a JSON object")
     entries = payload.get("files")
     if not isinstance(entries, list) or not 2 <= len(entries) <= MAX_FILES:
-        raise ValueError("Choose between 2 and 50 source files")
+        raise ValueError("Choose between 2 and 50 files")
     threshold = payload.get("threshold", 0.35)
     if isinstance(threshold, bool) or not isinstance(threshold, (int, float)):
         raise ValueError("Threshold must be a number from 0 to 1")
@@ -33,18 +34,25 @@ def analyze(payload: object) -> dict:
             raise ValueError("Each file needs a name and text content")
         name = entry.get("name")
         content = entry.get("content")
-        if not isinstance(name, str) or not isinstance(content, str):
-            raise ValueError("Each file needs a name and text content")
+        encoded = entry.get("content_base64")
+        if not isinstance(name, str) or (isinstance(content, str) == isinstance(encoded, str)):
+            raise ValueError("Each file needs a name and one content field")
         name = name.replace("\\", "/").split("/")[-1]
         if not name or len(name) > 120 or name in names:
             raise ValueError("File names must be unique and at most 120 characters")
-        if len(content.encode("utf-8")) > MAX_FILE_BYTES:
-            raise ValueError(f"{name} exceeds the 1 MB file limit")
-        language = language_for(name)
-        if language is None:
-            raise ValueError(f"Unsupported source type: {name}")
+        if isinstance(encoded, str):
+            if len(encoded) > (MAX_FILE_BYTES * 4 // 3 + 8):
+                raise ValueError(f"{name} exceeds the 8 MB file limit")
+            try:
+                data = base64.b64decode(encoded, validate=True)
+            except binascii.Error as exc:
+                raise ValueError(f"Invalid encoded content for {name}") from exc
+        else:
+            data = content.encode("utf-8")
+        if len(data) > MAX_FILE_BYTES:
+            raise ValueError(f"{name} exceeds the 8 MB file limit")
         names.add(name)
-        documents.append(SourceDocument(name, content, language))
+        documents.append(document_from_bytes(name, data))
     matches = Detector(config).compare(documents)
     return {"files": len(documents), "matches": [asdict(match) for match in matches]}
 
@@ -81,7 +89,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             length = int(self.headers.get("Content-Length", "0"))
             if not 0 < length <= MAX_REQUEST_BYTES:
-                raise ValueError("Request must be between 1 byte and 3 MB")
+                raise ValueError("Request must be between 1 byte and 32 MB")
             payload = json.loads(self.rfile.read(length).decode("utf-8"))
             result = analyze(payload)
         except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:

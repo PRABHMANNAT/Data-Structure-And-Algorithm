@@ -7,20 +7,33 @@ def matching_spans(left: list[Token], right: list[Token], minimum: int = 5,
                    max_spans: int = 5) -> tuple[Evidence, ...]:
     if minimum < 1 or max_spans < 1:
         raise ValueError("minimum and max_spans must be positive")
-    positions: dict[str, list[int]] = {}
-    for index, token in enumerate(right):
-        positions.setdefault(token.value, []).append(index)
+    if len(left) < minimum or len(right) < minimum:
+        return ()
+    positions: dict[tuple[str, ...], list[int]] = {}
+    right_values = [token.value for token in right]
+    left_values = [token.value for token in left]
+    for index in range(len(right) - minimum + 1):
+        key = tuple(right_values[index:index + minimum])
+        bucket = positions.setdefault(key, [])
+        if len(bucket) < 100:
+            bucket.append(index)
     candidates: list[Evidence] = []
-    for i, token in enumerate(left):
-        for j in positions.get(token.value, ()):
-            if i and j and left[i - 1].value == right[j - 1].value:
+    checked = 0
+    for i in range(len(left) - minimum + 1):
+        key = tuple(left_values[i:i + minimum])
+        for j in positions.get(key, ()):
+            checked += 1
+            if checked > 50_000:
+                break
+            if i and j and left_values[i - 1] == right_values[j - 1]:
                 continue
-            length = 0
+            length = minimum
             while i + length < len(left) and j + length < len(right) and \
-                    left[i + length].value == right[j + length].value:
+                    left_values[i + length] == right_values[j + length]:
                 length += 1
-            if length >= minimum:
-                candidates.append(Evidence(i, j, length, left[i].line, right[j].line))
+            candidates.append(Evidence(i, j, length, left[i].line, right[j].line))
+        if checked > 50_000:
+            break
     candidates.sort(key=lambda span: (-span.length, span.left_start, span.right_start))
     selected: list[Evidence] = []
     for span in candidates:

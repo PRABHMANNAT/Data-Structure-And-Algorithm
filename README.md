@@ -15,7 +15,7 @@ A hands-on collection of data-structure and algorithm projects in C++, Go, and P
 | Applied Python | Advanced Delivery Network | Dijkstra routing, indexed priority queues, graph analysis, caching, prefix search, and event handling |
 | Applied Python | Algorithmic Transit Simulator | Timetable routing, AVL indexes, interval conflicts, disruption simulation, and caching |
 | Applied Python | Versioned Search Engine | Inverted indexing, Boolean/phrase search, BM25 ranking, autocomplete, and snapshots |
-| Applied Python | Plagiarism Detection System | Token normalization, winnowing fingerprints, inverted indexing, and explainable source similarity |
+| Applied Python | Plagiarism Detection System | PDF, DOCX, TXT, and source-code comparison with winnowing fingerprints and line evidence |
 | Python string algorithms | String Algorithms Lab | KMP, Z search, Aho–Corasick, suffix arrays, rolling hashes, and sequence dynamic programming |
 | Interactive web app | RouteLab | Canvas-based grid routing with adjacency lists, Dijkstra, and A* search |
 
@@ -31,7 +31,7 @@ go_search_structures/        Search and indexing structures in Go
 advanced_delivery_network/    Graph-based delivery route-planning project
 algorithmic_transit_simulator/ Timetable-aware transit planning and simulation
 versioned_search_engine/     Full-text search and retrieval algorithms project
-plagiarism_detection_system/ Explainable source-code similarity detector
+plagiarism_detection_system/ Explainable source and document similarity detector
 string_algorithms_lab/       Exact and multi-pattern string algorithms project
 11-map-routing-pathfinding-visualizer/ Numbered Dijkstra and A* canvas visualizer
 ```
@@ -42,7 +42,7 @@ string_algorithms_lab/       Exact and multi-pattern string algorithms project
 
 **Versioned Search Engine** is a dependency-free retrieval system. It combines positional inverted indexes for phrase search, Boolean posting-set operations, BM25 ranking, trie autocomplete, bounded top-k selection, Bloom-filter deduplication, LRU caching, snapshots, and link-graph recommendations.
 
-**Plagiarism Detection System** compares source files with normalized tokens, stable winnowing fingerprints, indexed candidate lookup, and source-line evidence. Its scores help a human review similar submissions.
+**Plagiarism Detection System** compares PDFs, DOCX, plain text, and source files with normalized tokens, stable winnowing fingerprints, indexed candidate lookup, and line evidence. Its localhost interface and CLI help a human review similar submissions.
 
 **String Algorithms Lab** compares five exact matchers and adds Aho–Corasick multi-pattern search, suffix indexes, streaming matchers, palindromes, edit distance, and sequence algorithms. Its tests cross-check optimized search methods against a simple reference matcher.
 
@@ -87,7 +87,7 @@ go run ./cmd/demo
 
 ## Run the Python projects
 
-The Python projects have no third-party dependencies and require Python 3.10 or newer.
+The Python projects require Python 3.10 or newer. The plagiarism detector also requires `pypdf` for PDF text extraction.
 
 ```bash
 python -m unittest discover -s intermediate_data_structures/tests -v
@@ -103,6 +103,7 @@ python -m unittest discover -s versioned_search_engine/tests -t versioned_search
 python versioned_search_engine/examples/demo.py
 
 cd plagiarism_detection_system
+python -m pip install -e .
 python -m unittest discover -s tests -v
 python -m examples.demo
 cd ..
