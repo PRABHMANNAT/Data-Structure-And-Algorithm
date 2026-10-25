@@ -67,6 +67,7 @@ def main():
             built=command([cxx,'-std=c++20','-O2','-Iinclude',test,*sources,'-o',binary],ROOT/folder)
             results.append(built and command([binary],TEMP))
     if all_suites:
+        results.append(command(['node','workbench/tests/lessons.test.mjs']))
         results.append(command(['node','tests/puzzle-model.test.mjs'],ROOT/'12-crossword-puzzle-game'))
         results.append(command(['node','--test','tests/search.test.mjs'],ROOT/'11-map-routing-pathfinding-visualizer'))
     print(f'\n{sum(results)}/{len(results)} verification groups passed',flush=True)

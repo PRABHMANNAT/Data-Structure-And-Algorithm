@@ -2,6 +2,8 @@ import {el, button, note, announce} from './dom.js';
 import {read, write, favorite, recordRun, history} from './storage.js';
 import {createForm} from './forms.js';
 import {resultShell, compare} from './results.js';
+import {collectionIntro, studyRoutes, artwork, learningPanel} from './learning.js';
+import {lessons} from './lessons.js';
 
 const browserProjects = [
   {id:'routelab',title:'RouteLab',description:'Draw a map. Watch Dijkstra and A* find their way through it.',language:'JavaScript',category:'Graph algorithms',href:'/11-map-routing-pathfinding-visualizer/01-source/'},
@@ -21,7 +23,7 @@ function topline(text = 'A practical study of data & decisions') {
 }
 function footer() { return el('footer', {class:'footnote'}, el('span', {}, 'FIELDNOTES / DATA STRUCTURES & ALGORITHMS'), el('span', {}, 'Made for the curious.')); }
 function collection() {
-  main.replaceChildren(topline(), el('header', {class:'hero'}, el('div', {}, el('p', {class:'eyebrow'}, 'THE COLLECTION / 001—021'), el('h1', {}, 'Algorithms,', el('br'), 'made tangible.')), el('div', {class:'hero-aside'}, el('p', {}, 'Small experiments. Useful systems. A place to see what happens between the input and the answer.'), el('div', {class:'index-stats'}, el('div', {}, el('strong', {}, projects.length), el('span', {}, 'EXPERIMENTS')), el('div', {}, el('strong', {}, '04'), el('span', {}, 'LANGUAGES'))))));
+  main.replaceChildren(topline(), collectionIntro(), studyRoutes(), el('div', {class:'catalogue-heading',id:'catalogue'}, el('div',{},el('p',{class:'eyebrow'},'THE COMPLETE INDEX'),el('h2',{},'Choose your next experiment.')),el('p',{},'Run it. Understand it. Make it your own.')));
   const search = el('input', {type:'search',placeholder:'Find an experiment…','aria-label':'Search experiments',value:query});
   search.addEventListener('input', () => {query = search.value; renderRows();});
   const filters = el('div', {class:'filters',role:'group','aria-label':'Filter by language'});
@@ -36,21 +38,43 @@ function collection() {
     const favorites = read('favorites', []);
     const matched = projects.filter(p => (filter==='All'||p.language===filter) && (!onlyFavorites||favorites.includes(p.id)) && `${p.title} ${p.description} ${p.category}`.toLowerCase().includes(query.toLowerCase()));
     count.textContent = `${String(matched.length).padStart(2,'0')} experiments${onlyFavorites?' in your saved collection':''}`;
-    list.replaceChildren(el('div', {class:'list-head','aria-hidden':true}, el('span', {}, 'NO.'), el('span', {}, 'EXPERIMENT'), el('span', {}, 'LANGUAGE'), el('span', {class:'category'}, 'DISCIPLINE'), el('span', {}, 'SAVE')));
+    list.replaceChildren();
     matched.forEach(project => {
       const saved = favorites.includes(project.id);
       const star = button(saved?'★':'☆', () => {favorite(project.id); renderRows();}, 'star');
       star.setAttribute('aria-label', `${saved?'Unsave':'Save'} ${project.title}`); star.setAttribute('aria-pressed', saved);
-      list.append(el('article', {class:'project-row'}, el('span', {class:'number'}, String(projects.indexOf(project)+1).padStart(2,'0')), el('a', {class:'project-link',href:project.href||'#project/'+project.id}, el('strong', {}, project.title, ' ↗'), el('p', {}, project.description)), el('span', {class:'language'}, project.language), el('span', {class:'category'}, project.category), star));
+      list.append(el('article', {class:'project-card'}, el('a',{href:'#project/'+project.id+'/demo',class:'art-link','aria-label':'Open '+project.title},artwork(project)),el('div',{class:'card-body'},el('div',{class:'card-meta'},el('span',{},String(projects.indexOf(project)+1).padStart(2,'0')+' / '+lessons[project.id].topic),el('span',{class:'language'},project.language)),el('a', {class:'project-link',href:'#project/'+project.id+'/demo'}, el('strong', {}, project.title), el('p', {}, project.description)),el('div',{class:'card-links'},el('a',{href:'#project/'+project.id+'/demo'},'Open demo ↗'),el('a',{href:'#project/'+project.id+'/logic'},'How it works'),star))));
     });
     if (!matched.length) list.append(el('p', {class:'empty'}, onlyFavorites?'Save an experiment with the star to find it here.':'No experiments found. Try another search or language.'));
   }
   renderRows();
 }
-async function workspace(id, version) {
+async function workspace(id, version, section = 'demo') {
   const project = projects.find(item => item.id===id);
-  if (!project || !project.folder) {main.replaceChildren(topline(), el('h1', {}, 'Experiment not found.'), el('a', {href:'#'}, 'Return to the collection')); return;}
+  if (!project) {main.replaceChildren(topline(), el('h1', {}, 'Experiment not found.'), el('a', {href:'#'}, 'Return to the collection')); return;}
   main.replaceChildren(topline('Collection / ' + project.title), el('header', {class:'workspace-title'}, el('a', {class:'eyebrow',href:'#'}, '← ALL EXPERIMENTS'), el('h1', {}, project.title), el('p', {}, project.description)));
+  const demoPanel=el('section',{id:'panel-demo',class:'workspace-panel','aria-label':'Implementation demo'});
+  const panels={demo:demoPanel,logic:el('section',{id:'panel-logic',class:'workspace-panel','aria-label':'How it works'},learningPanel(project,'logic')),notes:el('section',{id:'panel-notes',class:'workspace-panel','aria-label':'Study notes'},learningPanel(project,'notes'))};
+  const nav=el('nav',{class:'workspace-nav','aria-label':'Project sections'});
+  for(const [key,label] of [['demo','01 / Demo'],['logic','02 / How it works'],['notes','03 / Study notes']]) {
+    const link=el('a',{href:`#project/${id}/${key}`},label);
+    nav.append(link);
+  }
+  const picker=el('select',{'aria-label':'Switch project'},projects.map(p=>el('option',{value:p.id,selected:p.id===id},p.title)));
+  picker.addEventListener('change',()=>{location.hash='#project/'+picker.value+'/demo';});
+  main.append(el('div',{class:'workspace-navigation'},nav,picker),...Object.values(panels));
+  function showSection(selected) {
+    const current=panels[selected]?selected:'demo';
+    for(const [key,panel] of Object.entries(panels))panel.hidden=key!==current;
+    for(const link of nav.querySelectorAll('a')) {if(link.hash.endsWith('/'+current))link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}
+  }
+  main.dataset.project=id;
+  main.showSection=showSection;
+  showSection(section);
+  if(project.href){
+    demoPanel.append(el('div',{class:'browser-launch'},artwork(project,true),el('div',{},el('p',{class:'eyebrow'},'THE INTERACTIVE WORKSPACE'),el('h2',{},project.title),el('p',{},project.description),el('a',{href:project.href,class:'solid-link'},'Launch full workspace ↗'),el('p',{class:'note'},'The workspace opens on its own page, with room for the full canvas. Use its learning links to return to the explanations.'))));
+    main.append(footer());return;
+  }
   const output = el('div', {class:'output','aria-live':'polite'});
   output.append(el('div', {class:'placeholder'}, el('div', {class:'diagram','aria-hidden':true}, project.glyph || '[→]'), el('h2', {}, 'Start with a question.'), el('p', {}, project.prompt || 'Adjust the input or load an example. Run the experiment to inspect the result.')));
   const historyNode = el('section', {class:'history','aria-label':'Recent runs'});
@@ -66,7 +90,8 @@ async function workspace(id, version) {
     recordRun(id,input,payload); renderHistory(); announce('Experiment complete. Results are ready.');
   });
   form.node.querySelector('button[type="submit"]').disabled=true;
-  main.append(el('div', {class:'workspace'}, form.node, output), historyNode, note(project.note || 'Runs execute locally using the project implementation. Inputs and run history are saved in this browser.'), footer());
+  demoPanel.append(el('div', {class:'workspace'}, form.node, output), historyNode, note(project.note || 'Runs execute locally using the project implementation. Inputs and run history are saved in this browser.'));
+  main.append(footer());
   try {
     const module = await import('/'+project.folder+'/web/view.js');
     if (version !== routeVersion) return;
@@ -82,16 +107,22 @@ async function workspace(id, version) {
   renderHistory();
 }
 function route() {
+  if(location.hash==='#main'){main.focus();return;}
+  if(location.hash==='#catalogue' && document.querySelector('#catalogue')){document.querySelector('#catalogue').scrollIntoView({behavior:'smooth'});return;}
+  const [hashId,section='demo']=location.hash.slice(9).split('/');
+  const id = location.hash.startsWith('#project/') ? hashId : document.body.dataset.project;
+  if(id && main.dataset.project===id && main.showSection){main.showSection(section);return;}
+  main.dataset.project='';main.showSection=null;
   const version = ++routeVersion;
-  const id = location.hash.startsWith('#project/') ? location.hash.slice(9) : document.body.dataset.project;
   const selected=projects.find(project=>project.id===id);
   document.title=selected?selected.title+' / Fieldnotes':'Fieldnotes — Algorithms, made tangible.';
   onlyFavorites = location.hash === '#favorites';
   document.querySelector('#all-link').classList.toggle('active',!onlyFavorites);
   document.querySelector('#favorites-link').classList.toggle('active',onlyFavorites);
-  if (id && location.hash !== '#' && location.hash !== '#favorites') workspace(id,version);
+  if (id && location.hash !== '#' && location.hash !== '#favorites') workspace(id,version,section);
   else collection();
-  window.scrollTo(0,0);
+  if(location.hash==='#catalogue')document.querySelector('#catalogue')?.scrollIntoView();
+  else window.scrollTo(0,0);
 }
 try {
   const response = await fetch('/api/projects');

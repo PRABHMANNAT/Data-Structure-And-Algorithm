@@ -4,6 +4,16 @@
 
 The original libraries and command-line tools remain available. The browser workspaces run their real implementations locally.
 
+The homepage includes diagram covers, a step-through sorting illustration, and three suggested study routes. Search, language filters and saved projects help you navigate the full collection.
+
+Every project has three separately addressable sections:
+
+- **Demo** — editable inputs, real results and recent runs; RouteLab and The Daily Grid launch their full workspaces.
+- **How it works** — the project idea, input-to-output steps, a worked example and complexity or implementation boundaries.
+- **Study notes** — three key concepts, a question with a revealable explanation, and a suggested experiment.
+
+For example, open `http://127.0.0.1:8765/#project/python-structures/logic`. Switching between sections preserves the current demo inputs and results. A project picker takes you directly to any other workspace. Both standalone browser apps link back to their learning sections.
+
 ## Open the collection
 
 ```sh
