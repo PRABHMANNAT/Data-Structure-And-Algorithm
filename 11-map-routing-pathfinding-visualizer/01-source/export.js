@@ -1,0 +1,3 @@
+import {serialize,validate} from './persistence.js';
+export function exportMap(map){const url=URL.createObjectURL(new Blob([JSON.stringify(serialize(map),null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='routelab-map.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+export async function importMap(file){if(!file)throw new Error('Choose a map file.');if(file.size>65536)throw new Error('Maps must be smaller than 64 KiB.');let raw;try{raw=JSON.parse(await file.text());}catch{throw new Error('This file does not contain valid JSON.');}return validate(raw);}
