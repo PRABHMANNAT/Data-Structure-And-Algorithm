@@ -1,0 +1,47 @@
+{
+  "id": "go-prefix",
+  "title": "Prefix index",
+  "description": "Build a trie from your own vocabulary. Inspect lexicographic prefix completions and the indexed words.",
+  "category": "Search structures",
+  "language": "Go",
+  "fields": [
+    {
+      "key": "words",
+      "label": "Vocabulary",
+      "type": "textarea",
+      "hint": "One word per line. Duplicates are indexed once."
+    },
+    {
+      "key": "prefix",
+      "label": "Prefix",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "limit",
+      "label": "Suggestion limit",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shared branches",
+      "input": {
+        "words": "route\nrouter\nrouting\nround\nroad\nrail",
+        "prefix": "rou",
+        "limit": "5"
+      }
+    },
+    {
+      "name": "Unicode vocabulary",
+      "input": {
+        "words": "café\ncaméra\ncarte\nchat",
+        "prefix": "ca",
+        "limit": "3"
+      }
+    }
+  ]
+}
