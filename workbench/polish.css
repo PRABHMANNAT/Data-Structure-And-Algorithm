@@ -125,3 +125,12 @@ input,textarea,select,button{border-radius:8px}
 @media print{.project-switcher,.demo-guide{display:none}}
 
 .rail nav a span:nth-child(2){white-space:nowrap}
+/* Individually generated editorial covers, encoded for the web. */
+.project-art{padding:0;display:block;height:158px;background:#eee9df;border-bottom:1px solid #e3e0d5;overflow:hidden}
+.cover-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s ease}
+.art-link:hover .cover-image{transform:scale(1.035)}
+.browser-launch .project-art{height:260px;border-radius:16px;border:1px solid #deded0}
+.lesson-margin .project-art{height:135px;border-radius:11px}
+@media(max-width:850px){.lesson-margin .project-art{display:none}.browser-launch .project-art{height:210px}}
+@media(max-width:520px){.project-art{height:185px}}
+@media(prefers-reduced-motion:reduce){.cover-image{transition:none}.art-link:hover .cover-image{transform:none}}

@@ -4,15 +4,19 @@
 
 The original libraries and command-line tools remain available. The browser workspaces run their real implementations locally.
 
-The homepage opens with a compact introduction and the complete project collection. Search, counted language filters and saved projects help you find a demo quickly. The GitHub link opens the repository where you can star or explore the source.
+The homepage opens with a compact introduction and the complete project collection. Search, counted language filters and saved projects help you find a demo quickly. Press `/` to search and Escape to clear it. The GitHub link opens the repository where you can star or explore the source.
+
+All 21 projects have their own minimal cover, generated with ChatGPT image generation and delivered as optimized WebP assets (under 1 MiB combined). The art direction uses ivory paper, muted sage, charcoal and sand, with a subject chosen for each algorithm. The full prompt set and asset mapping are checked in at [workbench/assets/covers/provenance.json](workbench/assets/covers/provenance.json).
 
 Every project has three separately addressable sections:
 
-- **Demo** — editable inputs, real results and recent runs; RouteLab and The Daily Grid launch their full workspaces.
+- **Demo** — three project-specific instructions, editable inputs, real results and recent runs. A starter-example button fills the form; RouteLab and The Daily Grid launch their full workspaces.
 - **How it works** — the project idea, input-to-output steps, a worked example and complexity or implementation boundaries.
 - **Study notes** — three key concepts, a question with a revealable explanation, and a suggested experiment.
 
-For example, open `http://127.0.0.1:8765/#project/python-structures/logic`. Switching between sections preserves the current demo inputs and results. A project picker takes you directly to any other workspace. Both standalone browser apps link back to their learning sections.
+For example, open `http://127.0.0.1:8765/#project/python-structures/logic`. Every project introduction explains its purpose and expected output. Switching between sections preserves the current demo inputs and results. Section changes have a short transition that respects reduced-motion settings.
+
+The searchable project switcher keeps the section you are reading when you choose another project. Type to filter, press Arrow Down to focus a result, use arrow keys or Home/End to move through results, and Enter to switch. Escape closes the switcher. Both standalone browser apps link back to their learning sections.
 
 ## Open the collection
 

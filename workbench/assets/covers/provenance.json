@@ -1,0 +1,92 @@
+{
+  "generator": "OpenAI built-in image_gen",
+  "generatedOn": "2026-10-25",
+  "artDirection": "Use case: stylized-concept. Asset type: wide landscape project-card cover for an algorithm learning website. Minimal editorial still life, tactile matte cut-paper and ceramic forms on warm ivory paper, muted sage, charcoal and sand, soft natural shadows, sophisticated understated design. One simple central composition with generous margins and very few objects; landscape 3:2 composition. No text, letters, numbers, logos, watermark, neon, gradients, glossy plastic, robots, computers or interface mockups. Subject: ",
+  "covers": {
+    "routelab": {
+      "file": "routelab.webp",
+      "subject": "A tiny architectural maze of low sand-colored walls, with a single olive thread finding a path from one small charcoal pebble to another."
+    },
+    "crossword": {
+      "file": "crossword.webp",
+      "subject": "A small square arrangement of ivory letterless crossword tiles, a few charcoal blank squares and one sage tile, viewed from above."
+    },
+    "delivery": {
+      "file": "delivery.webp",
+      "subject": "Three tiny matte buildings connected by a winding olive cord, one charcoal parcel at the center, an abstract delivery network."
+    },
+    "transit": {
+      "file": "transit.webp",
+      "subject": "A folded ivory transit map with two thin crossing sage lines and three small charcoal station discs, plus a tiny sand clock disc without numbers."
+    },
+    "binary-quest": {
+      "file": "binary-quest.webp",
+      "subject": "Eight matte ivory and charcoal circular tokens in a single neat row, one olive token hovering slightly above the row, representing a binary practice puzzle."
+    },
+    "cpp-toolkit": {
+      "file": "cpp-toolkit.webp",
+      "subject": "Two parallel rows of five matte ceramic bars, one unordered and one ascending, ivory and sage with one charcoal bar, elegant sorting comparison."
+    },
+    "huffman": {
+      "file": "huffman.webp",
+      "subject": "A broad folded strip of ivory paper narrowing into a compact sage accordion, symbolizing lossless compression, with a very subtle branching thread beside it."
+    },
+    "go-workbench": {
+      "file": "go-workbench.webp",
+      "subject": "A charcoal pivot pebble dividing a small cluster of low sage ceramic rods from taller sand rods, a spare abstract quicksort still life."
+    },
+    "go-journey": {
+      "file": "go-journey.webp",
+      "subject": "Two separate small stacks of pale paper strips merging into a single orderly stack in the foreground, symbolizing merge sort."
+    },
+    "go-ranges": {
+      "file": "go-ranges.webp",
+      "subject": "A linear row of eight ivory rectangular blocks, a sage bracket-like paper strip covering the central four blocks, a range sum still life."
+    },
+    "go-collections": {
+      "file": "go-collections.webp",
+      "subject": "A balanced miniature pyramid of seven matte ceramic spheres, the small charcoal sphere at the top, sage lower spheres, an abstract min heap."
+    },
+    "go-prefix": {
+      "file": "go-prefix.webp",
+      "subject": "Three delicate olive branches emerging from one charcoal trunk, each ending in a tiny ivory square tile, a shared-prefix trie sculptural diagram."
+    },
+    "graphforge": {
+      "file": "graphforge.webp",
+      "subject": "Three layered translucent vellum squares with subtly different thin olive node-and-edge paths, slightly offset, representing versions of one network."
+    },
+    "python-structures": {
+      "file": "python-structures.webp",
+      "subject": "A spare balanced branching tree made from slim charcoal rods and seven sage circular ceramic nodes on ivory paper."
+    },
+    "number-system": {
+      "file": "number-system.webp",
+      "subject": "A neat set of four low matte sand blocks doubling in width from left to right, a single charcoal token beside them, abstract binary place values."
+    },
+    "similarity": {
+      "file": "similarity.webp",
+      "subject": "Two overlapping ivory paper sheets with matching short charcoal strokes and one shared muted sage highlighted strip, abstract source-code similarity, no actual text."
+    },
+    "cashflow": {
+      "file": "cashflow.webp",
+      "subject": "Three shallow matte ceramic dishes containing small sand discs, with one olive disc between two dishes, an understated balanced expense settlement."
+    },
+    "streamshield": {
+      "file": "streamshield.webp",
+      "subject": "A narrow stream of sand pebbles passing through a sage rectangular paper frame, a single charcoal pebble outside the frame, representing an event-time window."
+    },
+    "strings": {
+      "file": "strings.webp",
+      "subject": "A long thin ivory paper ribbon with a repeating pattern of charcoal dots and dashes, one short repeat framed by a sage cut-paper loop, abstract string pattern matching."
+    },
+    "retrieval": {
+      "file": "retrieval.webp",
+      "subject": "A small group of upright ivory index cards in a low sand tray, one sage card pulled slightly forward beneath a charcoal circular magnifier ring."
+    },
+    "bitrealm": {
+      "file": "bitrealm.webp",
+      "subject": "A single row of eight small ceramic toggle-like squares alternating charcoal and ivory, one sage square rotated out of alignment, abstract eight-bit operations."
+    }
+  },
+  "delivery": "WebP at up to 960×640, quality 88; generated source images preserved in the image generation output directory."
+}

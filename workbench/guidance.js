@@ -2,6 +2,7 @@ import {el,button} from './dom.js';
 
 /** Introductions describe the actual public demo, in everyday language. */
 export const introductions={
+  'python-structures':['A binary search tree you build by inserting your own numbers. Their insertion order determines the tree shape and the path taken to find a value.','The tree diagram, its height, a sorted inorder traversal and a membership check for your target.'],
   routelab:['A route-finding canvas where open squares form a network and barriers block movement. Compare how A* and Dijkstra search for the shortest way across the same map.','An animated search, the final route, and counts of explored cells and route steps.'],
   crossword:['A playable crossword made from authored puzzles. Across and down clues share letters at their crossings, with tools for checking, revealing and revisiting your edits.','Your filled grid, clue progress, elapsed time and a saved puzzle journal.'],
   delivery:['A delivery planner for a network of roads with different travel times. It finds the route with the lowest total time between two stops.','The chosen stops highlighted on the network and the total travel time, or an unreachable result.'],
@@ -30,6 +31,7 @@ export function projectIntroduction(project) {
 }
 
 export const demoInstructions={
+  'python-structures':['Load Balanced branches, or enter comma-separated integers in Insertion order.','Set Find a value to the number you want to search for, then Run experiment.','Inspect the tree shape, height and traversal. Load A skewed tree and compare how insertion order changes the height.'],
   routelab:['Launch the full workspace. Pick an example terrain, or draw barriers with the Barrier tool.','Move Start point and Destination to open cells. Choose A* or Dijkstra, then use Step or Find route.','Inspect the route and metrics. Compare both algorithms on the same terrain, or edit a barrier and run again.'],
   crossword:['Launch the full workspace and choose a grid. Select a clue or an open square.','Type letters; use arrow keys to move and Space to switch direction. The selected clue tells you which word you are entering.','Use Check to test a letter, word or grid. Undo edits or pause when needed; progress saves on this device.'],
   delivery:['Load Across town, or enter one connection per line as: from to minutes.','Set Origin and Destination to stop names that occur in your connections, then Run experiment.','Read the highlighted route and total time. Change one road cost and rerun to see whether the route changes.'],
