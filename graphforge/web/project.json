@@ -1,0 +1,64 @@
+{
+  "id": "graphforge",
+  "title": "Network atlas",
+  "description": "Explore versioned directed graphs. Find a weighted route and inspect an earlier revision of the network.",
+  "category": "Versioned graphs",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "edges",
+      "label": "Connections",
+      "type": "textarea",
+      "hint": "One per line: origin destination weight. Nonnegative weights only."
+    },
+    {
+      "key": "origin",
+      "label": "Origin",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "destination",
+      "label": "Destination",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "revision",
+      "label": "Revision (0 = latest)",
+      "type": "number",
+      "hint": "Each connection creates one revision.",
+      "min": 0,
+      "max": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Across town",
+      "input": {
+        "edges": "A B 4\nA C 1\nC B 2\nB D 3\nC D 8",
+        "origin": "A",
+        "destination": "D",
+        "revision": "0"
+      }
+    },
+    {
+      "name": "An isolated destination",
+      "input": {
+        "edges": "A B 2\nC D 1",
+        "origin": "A",
+        "destination": "D",
+        "revision": "0"
+      }
+    },
+    {
+      "name": "Before the shortcut",
+      "input": {
+        "edges": "A B 9\nA C 1\nC B 2",
+        "origin": "A",
+        "destination": "B",
+        "revision": "1"
+      }
+    }
+  ]
+}
