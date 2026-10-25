@@ -1,0 +1,39 @@
+{
+  "id": "binary-quest",
+  "title": "Binary practice",
+  "description": "Check a binary answer against the original game conversion. Use the division trail to understand each bit.",
+  "category": "Number systems",
+  "language": "C++",
+  "fields": [
+    {
+      "key": "decimal",
+      "label": "Decimal number",
+      "type": "number",
+      "hint": "",
+      "min": 0,
+      "max": 1000000
+    },
+    {
+      "key": "answer",
+      "label": "Your binary answer",
+      "type": "text",
+      "hint": "Use 0 and 1 only. Leading zeros are accepted."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Check an answer",
+      "input": {
+        "decimal": "42",
+        "answer": "101010"
+      }
+    },
+    {
+      "name": "Find the mistake",
+      "input": {
+        "decimal": "19",
+        "answer": "10010"
+      }
+    }
+  ]
+}
