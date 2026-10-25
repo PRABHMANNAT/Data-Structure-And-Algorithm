@@ -1,0 +1,50 @@
+{
+  "id": "streamshield",
+  "title": "Stream monitor",
+  "description": "Replay event-time data through a sliding window. Inspect late arrivals, the watermark, and heavy hitters.",
+  "category": "Stream processing",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "events",
+      "label": "Event log",
+      "type": "textarea",
+      "hint": "One event per line: key timestamp value. Timestamps and windows are milliseconds.",
+      "rows": 7
+    },
+    {
+      "key": "window",
+      "label": "Window (ms)",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 1000000
+    },
+    {
+      "key": "lateness",
+      "label": "Allowed lateness (ms)",
+      "type": "number",
+      "hint": "",
+      "min": 0,
+      "max": 1000000
+    }
+  ],
+  "presets": [
+    {
+      "name": "Late arrival",
+      "input": {
+        "events": "click 1000 1\nview 2000 1\nclick 4000 3\nclick 100 1\nview 4500 2",
+        "window": "3000",
+        "lateness": "500"
+      }
+    },
+    {
+      "name": "Steady traffic",
+      "input": {
+        "events": "api 100 1\napi 200 2\nweb 300 1\napi 400 1\nweb 500 3",
+        "window": "1000",
+        "lateness": "100"
+      }
+    }
+  ]
+}
