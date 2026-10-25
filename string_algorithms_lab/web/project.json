@@ -1,0 +1,38 @@
+{
+  "id": "strings",
+  "title": "Pattern bench",
+  "description": "Find every occurrence of a pattern. Cross-check five exact matchers and inspect overlapping matches.",
+  "category": "String algorithms",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "textarea",
+      "hint": "",
+      "rows": 6
+    },
+    {
+      "key": "pattern",
+      "label": "Pattern",
+      "type": "text",
+      "hint": ""
+    }
+  ],
+  "presets": [
+    {
+      "name": "Overlapping matches",
+      "input": {
+        "text": "bananana",
+        "pattern": "ana"
+      }
+    },
+    {
+      "name": "Repeated prefix",
+      "input": {
+        "text": "aaaaabaaaaab",
+        "pattern": "aaab"
+      }
+    }
+  ]
+}
