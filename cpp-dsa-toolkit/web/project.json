@@ -1,0 +1,48 @@
+{
+  "id": "cpp-toolkit",
+  "title": "C++ sorting desk",
+  "description": "Compare merge sort and the toolkit quick-sort API on the same integer sequence. Inspect duplicates and value gaps.",
+  "category": "Sorting",
+  "language": "C++",
+  "fields": [
+    {
+      "key": "values",
+      "label": "Values",
+      "type": "text",
+      "hint": "1–100 integers, separated by commas or spaces."
+    },
+    {
+      "key": "algorithm",
+      "label": "Algorithm",
+      "type": "select",
+      "hint": "",
+      "options": [
+        "merge",
+        "quick"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Unsorted with duplicates",
+      "input": {
+        "values": "7, 2, 9, 1, 2, 6",
+        "algorithm": "merge"
+      }
+    },
+    {
+      "name": "Negative values",
+      "input": {
+        "values": "-3, 8, 0, -5, 8, 2",
+        "algorithm": "merge"
+      }
+    },
+    {
+      "name": "Quick-sort API",
+      "input": {
+        "values": "8, 3, 8, 1, -2",
+        "algorithm": "quick"
+      }
+    }
+  ]
+}
