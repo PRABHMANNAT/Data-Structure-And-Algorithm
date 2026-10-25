@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.workbench-cache/
+.tools/
+node_modules/
+build/
+*.exe
+*.o
+*.a
+.DS_Store
+.env
+test-results/
