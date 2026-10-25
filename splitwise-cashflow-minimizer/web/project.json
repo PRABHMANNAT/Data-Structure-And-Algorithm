@@ -1,0 +1,30 @@
+{
+  "id": "cashflow",
+  "title": "Settle up",
+  "description": "Turn shared expenses into net balances and a compact settlement plan. Every amount stays in integer cents.",
+  "category": "Greedy settlement",
+  "language": "C++",
+  "fields": [
+    {
+      "key": "expenses",
+      "label": "Shared expenses",
+      "type": "textarea",
+      "hint": "Each row: payer, amount in cents, participants separated by |. Use simple names without spaces.",
+      "rows": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Weekend away",
+      "input": {
+        "expenses": "Alex,9000,Alex|Sam|Jo\nSam,6000,Alex|Sam|Jo\nJo,3000,Alex|Sam|Jo"
+      }
+    },
+    {
+      "name": "Uneven cents",
+      "input": {
+        "expenses": "Ada,100,Ada|Ben|Cam"
+      }
+    }
+  ]
+}
