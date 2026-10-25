@@ -1,0 +1,30 @@
+{
+  "id": "huffman",
+  "title": "Compression room",
+  "description": "Compress text with the C++ Huffman codec, decompress it, and verify an exact byte-for-byte round trip.",
+  "category": "Compression",
+  "language": "C++",
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text to compress",
+      "type": "textarea",
+      "hint": "UTF-8 text, up to 12,000 characters. The archive includes its code table.",
+      "rows": 9
+    }
+  ],
+  "presets": [
+    {
+      "name": "Repeated language",
+      "input": {
+        "text": "A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. A small tree tells a shorter story. "
+      }
+    },
+    {
+      "name": "One symbol",
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    }
+  ]
+}
