@@ -1,54 +1,20 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="An interactive Dijkstra and A* pathfinding visualizer." />
-    <title>RouteLab — Map Routing &amp; Pathfinding</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#workspace" aria-label="RouteLab home"><span class="brand-mark">↗</span><span>Route<span>Lab</span></span></a>
-        <div class="algorithm-switch" role="group" aria-label="Pathfinding algorithm">
-          <button class="algorithm active" data-algorithm="astar" aria-pressed="true">A* Search <small>Heuristic</small></button>
-          <button class="algorithm" data-algorithm="dijkstra" aria-pressed="false">Dijkstra <small>Uniform cost</small></button>
-        </div>
-        <div class="top-actions"><button class="icon-button" id="helpButton" aria-label="Show keyboard shortcuts">?</button><button class="run-button" id="runButton"><span>▶</span> Find route</button></div>
-      </header>
-
-      <section class="workspace" id="workspace" aria-label="Pathfinding workspace">
-        <aside class="control-panel" aria-label="Map controls">
-          <div class="panel-heading"><p class="eyebrow">MAP BUILDER</p><h1>Plan a route</h1><p>Draw barriers, move the two markers, then watch the graph search unfold.</p></div>
-          <div class="tool-group" role="group" aria-label="Drawing tools">
-            <button class="tool active" data-tool="wall" aria-pressed="true"><span class="tool-icon wall-icon"></span>Draw barriers <kbd>W</kbd></button>
-            <button class="tool" data-tool="erase" aria-pressed="false"><span class="tool-icon erase-icon"></span>Erase <kbd>E</kbd></button>
-            <button class="tool" data-tool="start" aria-pressed="false"><span class="tool-icon start-icon"></span>Move start <kbd>S</kbd></button>
-            <button class="tool" data-tool="end" aria-pressed="false"><span class="tool-icon end-icon"></span>Move destination <kbd>D</kbd></button>
-          </div>
-          <div class="setting"><div class="setting-label"><label for="speedRange">Animation speed</label><output id="speedValue">Fast</output></div><input id="speedRange" type="range" min="1" max="4" value="3" /></div>
-          <div class="setting"><div class="setting-label"><label for="densityRange">Grid density</label><output id="densityValue">24 × 15</output></div><input id="densityRange" type="range" min="16" max="34" value="24" /></div>
-          <div class="map-actions"><button id="mazeButton">Generate maze</button><button id="clearButton">Clear map</button><button id="clearPathButton">Clear search</button></div>
-          <div class="shortcut-note"><span>TIP</span><p>Click and drag on the map to paint. Press <kbd>Space</kbd> to run.</p></div>
-        </aside>
-
-        <section class="map-area" aria-label="Map">
-          <div class="map-toolbar"><div class="status-pill" id="statusPill"><span></span><strong>Ready to explore</strong><small>Set your course</small></div><div class="legend" aria-label="Map legend"><span><i class="legend-start"></i>Start</span><span><i class="legend-end"></i>Goal</span><span><i class="legend-wall"></i>Barrier</span><span><i class="legend-path"></i>Route</span></div></div>
-          <div class="canvas-frame"><canvas id="gridCanvas" aria-label="Interactive route map" role="application"></canvas><div class="canvas-message" id="canvasMessage" aria-live="polite"></div></div>
-          <div class="map-footer"><span><b id="gridLabel">24 × 15</b> spatial nodes</span><span>Orthogonal movement <i></i> Cost per road: <b>1</b></span></div>
-        </section>
-
-        <aside class="insights-panel" aria-label="Search insights">
-          <div class="metrics-header"><p class="eyebrow">LIVE INSIGHTS</p><span id="algorithmBadge">A* SEARCH</span></div>
-          <div class="metric-grid"><article><small>Nodes explored</small><strong id="exploredMetric">0</strong><span>waiting to run</span></article><article><small>Route length</small><strong id="routeMetric">—</strong><span>no route yet</span></article><article><small>Frontier size</small><strong id="frontierMetric">0</strong><span>priority queue</span></article><article><small>Elapsed</small><strong id="timeMetric">0 ms</strong><span>search time</span></article></div>
-          <div class="explanation"><div class="explanation-head"><h2 id="explanationTitle">A* Search</h2><span id="complexityBadge">O((V + E) log V)</span></div><p id="explanationText">A* prioritizes nodes using the known travel cost and an estimate of the remaining distance. It usually reaches the goal with fewer explored nodes.</p><div class="formula" id="formula">f(n) = g(n) + h(n)</div></div>
-          <div class="search-stream"><div class="stream-head"><h2>Exploration feed</h2><button id="clearFeedButton">Clear</button></div><ol id="searchFeed"><li class="empty-feed">Search activity will appear here.</li></ol></div>
-        </aside>
-      </section>
-    </main>
-    <dialog id="helpDialog"><button class="close-dialog" id="closeHelp" aria-label="Close help">×</button><p class="eyebrow">KEYBOARD SHORTCUTS</p><h2>Navigate the map faster</h2><dl><div><dt>W / E</dt><dd>Draw barriers / erase</dd></div><div><dt>S / D</dt><dd>Move start / destination</dd></div><div><dt>Space</dt><dd>Find route</dd></div><div><dt>C</dt><dd>Clear current search</dd></div></dl></dialog>
-    <script src="app.js"></script>
-  </body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A hands-on route planning canvas. Draw barriers, compare shortest paths, and step through the search."><meta name="theme-color" content="#f4f3ee"><title>RouteLab / Fieldnotes</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"><script type="module" src="app.js"></script></head>
+<body><a class="skip" href="#map">Skip to map</a><header class="topbar"><a class="brand" href="/">fn <span>/ RouteLab</span></a><span class="edition">EXPERIMENT 01 / SHORTEST PATHS</span><button id="helpButton" class="quiet">Keyboard guide <kbd>?</kbd></button></header>
+<main><header class="intro"><div><p class="eyebrow">TERRAIN / CONNECTIONS / POSSIBILITIES</p><h1>There’s a way through.</h1></div><p>Draw a few barriers. Move the markers.<br>Let the algorithm find the rest.</p></header>
+<section class="workspace" aria-label="Pathfinding workspace"><aside class="controls"><div class="section-heading"><h2>Shape the terrain</h2><span>01</span></div>
+<div class="tools" role="group" aria-label="Map drawing tool"><button data-tool="wall" aria-pressed="true"><i class="swatch wall"></i>Barrier <kbd>W</kbd></button><button data-tool="erase" aria-pressed="false"><i class="swatch erase"></i>Erase <kbd>E</kbd></button><button data-tool="start" aria-pressed="false"><i class="swatch start"></i>Start point <kbd>S</kbd></button><button data-tool="end" aria-pressed="false"><i class="swatch end"></i>Destination <kbd>D</kbd></button></div>
+<label class="field">Example terrain<select id="preset"><option value="blank">Open field</option><option value="corridor">Switchbacks</option><option value="random">Scattered barriers</option></select></label>
+<label class="field">Grid width <output id="densityValue">28 columns</output><input id="densityRange" type="range" min="16" max="40" value="28"></label>
+<label class="field">Animation <output id="speedValue">Fast</output><input id="speedRange" type="range" min="1" max="4" value="3"></label>
+<div class="paired"><button id="undoButton" aria-label="Undo map edit">Undo ↶</button><button id="redoButton" aria-label="Redo map edit">Redo ↷</button></div>
+<div class="file-actions"><button id="exportButton">Save map ↓</button><label class="file-label">Load map ↑<input id="importFile" type="file" accept=".json,application/json" aria-label="Import map JSON"></label></div>
+<button id="clearButton" class="clear">Clear terrain</button><p class="hint">Click and drag to draw. Use arrow keys on the map to move the cursor, then Enter to apply your tool.</p></aside>
+<section class="map-area" id="map" aria-label="Map and search results"><div class="map-toolbar"><div class="algorithms" role="group" aria-label="Search algorithm"><button data-algorithm="astar" aria-pressed="true">A* search</button><button data-algorithm="dijkstra" aria-pressed="false">Dijkstra</button></div><div class="run-actions"><button id="stepButton" title="Advance one search step">Step</button><button id="pauseButton" disabled>Pause</button><button id="runButton" class="primary">Find route ↗</button></div></div>
+<div class="canvas-frame"><canvas id="gridCanvas" tabindex="0" role="application" aria-label="Route grid. Arrow keys move the cursor. Enter applies the selected drawing tool. Space runs the search."></canvas></div>
+<div class="map-caption"><p id="status" role="status">Ready. Start with a barrier or find a route.</p><span id="gridLabel">28 × 18</span></div>
+<div class="metrics" aria-label="Search metrics"><div><span>EXPLORED</span><strong id="exploredMetric">0</strong></div><div><span>ROUTE / STEPS</span><strong id="routeMetric">—</strong></div><div><span>FRONTIER / PEAK</span><strong id="frontierMetric">0</strong></div><div><span>COMPUTE TIME</span><strong id="timeMetric">—</strong></div></div>
+<div class="map-bottom"><div class="legend"><span><i class="swatch visited"></i>Explored</span><span><i class="swatch frontier"></i>Frontier</span><span><i class="swatch path"></i>Route</span></div><button id="compareButton" class="quiet">Compare both algorithms ↗</button></div>
+<div id="comparison" class="comparison" hidden></div><p class="hint" id="explanation">A* uses distance traveled + Manhattan distance to the goal. Every move costs 1; diagonals are excluded.</p><button id="clearPathButton" class="quiet">Clear search</button></section></section>
+<footer><span>FIELDNOTES / A PRACTICAL STUDY OF GRAPHS</span><span>Changes stay on this device.</span></footer></main>
+<dialog id="helpDialog"><form method="dialog"><button class="close" aria-label="Close keyboard guide">×</button></form><p class="eyebrow">A LITTLE LESS CLICKING</p><h2>Find your way around.</h2><dl><dt>W / E</dt><dd>Barrier / erase</dd><dt>S / D</dt><dd>Move start / destination</dd><dt>Space</dt><dd>Run or pause search</dd><dt>Arrow keys + Enter</dt><dd>Move map cursor + apply tool</dd><dt>Ctrl/⌘ Z</dt><dd>Undo edit (Shift to redo)</dd><dt>C / ?</dt><dd>Clear search / open this guide</dd></dl></dialog></body></html>
