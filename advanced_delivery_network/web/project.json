@@ -1,0 +1,45 @@
+{
+  "id": "delivery",
+  "title": "Dispatch desk",
+  "description": "Plan the shortest delivery route across a weighted network. Change a road cost and see the route respond.",
+  "category": "Route planning",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "edges",
+      "label": "Connections",
+      "type": "textarea",
+      "hint": "One per line: origin destination weight. Nonnegative weights only."
+    },
+    {
+      "key": "origin",
+      "label": "Origin",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "destination",
+      "label": "Destination",
+      "type": "text",
+      "hint": ""
+    }
+  ],
+  "presets": [
+    {
+      "name": "Across town",
+      "input": {
+        "edges": "A B 4\nA C 1\nC B 2\nB D 3\nC D 8",
+        "origin": "A",
+        "destination": "D"
+      }
+    },
+    {
+      "name": "An isolated destination",
+      "input": {
+        "edges": "A B 2\nC D 1",
+        "origin": "A",
+        "destination": "D"
+      }
+    }
+  ]
+}
