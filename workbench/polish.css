@@ -88,3 +88,15 @@ input,textarea,select,button{border-radius:8px}
 .project-outcome{border-left:1px solid #d4ddc9;padding-left:24px}
 .project-outcome strong{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:#495e3a;margin-bottom:4px}
 @media(max-width:700px){.project-introduction{grid-template-columns:1fr;gap:14px}.project-outcome{padding-left:14px}.workspace-title h1{font-size:32px}}
+/* Three practical steps beside the actual form, with an explicit preset action. */
+.intro-demo-help{display:inline-block;font-size:11px;text-decoration:none;color:#587346;margin-top:9px}
+.intro-demo-help:hover{text-decoration:underline}
+.demo-guide{background:#edf1e5;border:1px solid #d7e0cb;border-radius:13px;padding:17px 20px;margin:0 0 24px}
+.demo-guide summary{cursor:pointer;font-size:12px;font-weight:600;color:#455d36}
+.demo-guide summary small{font-size:10px;font-weight:400;color:#8a977c;margin-left:12px}
+.demo-guide ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin:19px 0 4px}
+.demo-guide li>span{display:block;font:10px Consolas,monospace;color:#879b73;margin-bottom:7px}
+.demo-guide li p{font-size:11px;line-height:1.8;color:#637256;margin:0}
+.starter-example{border:0;background:none;border-bottom:1px solid #9aaa88;font-size:11px;padding:5px 0;min-height:30px;margin-top:16px;border-radius:0;color:#4f6b3c}
+.starter-example:hover{background:none;color:#2d481e}
+@media(max-width:800px){.demo-guide ol{grid-template-columns:1fr;gap:12px}.demo-guide li{display:flex;gap:13px}.demo-guide li>span{margin-top:3px}.demo-guide{padding:16px}}

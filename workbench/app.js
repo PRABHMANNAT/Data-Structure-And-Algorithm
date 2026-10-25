@@ -6,7 +6,7 @@ import {collectionIntro, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
 import {searchBox,languageFilters} from './controls.js';
 import {icon} from './icons.js';
-import {projectIntroduction} from './guidance.js';
+import {projectIntroduction,demoGuide} from './guidance.js';
 
 const browserProjects = [
   {id:'routelab',title:'RouteLab',description:'Draw a map. Watch Dijkstra and A* find their way through it.',language:'JavaScript',category:'Graph algorithms',href:'/11-map-routing-pathfinding-visualizer/01-source/'},
@@ -97,7 +97,7 @@ async function workspace(id, version, section = 'demo') {
   main.showSection=showSection;
   showSection(section);
   if(project.href){
-    demoPanel.append(el('div',{class:'browser-launch'},artwork(project,true),el('div',{},el('p',{class:'eyebrow'},'THE INTERACTIVE WORKSPACE'),el('h2',{},project.title),el('p',{},project.description),el('a',{href:project.href,class:'solid-link'},'Launch full workspace ↗'),el('p',{class:'note'},'The workspace opens on its own page, with room for the full canvas. Use its learning links to return to the explanations.'))));
+    demoPanel.append(demoGuide(project),el('div',{class:'browser-launch'},artwork(project,true),el('div',{},el('p',{class:'eyebrow'},'THE INTERACTIVE WORKSPACE'),el('h2',{},project.title),el('p',{},project.description),el('a',{href:project.href,class:'solid-link'},'Launch full workspace ↗'),el('p',{class:'note'},'The workspace opens on its own page, with room for the full canvas. Use its learning links to return to the explanations.'))));
     main.append(footer());return;
   }
   const output = el('div', {class:'output','aria-live':'polite'});
@@ -115,7 +115,7 @@ async function workspace(id, version, section = 'demo') {
     recordRun(id,input,payload); renderHistory(); announce('Experiment complete. Results are ready.');
   });
   form.node.querySelector('button[type="submit"]').disabled=true;
-  demoPanel.append(el('div', {class:'workspace'}, form.node, output), historyNode, note(project.note || 'Runs execute locally using the project implementation. Inputs and run history are saved in this browser.'));
+  demoPanel.append(demoGuide(project,()=>form.load(project.presets[0].input)),el('div', {class:'workspace'}, form.node, output), historyNode, note(project.note || 'Runs execute locally using the project implementation. Inputs and run history are saved in this browser.'));
   main.append(footer());
   try {
     const module = await import('/'+project.folder+'/web/view.js');

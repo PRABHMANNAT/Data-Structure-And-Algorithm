@@ -1,4 +1,4 @@
-import {el} from './dom.js';
+import {el,button} from './dom.js';
 
 /** Introductions describe the actual public demo, in everyday language. */
 export const introductions={
@@ -26,5 +26,34 @@ export const introductions={
 
 export function projectIntroduction(project) {
   const [about,outcome]=introductions[project.id];
-  return el('div',{class:'project-introduction'},el('p',{},about),el('p',{class:'project-outcome'},el('strong',{},'What you’ll see'),outcome));
+  return el('div',{class:'project-introduction'},el('div',{},el('p',{},about),el('a',{class:'intro-demo-help',href:`#project/${project.id}/demo`},'Try the demo · instructions included →')),el('p',{class:'project-outcome'},el('strong',{},'What you’ll see'),outcome));
+}
+
+export const demoInstructions={
+  routelab:['Launch the full workspace. Pick an example terrain, or draw barriers with the Barrier tool.','Move Start point and Destination to open cells. Choose A* or Dijkstra, then use Step or Find route.','Inspect the route and metrics. Compare both algorithms on the same terrain, or edit a barrier and run again.'],
+  crossword:['Launch the full workspace and choose a grid. Select a clue or an open square.','Type letters; use arrow keys to move and Space to switch direction. The selected clue tells you which word you are entering.','Use Check to test a letter, word or grid. Undo edits or pause when needed; progress saves on this device.'],
+  delivery:['Load Across town, or enter one connection per line as: from to minutes.','Set Origin and Destination to stop names that occur in your connections, then Run experiment.','Read the highlighted route and total time. Change one road cost and rerun to see whether the route changes.'],
+  graphforge:['Load Before the shortcut, or enter directed connections as: from to cost. Each line adds a revision.','Choose Origin, Destination and a revision; 0 uses the latest. Both stops must exist in the selected revision.','Run experiment, then choose another revision and rerun. Compare the active connections, route and cost.'],
+  transit:['Load Morning connection. Each timetable line is: from to departure arrival fare. Times are minutes; fares are integer amounts.','Choose From and To, the earliest departure and a transfer buffer in minutes. Run experiment.','Inspect the itinerary and waiting time. Increase the buffer or departure time to explore a missed connection.'],
+  retrieval:['Load Transport notes, or enter one document per line as: title | body.','Enter a Search query and an Autocomplete prefix. Choose the number of Results and Run experiment.','Read the ranked matches and prefix suggestions. Edit a document or query, rerun and compare the ordering.'],
+  strings:['Load Overlapping matches, or type your own Text and a nonempty Pattern.','Run experiment to execute all five matchers on the same input.','Read the highlighted positions and reports. Try overlapping matches, a missing pattern or Unicode text.'],
+  similarity:['Load Renamed variables, or paste two short code samples into Original source and Comparison source.','Choose the Language matching both samples, then Run experiment. For Python, use syntactically tokenizable source.','Read the score alongside matching spans and token counts. Change variable names or the algorithm, then rerun and compare the evidence.'],
+  streamshield:['Load Late arrival, or enter each event as: key timestamp value. Line order is arrival order; timestamps are milliseconds.','Set Window and Allowed lateness in milliseconds, then Run experiment.','Read accepted/rejected events, watermark and window totals. Reorder two lines or change lateness and run again.'],
+  'go-collections':['Enter comma-separated integers in Values, or load Unsorted with duplicates.','Run experiment to insert the values into the Go min-heap and extract them in order.','Check that duplicates and negative values are preserved; try a different ordering of the same values.'],
+  'go-journey':['Enter comma-separated integers in Values, or load Unsorted with duplicates.','Run experiment to execute the Go merge sort.','Compare the original and ordered sequence. Rerun with descending, negative or duplicate values.'],
+  'go-workbench':['Enter comma-separated integers in Values, or load Unsorted with duplicates.','Run experiment to execute the Go quicksort.','Inspect the ordered output, then try already-sorted, reverse-sorted and all-equal values.'],
+  'go-ranges':['Load Middle range, or enter comma-separated integers in Values.','Set Left index and Right index using zero-based positions; both ends are included. Run experiment.','Compare the Fenwick and segment-tree sums. Try one index, the whole array or a range containing negative values.'],
+  'go-prefix':['Load Shared branches, or enter one vocabulary word per line.','Enter a Prefix and a Suggestion limit, then Run experiment.','Read the ordered completions. Change the prefix or insert the words in a different order and compare results.'],
+  'cpp-toolkit':['Enter comma-separated integers, or load Unsorted with duplicates.','Choose merge or quick under Algorithm, then Run experiment. The quick option currently delegates to std::sort.','Compare the original and ordered values. Switch the algorithm and rerun on the same sequence.'],
+  'number-system':['Enter a signed Decimal number, or load Forty-two, Zero or Negative input.','Run experiment to convert it using the C++ implementation.','Read the binary answer and division trail. Check a power of two and the value immediately before it.'],
+  'binary-quest':['Choose a nonnegative Decimal number and work out its binary representation.','Type your prediction into Your binary answer using only 0 and 1, then Run experiment.','Read the correctness feedback and division trail. Leading zeroes are accepted because the numeric value is compared.'],
+  bitrealm:['Set Register A from 0 to 255 and choose an Operation, or load one of the examples.','For AND, OR and XOR, enter a second byte in Register B. For shifts or rotations, enter a count from 0 to 7; NOT uses A alone.','Run experiment. Inspect each output bit and the changed-bit count, then compare a shift with a rotation.'],
+  cashflow:['Load Weekend away, or enter expenses as: payer, cents, person|person. Use unique participant names within each expense.','Use whole-number cents, such as 1250 for 12.50, then Run experiment.','Inspect balances and suggested payments; export the table if useful. Try Uneven cents to see the remainder rule.'],
+  huffman:['Type Text to compress, or load Repeated language for a longer sample.','Run experiment to create and decode a real Huffman archive.','Inspect the byte-for-byte verification and file sizes, then download the .huf archive. Try a tiny sample to see header overhead.'],
+};
+
+export function demoGuide(project,onLoad) {
+  const details=el('details',{class:'demo-guide',open:true},el('summary',{},el('span',{},'How to run this demo'),el('small',{},'3 quick steps')),el('ol',{},demoInstructions[project.id].map((step,index)=>el('li',{},el('span',{},String(index+1).padStart(2,'0')),el('p',{},step)))));
+  if(onLoad)details.append(button('Load starter example: '+project.presets[0].name,onLoad,'starter-example'));
+  return details;
 }
