@@ -1,0 +1,49 @@
+{
+  "id": "go-ranges",
+  "title": "Range observatory",
+  "description": "Compare Fenwick and segment-tree sums over an inclusive range. See the prefix totals behind the query.",
+  "category": "Range queries",
+  "language": "Go",
+  "fields": [
+    {
+      "key": "values",
+      "label": "Values",
+      "type": "text",
+      "hint": "1–100 integers, separated by commas or spaces."
+    },
+    {
+      "key": "left",
+      "label": "Left index",
+      "type": "number",
+      "hint": "",
+      "min": 0,
+      "max": 99
+    },
+    {
+      "key": "right",
+      "label": "Right index",
+      "type": "number",
+      "hint": "Both endpoints are included.",
+      "min": 0,
+      "max": 99
+    }
+  ],
+  "presets": [
+    {
+      "name": "Middle range",
+      "input": {
+        "values": "3, 1, 4, 1, 5, 9",
+        "left": "1",
+        "right": "4"
+      }
+    },
+    {
+      "name": "Single value",
+      "input": {
+        "values": "-4, 2, 0, 7",
+        "left": "3",
+        "right": "3"
+      }
+    }
+  ]
+}
