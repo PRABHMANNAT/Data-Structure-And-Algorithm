@@ -4,7 +4,7 @@
 
 The original libraries and command-line tools remain available. The browser workspaces run their real implementations locally.
 
-The homepage includes diagram covers, a step-through sorting illustration, and three suggested study routes. Search, language filters and saved projects help you navigate the full collection.
+The homepage opens with a compact introduction and the complete project collection. Search, counted language filters and saved projects help you find a demo quickly. The GitHub link opens the repository where you can star or explore the source.
 
 Every project has three separately addressable sections:
 

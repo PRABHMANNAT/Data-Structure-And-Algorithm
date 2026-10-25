@@ -52,7 +52,3 @@ export function collectionIntro() {
     el('div',{class:'intro-actions'},el('a',{href:'https://github.com/PRABHMANNAT/Data-Structure-And-Algorithm',target:'_blank',rel:'noopener noreferrer',class:'github-star'},icon('star'),'Star on GitHub',el('span',{'aria-hidden':'true'},'↗')),el('span',{class:'intro-meta'},'Python · Go · C++ · JavaScript')));
 }
 
-export function studyRoutes() {
-  const routes=[['01','Start with the building blocks','Numbers → bits → trees',['number-system','bitrealm','python-structures']],['02','Find a way through','Grid search → roads → timetables',['routelab','delivery','transit']],['03','Turn data into decisions','Search → streams → compression',['retrieval','streamshield','huffman']]];
-  return el('section',{class:'study-routes','aria-label':'Suggested study routes'},...routes.map(([n,title,description,ids])=>el('article',{},el('span',{class:'eyebrow'},'STUDY ROUTE / '+n),el('h2',{},title),el('p',{},description),el('div',{},ids.map((id,index)=>el('a',{href:`#project/${id}/logic`,'aria-label':`${index+1}. ${lessons[id].topic}`},`${String(index+1).padStart(2,'0')} ${lessons[id].topic} ↗`))))));
-}

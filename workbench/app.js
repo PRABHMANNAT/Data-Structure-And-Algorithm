@@ -2,7 +2,7 @@ import {el, button, note, announce} from './dom.js';
 import {read, write, favorite, recordRun, history} from './storage.js';
 import {createForm} from './forms.js';
 import {resultShell, compare} from './results.js';
-import {collectionIntro, studyRoutes, artwork, learningPanel} from './learning.js';
+import {collectionIntro, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
 import {searchBox,languageFilters} from './controls.js';
 import {icon} from './icons.js';
@@ -42,7 +42,7 @@ function topline(text = 'A practical study of data & decisions') {
 }
 function footer() { return el('footer', {class:'footnote'}, el('span', {}, 'FIELDNOTES / DATA STRUCTURES & ALGORITHMS'), el('span', {}, 'Made for the curious.')); }
 function collection() {
-  main.replaceChildren(topline(), collectionIntro(), studyRoutes(), el('div', {class:'catalogue-heading',id:'catalogue'}, el('div',{},el('p',{class:'eyebrow'},'THE COMPLETE INDEX'),el('h2',{},'Choose your next experiment.')),el('p',{},'Run it. Understand it. Make it your own.')));
+  main.replaceChildren(topline(), collectionIntro(), el('div', {class:'catalogue-heading',id:'catalogue'}, el('div',{},el('p',{class:'eyebrow'},'THE COMPLETE INDEX'),el('h2',{},'Choose your next experiment.')),el('p',{},'Run it. Understand it. Make it your own.')));
   const search = searchBox(query, value => {query=value;renderRows();});
   const filters=languageFilters(language=>{filter=language;renderRows();});
   main.append(el('div', {class:'collection-tools'},search,filters.node));
