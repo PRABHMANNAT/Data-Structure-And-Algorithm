@@ -1,0 +1,56 @@
+{
+  "id": "retrieval",
+  "title": "Reading room",
+  "description": "Search your own small document collection with BM25 ranking. Inspect matched terms and autocomplete suggestions.",
+  "category": "Information retrieval",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "documents",
+      "label": "Documents",
+      "type": "textarea",
+      "hint": "One document per line: title | body. Up to 100 documents.",
+      "rows": 7
+    },
+    {
+      "key": "query",
+      "label": "Search query",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "prefix",
+      "label": "Autocomplete prefix",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "limit",
+      "label": "Results",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Transport notes",
+      "input": {
+        "documents": "Rail notes | Rail networks connect cities by train.\nRoad atlas | Roads connect towns and delivery depots.\nStation guide | The rail station serves regional trains.",
+        "query": "rail",
+        "prefix": "ra",
+        "limit": "5"
+      }
+    },
+    {
+      "name": "An empty result",
+      "input": {
+        "documents": "Trees | A tree has branches.\nHeaps | A heap orders values.",
+        "query": "ocean",
+        "prefix": "tr",
+        "limit": "3"
+      }
+    }
+  ]
+}
