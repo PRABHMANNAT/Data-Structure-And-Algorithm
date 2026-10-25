@@ -1,68 +1,14 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A keyboard-friendly crossword puzzle game with algorithm learning notes." />
-    <meta name="theme-color" content="#12233f" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Crossword Lab</title>
-  </head>
-  <body>
-    <main class="app-shell">
-      <header class="masthead">
-        <div>
-          <p class="eyebrow">Data Structures × Wordplay</p>
-          <h1>Crossword Lab</h1>
-        </div>
-        <div class="header-actions">
-          <label class="select-label" for="puzzle-picker">Puzzle
-            <select id="puzzle-picker" aria-label="Choose a crossword puzzle"></select>
-          </label>
-          <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle colour theme">◐</button>
-        </div>
-      </header>
-
-      <section class="game-summary" aria-label="Puzzle status">
-        <div><span class="summary-label">Puzzle</span><strong id="puzzle-title">Loading…</strong></div>
-        <div><span class="summary-label">Progress</span><strong id="progress-label">0%</strong></div>
-        <div><span class="summary-label">Time</span><strong id="timer">00:00</strong></div>
-        <button id="pause-button" class="secondary-button" type="button">Pause</button>
-      </section>
-
-      <section class="progress-track" aria-label="Puzzle completion"><span id="progress-bar"></span></section>
-      <p id="announcement" class="sr-only" aria-live="polite"></p>
-
-      <section class="play-area" aria-label="Crossword game">
-        <div class="board-panel">
-          <div id="crossword-board" class="crossword-board" role="grid" aria-label="Crossword grid"></div>
-          <div class="current-clue" aria-live="polite">
-            <span id="current-clue-number">1 Across</span>
-            <strong id="current-clue-text">Choose a square to begin.</strong>
-          </div>
-        </div>
-        <aside class="clue-panel" aria-label="Crossword clues">
-          <div class="clue-tabs" role="tablist" aria-label="Clue direction">
-            <button class="tab-button is-selected" id="across-tab" role="tab" aria-selected="true" type="button">Across</button>
-            <button class="tab-button" id="down-tab" role="tab" aria-selected="false" type="button">Down</button>
-          </div>
-          <ol id="clue-list" class="clue-list" aria-label="Across clues"></ol>
-        </aside>
-      </section>
-
-      <section class="control-panel" aria-label="Game controls">
-        <div class="control-group"><h2>Check</h2><button data-action="check-cell" type="button">Cell</button><button data-action="check-word" type="button">Word</button><button data-action="check-puzzle" type="button">Puzzle</button></div>
-        <div class="control-group"><h2>Reveal</h2><button data-action="reveal-cell" type="button">Cell</button><button data-action="reveal-word" type="button">Word</button><button data-action="reveal-puzzle" type="button">Puzzle</button></div>
-        <div class="control-group"><h2>Manage</h2><button data-action="clear-word" type="button">Clear word</button><button data-action="reset" type="button">Reset</button><button data-action="help" type="button">Keyboard help</button></div>
-      </section>
-
-      <dialog id="help-dialog">
-        <form method="dialog"><button class="dialog-close" aria-label="Close help">×</button></form>
-        <h2>Keyboard shortcuts</h2>
-        <ul><li>Type a letter to fill the selected square.</li><li>Arrow keys move; Space switches direction.</li><li>Backspace clears the previous square.</li><li>Tab moves through clues; Enter opens the selected clue.</li></ul>
-      </dialog>
-    </main>
-    <script type="module" src="src/app.js"></script>
-  </body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A small crossword and a moment to think. Keyboard-friendly puzzles, saved progress, and no distractions."><meta name="theme-color" content="#f7f5ef"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"><script type="module" src="src/app.js"></script><title>The Daily Grid / Fieldnotes</title></head>
+<body><a class="skip" href="#crossword-board">Skip to puzzle</a><main class="app-shell"><nav class="topline"><a href="/">← Fieldnotes</a><span>A SMALL PUZZLE. A MOMENT TO THINK.</span><button id="theme-toggle" aria-label="Toggle light and dark theme">Change light ◐</button></nav>
+<header class="masthead"><div><p class="eyebrow">THE WORDPLAY EDITION</p><h1>The Daily Grid<span>.</span></h1><p class="dek">A few good words. A fresh perspective.</p></div><label class="select-label" for="puzzle-picker">Choose your grid<select id="puzzle-picker" aria-label="Choose a crossword puzzle"></select></label></header>
+<section class="game-summary" aria-label="Puzzle status"><div><span class="summary-label">ON THE DESK</span><strong id="puzzle-title">Loading…</strong></div><div><span class="summary-label">FILLED</span><strong id="progress-label">0%</strong></div><div><span class="summary-label">ELAPSED</span><strong id="timer">00:00</strong></div><button id="pause-button" type="button">Pause Ⅱ</button></section>
+<div class="progress-track" aria-label="Puzzle completion"><span id="progress-bar"></span></div><p id="announcement" class="sr-only" aria-live="polite"></p>
+<section class="play-area" aria-label="Crossword game"><div class="board-panel"><div class="current-clue" aria-live="polite"><span id="current-clue-number">1 Across</span><strong id="current-clue-text">Choose a square to begin.</strong></div><div class="board-wrap"><div id="crossword-board" class="crossword-board" role="grid" aria-label="Crossword grid" tabindex="-1"></div><div class="pause-cover" id="pause-cover" hidden><h2>A little breathing room.</h2><p>Your time and grid are paused.</p><button id="resume-button">Back to the puzzle →</button></div></div><div class="board-note"><span>ARROWS TO MOVE / SPACE TO SWITCH</span><div><button id="undo-button" disabled aria-label="Undo last edit">Undo ↶</button><button id="redo-button" disabled aria-label="Redo last edit">Redo ↷</button></div></div></div>
+<aside class="clue-panel" aria-label="Crossword clues"><div class="clue-tabs" role="tablist" aria-label="Clue direction"><button id="across-tab" class="tab-button is-selected" role="tab" aria-selected="true" aria-controls="clue-list" type="button">Across</button><button id="down-tab" class="tab-button" role="tab" aria-selected="false" aria-controls="clue-list" tabindex="-1" type="button">Down</button></div><ol id="clue-list" class="clue-list" role="tabpanel" aria-labelledby="across-tab"></ol><p class="clue-hint">The best way out of a blank square<br>is often a different direction.</p></aside></section>
+<section class="control-panel" aria-label="Puzzle tools"><div class="control-group"><h2>Check</h2><button data-action="check-cell">Letter</button><button data-action="check-word">Word</button><button data-action="check-puzzle">Grid</button></div><div class="control-group"><h2>A little help</h2><button data-action="reveal-cell">Reveal letter</button><button data-action="reveal-word">Reveal word</button><button data-action="reveal-puzzle">Reveal grid</button></div><div class="control-group"><h2>Start fresh</h2><button data-action="clear-word">Clear word</button><button data-action="reset">Reset grid</button></div></section>
+<div class="journal"><p id="personal-stats">Your puzzle journal will appear here.</p><div><button data-action="help">Keyboard guide ↗</button><button id="print-button">Print grid ↗</button></div></div><footer><span>FIELDNOTES / THE DAILY GRID</span><span>Progress saved on this device.</span></footer>
+<dialog id="help-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close keyboard guide">×</button></form><p class="eyebrow">THE SHORTCUTS</p><h2>Stay in the flow.</h2><ul><li>Type a letter to fill the selected square.</li><li>Arrow keys move; Space switches direction.</li><li>Tab / Shift+Tab jump to the next / previous clue.</li><li>Backspace clears a letter or moves to the previous square.</li><li>Ctrl/⌘ Z undoes; Shift+Ctrl/⌘ Z redoes.</li><li>Escape leaves the grid. Native Tab navigation works outside it.</li></ul></dialog>
+<dialog id="confirm-dialog"><form method="dialog"><h2 id="confirm-title">Start again?</h2><p id="confirm-description"></p><div class="dialog-actions"><button value="cancel">Keep playing</button><button id="confirm-accept" value="confirm">Continue</button></div></form></dialog>
+<dialog id="complete-dialog"><form method="dialog"><p class="eyebrow">A GOOD PLACE TO FINISH</p><h2>Every square, accounted for.</h2><p id="completion-detail"></p><button>Back to the grid →</button></form></dialog>
+</main></body></html>
