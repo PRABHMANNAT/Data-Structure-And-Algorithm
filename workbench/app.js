@@ -4,7 +4,7 @@ import {createForm} from './forms.js';
 import {resultShell, compare} from './results.js';
 import {collectionIntro, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
-import {searchBox,languageFilters} from './controls.js';
+import {searchBox,languageFilters,projectSwitcher} from './controls.js';
 import {icon} from './icons.js';
 import {projectIntroduction,demoGuide} from './guidance.js';
 
@@ -78,9 +78,9 @@ async function workspace(id, version, section = 'demo') {
     const link=el('a',{href:`#project/${id}/${key}`},icon(key==='demo'?'code':key==='logic'?'search':'bookmark'),label);
     nav.append(link);
   }
-  const picker=el('select',{'aria-label':'Switch project'},projects.map(p=>el('option',{value:p.id,selected:p.id===id},p.title)));
-  picker.addEventListener('change',()=>{location.hash='#project/'+picker.value+'/demo';});
-  main.append(el('div',{class:'workspace-navigation'},nav,picker),...Object.values(panels));
+  const picker=projectSwitcher(projects,project,()=>main.dataset.section);
+  main.dispose=picker.dispose;
+  main.append(el('div',{class:'workspace-navigation'},nav,picker.node),...Object.values(panels));
   function showSection(selected) {
     const current=panels[selected]?selected:'demo';
     const previous=main.dataset.section;
@@ -137,7 +137,8 @@ function route() {
   const [hashId,section='demo']=location.hash.slice(9).split('/');
   const id = location.hash.startsWith('#project/') ? hashId : document.body.dataset.project;
   if(id && main.dataset.project===id && main.showSection){main.showSection(section);return;}
-  main.dataset.project='';main.showSection=null;
+  main.dispose?.();main.dispose=null;
+  main.dataset.project='';main.showSection=null;main.dataset.section='';
   const version = ++routeVersion;
   const selected=projects.find(project=>project.id===id);
   document.title=selected?selected.title+' / Fieldnotes':'Fieldnotes — Algorithms, made tangible.';
