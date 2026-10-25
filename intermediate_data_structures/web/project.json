@@ -1,0 +1,37 @@
+{
+  "id": "python-structures",
+  "title": "Structure study",
+  "description": "Build a search tree from an insertion sequence. Inspect its shape, traversal, and membership.",
+  "category": "Data structures",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "values",
+      "label": "Insertion order",
+      "type": "text",
+      "hint": "1–100 integers, separated by commas."
+    },
+    {
+      "key": "find",
+      "label": "Find a value",
+      "type": "number",
+      "hint": ""
+    }
+  ],
+  "presets": [
+    {
+      "name": "Balanced branches",
+      "input": {
+        "values": "7, 3, 9, 1, 5, 8, 12",
+        "find": "5"
+      }
+    },
+    {
+      "name": "A skewed tree",
+      "input": {
+        "values": "1, 2, 3, 4, 5, 6",
+        "find": "7"
+      }
+    }
+  ]
+}
