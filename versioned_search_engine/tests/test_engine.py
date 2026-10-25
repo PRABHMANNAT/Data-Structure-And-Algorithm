@@ -2,6 +2,9 @@ import unittest
 from search_engine.engine import SearchEngine
 from search_engine.models import Document
 class EngineTests(unittest.TestCase):
+ def test_length_normalization_counts_tokens_not_characters(self):
+  e=SearchEngine();e.add(Document('short','', 'term x'));e.add(Document('long','', 'term '+('x '*30)))
+  hits=e.search('term');self.assertEqual(hits[0].document_id,'short');self.assertGreater(hits[0].score,hits[1].score)
  def test_returns_ranked_document_hits(self):
   e=SearchEngine();e.add(Document("a","Rail","rail rail map"));e.add(Document("b","Bus","rail map"));self.assertEqual(e.search("rail")[0].document_id,"a")
  def test_reindexes_cache_after_document_write(self):
