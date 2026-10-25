@@ -47,6 +47,10 @@ def _python(text: str) -> list[Token]:
     try:
         stream = py_tokenize.generate_tokens(io.StringIO(text).readline)
         for item in stream:
+            # Older Python versions emit ERRORTOKEN for an unfinished quoted
+            # string instead of raising TokenError. Reject it consistently.
+            if item.type == py_token.ERRORTOKEN and not item.string.isspace():
+                raise ValueError(f"invalid Python token stream at line {item.start[0]}: {item.string!r}")
             if item.type in {py_token.ENDMARKER, py_token.NEWLINE, py_token.NL,
                              py_token.INDENT, py_token.DEDENT, py_token.COMMENT,
                              py_token.ENCODING}:
