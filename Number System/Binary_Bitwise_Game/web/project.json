@@ -1,0 +1,67 @@
+{
+  "id": "bitrealm",
+  "title": "Bit workshop",
+  "description": "Work with an eight-bit register. Apply the original game operations and inspect which bits change.",
+  "category": "Bitwise operations",
+  "language": "C++",
+  "fields": [
+    {
+      "key": "a",
+      "label": "Register A",
+      "type": "number",
+      "hint": "",
+      "min": 0,
+      "max": 255
+    },
+    {
+      "key": "b",
+      "label": "Register B / shift count",
+      "type": "number",
+      "hint": "Shift and rotate counts must be 0–7.",
+      "min": 0,
+      "max": 255
+    },
+    {
+      "key": "operation",
+      "label": "Operation",
+      "type": "select",
+      "hint": "",
+      "options": [
+        "AND",
+        "OR",
+        "XOR",
+        "NOT",
+        "SHL",
+        "SHR",
+        "ROTL",
+        "ROTR"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mask a register",
+      "input": {
+        "a": "173",
+        "b": "15",
+        "operation": "AND"
+      }
+    },
+    {
+      "name": "Rotate left",
+      "input": {
+        "a": "129",
+        "b": "1",
+        "operation": "ROTL"
+      }
+    },
+    {
+      "name": "Toggle with XOR",
+      "input": {
+        "a": "42",
+        "b": "255",
+        "operation": "XOR"
+      }
+    }
+  ]
+}
