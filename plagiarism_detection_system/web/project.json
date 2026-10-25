@@ -1,0 +1,53 @@
+{
+  "id": "similarity",
+  "title": "Source comparison",
+  "description": "Compare two source files through normalized tokens and winnowing fingerprints. Inspect the evidence behind a similarity score.",
+  "category": "Code analysis",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "left",
+      "label": "Original source",
+      "type": "textarea",
+      "hint": "",
+      "rows": 7
+    },
+    {
+      "key": "right",
+      "label": "Comparison source",
+      "type": "textarea",
+      "hint": "",
+      "rows": 7
+    },
+    {
+      "key": "language",
+      "label": "Language",
+      "type": "select",
+      "hint": "",
+      "options": [
+        "python",
+        "cpp",
+        "go",
+        "javascript"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Renamed variables",
+      "input": {
+        "left": "def squares(items):\n    result = []\n    for item in items:\n        result.append(item * item)\n    return result",
+        "right": "def squared(values):\n    output = []\n    for value in values:\n        output.append(value * value)\n    return output",
+        "language": "python"
+      }
+    },
+    {
+      "name": "Different approaches",
+      "input": {
+        "left": "def add(a,b):\n    return a+b",
+        "right": "def count(items):\n    total = 0\n    for item in items:\n        total += 1\n    return total",
+        "language": "python"
+      }
+    }
+  ]
+}
