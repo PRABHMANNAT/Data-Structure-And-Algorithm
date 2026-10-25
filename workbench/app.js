@@ -73,8 +73,8 @@ async function workspace(id, version, section = 'demo') {
   const demoPanel=el('section',{id:'panel-demo',class:'workspace-panel','aria-label':'Implementation demo'});
   const panels={demo:demoPanel,logic:el('section',{id:'panel-logic',class:'workspace-panel','aria-label':'How it works'},learningPanel(project,'logic')),notes:el('section',{id:'panel-notes',class:'workspace-panel','aria-label':'Study notes'},learningPanel(project,'notes'))};
   const nav=el('nav',{class:'workspace-nav','aria-label':'Project sections'});
-  for(const [key,label] of [['demo','01 / Demo'],['logic','02 / How it works'],['notes','03 / Study notes']]) {
-    const link=el('a',{href:`#project/${id}/${key}`},label);
+  for(const [key,label] of [['demo','Demo'],['logic','How it works'],['notes','Study notes']]) {
+    const link=el('a',{href:`#project/${id}/${key}`},icon(key==='demo'?'code':key==='logic'?'search':'bookmark'),label);
     nav.append(link);
   }
   const picker=el('select',{'aria-label':'Switch project'},projects.map(p=>el('option',{value:p.id,selected:p.id===id},p.title)));
@@ -82,7 +82,14 @@ async function workspace(id, version, section = 'demo') {
   main.append(el('div',{class:'workspace-navigation'},nav,picker),...Object.values(panels));
   function showSection(selected) {
     const current=panels[selected]?selected:'demo';
+    const previous=main.dataset.section;
+    main.dataset.section=current;
     for(const [key,panel] of Object.entries(panels))panel.hidden=key!==current;
+    nav.style.setProperty('--active-index',String(['demo','logic','notes'].indexOf(current)));
+    if(previous!==current&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      panels[current].getAnimations().forEach(animation=>animation.cancel());
+      panels[current].animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:180,easing:'ease-out'});
+    }
     for(const link of nav.querySelectorAll('a')) {if(link.hash.endsWith('/'+current))link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}
   }
   main.dataset.project=id;
