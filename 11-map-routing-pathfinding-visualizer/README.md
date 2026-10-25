@@ -1,54 +1,31 @@
-# RouteLab — Map Routing & Pathfinding Visualizer
+# RouteLab
 
-RouteLab is a browser-based canvas visualizer for shortest-path search on a spatial grid. Draw road closures, reposition the start and destination markers, and compare Dijkstra's algorithm with A* in real time.
+A quiet, interactive workspace for shortest-path algorithms. Draw barriers on a grid, place two endpoints, and inspect how A* and Dijkstra search the same terrain.
 
-## Highlights
+## Open it
 
-- Interactive canvas map with click-and-drag barrier editing
-- True adjacency-list graph construction for every search run
-- Min-heap priority queue implementation
-- Dijkstra and A* shortest-path search with Manhattan-distance heuristic
-- Animated exploration, frontier, final route, and live performance metrics
-- Responsive controls, keyboard shortcuts, randomized maze generator, and accessible labels
+From the repository root, run `python -m workbench.server` and visit [RouteLab](http://127.0.0.1:8765/11-map-routing-pathfinding-visualizer/01-source/). Both `01-source/` and the matching `dist/` build also work on a static HTTP server. ES modules require HTTP rather than `file://`.
 
-## Run locally
+## Working with the map
 
-No dependencies are required. Serve the folder with a static file server, then open the displayed local URL:
+- Draw or erase barriers by dragging. Place start A and destination B with their tools.
+- Run continuously, pause, or advance one explored cell at a time.
+- Compare A* and Dijkstra on identical terrain. Both find a shortest path with unit-cost orthogonal movement.
+- Undo and redo up to 40 map edits. A pointer stroke counts as one edit.
+- Choose an open field, switchbacks, or random barriers. Random terrain carves a guaranteed connection.
+- Save and load validated JSON maps. Your latest terrain also persists on this device.
+- Move a keyboard cursor with arrow keys and apply the selected tool with Enter.
 
-```bash
-cd 11-map-routing-pathfinding-visualizer/01-source
-python -m http.server 8080
+`W/E` select barrier/erase, `S/D` move endpoints, `Space` runs or pauses, `C` clears the search, `?` opens help, and `Ctrl/⌘ Z` undoes an edit (`Shift` redoes).
+
+The frontier metric reports the actual distinct frontier cells and its peak. Compute time excludes animation. Ties in the priority queue are stable, so the exploration order is reproducible. Path cells render above explored cells.
+
+## Check the logic
+
+```sh
+node --test 11-map-routing-pathfinding-visualizer/tests/search.test.mjs
 ```
 
-## Project structure
+The tests compare both search methods across 30 deterministic random terrains, verify each route step, cover unreachable and zero-length routes, and test map validation plus undo/redo.
 
-```text
-11-map-routing-pathfinding-visualizer/
-├── 01-source/          Interactive HTML, CSS, JavaScript, and favicon
-├── 02-learning-notes/  Numbered algorithm and implementation notes
-├── dist/               Static deployment bundle
-├── .openai/            Hosting configuration
-└── README.md           Setup, controls, and algorithm overview
-```
-
-`01-source` is the editable application. `dist` is the matching static bundle used for deployment.
-
-## How the algorithms differ
-
-| Algorithm | Priority | Characteristic |
-| --- | --- | --- |
-| Dijkstra | Lowest known route cost `g(n)` | Explores uniformly in all viable directions; always optimal for non-negative edge costs. |
-| A* | `g(n) + h(n)` | Uses Manhattan distance `h(n)` to focus on the goal while retaining optimality on this grid. |
-
-Both implementations use an adjacency list and a binary min-heap, with `O((V + E) log V)` time complexity on the generated graph.
-
-## Guided notes
-
-The [`02-learning-notes`](02-learning-notes) folder contains a 59-part learning guide that follows the implementation from grid modeling and heap mechanics through A*, rendering, accessibility, and validation.
-
-## Controls
-
-- **W / E** — draw barriers / erase barriers
-- **S / D** — reposition start / destination
-- **Space** — run the selected search
-- **C** — clear current exploration
+The original `02-learning-notes/` remain a useful conceptual companion. The current source separates search, heap, map rendering, persistence, presets, and file exchange so the algorithms can be tested without a browser.
