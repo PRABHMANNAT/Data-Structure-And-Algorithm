@@ -1,0 +1,12 @@
+/* Shared finishing details for the collection and each project workspace. */
+:root{--radius-card:18px;--radius-control:11px;--surface:#fffef9}
+.project-card{border-radius:var(--radius-card);overflow:hidden;box-shadow:0 2px 4px #25292304;transition:border-color .18s,box-shadow .18s,transform .18s}
+.project-card:hover{box-shadow:0 6px 18px #2529230b;transform:translateY(-2px)}
+.project-card:focus-within{border-color:#71835c}
+.art-link{border-radius:17px 17px 0 0}
+.art-link:focus-visible{outline-offset:-4px}
+.project-card .star{border-radius:50%;width:34px;height:34px;min-height:34px}
+.project-card .star:hover{background:#e8eddf}
+.solid-link,.question-block,.worked-example,.placeholder,.browser-launch .project-art{border-radius:var(--radius-control)}
+input,textarea,select,button{border-radius:8px}
+@media(prefers-reduced-motion:reduce){.project-card:hover{transform:none}}
