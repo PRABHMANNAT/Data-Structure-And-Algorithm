@@ -1,0 +1,66 @@
+{
+  "id": "transit",
+  "title": "Departure board",
+  "description": "Find an earliest-arrival journey through a timetable. Explore missed transfers, waiting time, and fares.",
+  "category": "Timetable routing",
+  "language": "Python",
+  "fields": [
+    {
+      "key": "services",
+      "label": "Timetable",
+      "type": "textarea",
+      "hint": "Each row: from to departure arrival fare. Times are minutes after midnight.",
+      "rows": 6
+    },
+    {
+      "key": "origin",
+      "label": "From",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "destination",
+      "label": "To",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "departure",
+      "label": "Depart after",
+      "type": "number",
+      "hint": "",
+      "min": 0,
+      "max": 10080
+    },
+    {
+      "key": "buffer",
+      "label": "Transfer buffer",
+      "type": "number",
+      "hint": "Minutes required between services.",
+      "min": 0,
+      "max": 120
+    }
+  ],
+  "presets": [
+    {
+      "name": "Morning connection",
+      "input": {
+        "services": "North Central 480 495 200\nCentral Harbor 500 520 150\nNorth Harbor 490 540 250",
+        "origin": "North",
+        "destination": "Harbor",
+        "departure": "475",
+        "buffer": "2"
+      }
+    },
+    {
+      "name": "Missed transfer",
+      "input": {
+        "services": "North Central 480 499 200\nCentral Harbor 500 520 150\nCentral Harbor 530 550 150",
+        "origin": "North",
+        "destination": "Harbor",
+        "departure": "475",
+        "buffer": "3"
+      }
+    }
+  ]
+}
