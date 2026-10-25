@@ -6,6 +6,7 @@ import {collectionIntro, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
 import {searchBox,languageFilters} from './controls.js';
 import {icon} from './icons.js';
+import {projectIntroduction} from './guidance.js';
 
 const browserProjects = [
   {id:'routelab',title:'RouteLab',description:'Draw a map. Watch Dijkstra and A* find their way through it.',language:'JavaScript',category:'Graph algorithms',href:'/11-map-routing-pathfinding-visualizer/01-source/'},
@@ -69,7 +70,7 @@ function collection() {
 async function workspace(id, version, section = 'demo') {
   const project = projects.find(item => item.id===id);
   if (!project) {main.replaceChildren(topline(), el('h1', {}, 'Experiment not found.'), el('a', {href:'#'}, 'Return to the collection')); return;}
-  main.replaceChildren(topline('Collection / ' + project.title), el('header', {class:'workspace-title'}, el('a', {class:'eyebrow',href:'#'}, '← ALL EXPERIMENTS'), el('h1', {}, project.title), el('p', {}, project.description)));
+  main.replaceChildren(topline('Collection / ' + project.title), el('header', {class:'workspace-title'}, el('a', {class:'eyebrow',href:'#'}, '← ALL EXPERIMENTS'), el('h1', {}, project.title),projectIntroduction(project)));
   const demoPanel=el('section',{id:'panel-demo',class:'workspace-panel','aria-label':'Implementation demo'});
   const panels={demo:demoPanel,logic:el('section',{id:'panel-logic',class:'workspace-panel','aria-label':'How it works'},learningPanel(project,'logic')),notes:el('section',{id:'panel-notes',class:'workspace-panel','aria-label':'Study notes'},learningPanel(project,'notes'))};
   const nav=el('nav',{class:'workspace-nav','aria-label':'Project sections'});

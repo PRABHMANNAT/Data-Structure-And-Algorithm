@@ -79,3 +79,12 @@ input,textarea,select,button{border-radius:8px}
 .workspace-panel{min-width:0}
 @media(max-width:600px){.workspace-navigation{align-items:stretch;gap:12px}.workspace-nav{width:100%}.workspace-nav a{padding:10px 8px;font-size:11px;gap:6px}.workspace-nav a svg{width:13px;height:13px}}
 @media(prefers-reduced-motion:reduce){.workspace-nav::before{transition:none}}
+/* Explain the purpose and observable result before asking for an input. */
+.workspace-title{max-width:none;padding:27px 0 23px}
+.workspace-title h1{font-size:clamp(30px,3.3vw,43px);line-height:1.15;letter-spacing:-.045em;margin:14px 0 16px}
+.workspace-title>.eyebrow{font-size:10px;text-decoration:none;color:#849276}
+.project-introduction{display:grid;grid-template-columns:1.35fr 1fr;gap:32px;max-width:1000px}
+.project-introduction p{font-size:13px;line-height:1.85;color:#68735c;margin:0}
+.project-outcome{border-left:1px solid #d4ddc9;padding-left:24px}
+.project-outcome strong{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:#495e3a;margin-bottom:4px}
+@media(max-width:700px){.project-introduction{grid-template-columns:1fr;gap:14px}.project-outcome{padding-left:14px}.workspace-title h1{font-size:32px}}
