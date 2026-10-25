@@ -4,7 +4,7 @@ import {createForm} from './forms.js';
 import {resultShell, compare} from './results.js';
 import {collectionIntro, studyRoutes, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
-import {searchBox} from './controls.js';
+import {searchBox,languageFilters} from './controls.js';
 
 const browserProjects = [
   {id:'routelab',title:'RouteLab',description:'Draw a map. Watch Dijkstra and A* find their way through it.',language:'JavaScript',category:'Graph algorithms',href:'/11-map-routing-pathfinding-visualizer/01-source/'},
@@ -26,18 +26,16 @@ function footer() { return el('footer', {class:'footnote'}, el('span', {}, 'FIEL
 function collection() {
   main.replaceChildren(topline(), collectionIntro(), studyRoutes(), el('div', {class:'catalogue-heading',id:'catalogue'}, el('div',{},el('p',{class:'eyebrow'},'THE COMPLETE INDEX'),el('h2',{},'Choose your next experiment.')),el('p',{},'Run it. Understand it. Make it your own.')));
   const search = searchBox(query, value => {query=value;renderRows();});
-  const filters = el('div', {class:'filters',role:'group','aria-label':'Filter by language'});
-  for (const language of ['All','Python','Go','C++','JavaScript']) {
-    const control = button(language, () => {filter = language; filters.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b===control)); renderRows();});
-    control.setAttribute('aria-pressed', filter === language); filters.append(control);
-  }
-  main.append(el('div', {class:'collection-tools'}, search, filters));
+  const filters=languageFilters(language=>{filter=language;renderRows();});
+  main.append(el('div', {class:'collection-tools'},search,filters.node));
   const count = el('p', {class:'collection-count','aria-live':'polite'}), list = el('div', {class:'project-list'});
   main.append(count, list, footer());
   function renderRows() {
     const favorites = read('favorites', []);
-    const matched = projects.filter(p => (filter==='All'||p.language===filter) && (!onlyFavorites||favorites.includes(p.id)) && `${p.title} ${p.description} ${p.category} ${p.language} ${lessons[p.id].topic}`.toLowerCase().includes(query.trim().toLowerCase()));
-    count.textContent = `${String(matched.length).padStart(2,'0')} experiments${onlyFavorites?' in your saved collection':''}`;
+    const available=projects.filter(p=>(!onlyFavorites||favorites.includes(p.id))&&`${p.title} ${p.description} ${p.category} ${p.language} ${lessons[p.id].topic}`.toLowerCase().includes(query.trim().toLowerCase()));
+    const matched=available.filter(p=>filter==='All'||p.language===filter);
+    filters.update(filter,available);
+    count.textContent = `${String(matched.length).padStart(2,'0')} ${matched.length===1?'project':'projects'}${onlyFavorites?' in your saved collection':''}`;
     list.replaceChildren();
     matched.forEach(project => {
       const saved = favorites.includes(project.id);

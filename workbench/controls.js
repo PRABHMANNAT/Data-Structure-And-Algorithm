@@ -13,6 +13,23 @@ export function searchBox(value,onChange) {
   return el('div',{class:'search-wrap'},icon('search'),input,shortcut,clear);
 }
 
+export function languageFilters(onSelect) {
+  const node=el('div',{class:'filters',role:'group','aria-label':'Filter by language'});
+  const controls=new Map();
+  for(const language of ['All','Python','Go','C++','JavaScript']) {
+    const count=el('span',{class:'filter-count','aria-hidden':'true'},'0');
+    const control=button([el('span',{},language),count],()=>onSelect(language),'language-filter');
+    control.dataset.language=language;node.append(control);controls.set(language,{control,count});
+  }
+  return {node,update(active,projects){
+    for(const [language,{control,count}] of controls){
+      const total=projects.filter(project=>language==='All'||project.language===language).length;
+      count.textContent=total;control.setAttribute('aria-pressed',String(active===language));
+      control.setAttribute('aria-label',`${language}, ${total} ${total===1?'project':'projects'}`);
+    }
+  }};
+}
+
 document.addEventListener('keydown',event=>{
   if(event.key!=='/'||event.ctrlKey||event.metaKey||event.altKey)return;
   const target=event.target;
