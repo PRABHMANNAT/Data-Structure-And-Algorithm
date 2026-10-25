@@ -1,0 +1,29 @@
+{
+  "id": "go-workbench",
+  "title": "Go sorting room",
+  "description": "Run an in-place quicksort and compare its ordered output with the input sequence.",
+  "category": "Sorting",
+  "language": "Go",
+  "fields": [
+    {
+      "key": "values",
+      "label": "Values",
+      "type": "text",
+      "hint": "1–100 integers, separated by commas or spaces."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Unsorted with duplicates",
+      "input": {
+        "values": "7, 2, 9, 1, 2, 6"
+      }
+    },
+    {
+      "name": "Negative values",
+      "input": {
+        "values": "-3, 8, 0, -5, 8, 2"
+      }
+    }
+  ]
+}
