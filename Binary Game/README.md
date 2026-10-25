@@ -1,5 +1,21 @@
 # Binary Quest
 
+## Interactive workspace
+
+From the **repository root**, start `python -m workbench.server`, then open
+[the Binary practice workspace](http://127.0.0.1:8765/Binary%20Game/web/).
+
+Check a binary answer against the original game conversion. Use the division trail to understand each bit.
+
+The interface runs the native C++ implementation with your own input. Load an example from the input menu, edit the fields, and choose **Run experiment**. Results include a project-specific visual explanation, a raw-data inspector, JSON export, and comparison with the previous run. The last 12 runs and your unfinished inputs stay in this browser.
+
+**Example scenarios:** Check an answer, Find the mistake.
+
+A C++20 compiler must be available as `g++` or through the `CXX` environment variable. The server builds the checked-in bridge on first run.
+
+Run the integration checks from the repository root with `python scripts/verify.py --web`. Original command-line examples and library APIs remain available below.
+
+
 Binary Quest is a C++ console game built around decimal and binary conversion.
 
 The game uses only standard C++ libraries and the same core ideas from the number-system examples:
