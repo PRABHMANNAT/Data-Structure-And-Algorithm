@@ -1,5 +1,21 @@
 # Plagiarism Detection System
 
+## Interactive workspace
+
+From the **repository root**, start `python -m workbench.server`, then open
+[the Source comparison workspace](http://127.0.0.1:8765/plagiarism_detection_system/web/).
+
+Compare two source files through normalized tokens and winnowing fingerprints. Inspect the evidence behind a similarity score.
+
+The interface runs the Python implementation with your own input. Load an example from the input menu, edit the fields, and choose **Run experiment**. Results include a project-specific visual explanation, a raw-data inspector, JSON export, and comparison with the previous run. The last 12 runs and your unfinished inputs stay in this browser.
+
+**Example scenarios:** Renamed variables, Different approaches.
+
+Python 3.10+ is sufficient; no additional packages are required.
+
+Run the integration checks from the repository root with `python scripts/verify.py --web`. Original command-line examples and library APIs remain available below.
+
+
 A small, explainable source-code similarity detector for coursework review. It normalizes
 identifier names and literals, selects stable token fingerprints with winnowing, retrieves
 candidate pairs through an inverted index, and reports overlap plus matching source lines.
