@@ -1,32 +1,31 @@
-# Crossword Lab
+# The Daily Grid
 
-Crossword Lab is a dependency-free, browser-based crossword game that connects wordplay to approachable data-structure ideas. It ships with three small puzzles, keyboard-first play, checking and reveal controls, a timer, saved progress, and a high-contrast day/night theme.
+A newspaper-inspired crossword workspace with a focused grid, readable clues, quiet colors, and full keyboard control. Three small puzzles introduce word navigation and grid modeling.
 
-## Play locally
+## Open the puzzle
 
-Open `index.html` in a modern browser. No build step or web server is required.
+From the repository root, run `python -m workbench.server` and visit [The Daily Grid](http://127.0.0.1:8765/12-crossword-puzzle-game/). Any static HTTP server also works. No dependencies or build step are required.
 
-## Features
+## What changed
 
-- Matrix-backed crossword grids with generated across/down word models.
-- Click, touch, or keyboard navigation with live clue highlighting.
-- Cell, word, and puzzle-level checking and revealing.
-- Local browser persistence for an interrupted session.
-- Responsive, accessible controls and an in-app shortcut guide.
+- A paper-and-ink interface with a serif masthead, compact tools, and a real dark theme.
+- Separate saved progress for every puzzle, with validation when sessions are restored.
+- Undo and redo for 80 edits. Assistance records remain accurate when reveals are undone.
+- A timer that follows the active puzzle correctly when you switch grids.
+- Pausing hides the letters and disables grid input. Leaving the browser tab pauses automatically.
+- A local journal tracks completed grids and best times without reveals.
+- Reset and whole-grid reveal ask before changing the puzzle. Printing produces a clean blank grid with clues.
+- Mobile layouts keep the board full-width and put clues below it.
 
-## Project structure
+## Keyboard
 
-```text
-index.html       Accessible game shell
-styles.css       Responsive visual system
-src/             Puzzle model, rendering, state, and interactions
-docs/            Focused implementation and learning notes
+Type letters to fill the grid. Arrow keys move between open cells. Space switches direction. Tab and Shift+Tab move through clues while inside the grid. Escape exits to the pause control. Backspace clears the current letter, or moves back if empty. Ctrl/⌘ Z undoes; add Shift to redo. Across and Down tabs support arrow navigation.
+
+## Verify
+
+```sh
+cd 12-crossword-puzzle-game
+npm test
 ```
 
-## Keyboard controls
-
-Type letters to fill cells. Use the arrow keys to move, Space to switch between Across and Down, Backspace to clear the prior cell, and Tab/Enter to move through clue controls.
-
-## Data structures in use
-
-The grid is a two-dimensional matrix. Coordinate keys index individual cells, arrays retain word order, and maps/objects give constant-time access to entered values, validation markers, and persisted session state.
+Tests cover puzzle clues, restoration of malformed saved state, undo/redo isolation, assistance retention, zero-based selections, timer switching, and storage failures. All progress and journal data stay in this browser; private browsing can discard them.

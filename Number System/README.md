@@ -14,4 +14,3 @@ The interface runs the native C++ implementation with your own input. Load an ex
 A C++20 compiler must be available as `g++` or through the `CXX` environment variable. The server builds the checked-in bridge on first run.
 
 Run the integration checks from the repository root with `python scripts/verify.py --web`. Original command-line examples and library APIs remain available below.
-
