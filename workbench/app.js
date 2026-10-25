@@ -5,6 +5,7 @@ import {resultShell, compare} from './results.js';
 import {collectionIntro, studyRoutes, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
 import {searchBox,languageFilters} from './controls.js';
+import {icon} from './icons.js';
 
 const browserProjects = [
   {id:'routelab',title:'RouteLab',description:'Draw a map. Watch Dijkstra and A* find their way through it.',language:'JavaScript',category:'Graph algorithms',href:'/11-map-routing-pathfinding-visualizer/01-source/'},
@@ -13,12 +14,29 @@ const browserProjects = [
 let projects = [], filter = 'All', query = '', onlyFavorites = false, routeVersion = 0;
 const root = document.querySelector('#app');
 function shell() {
-  const rail = el('aside', {class:'rail'}, el('a', {class:'wordmark',href:'#'}, el('span', {class:'mark','aria-hidden':true}, 'fn'), 'Fieldnotes'), el('p', {class:'rail-caption'}, 'AN ALGORITHM COLLECTION'), el('nav', {'aria-label':'Main navigation'}, el('a', {href:'#',class:'active',id:'all-link'}, 'All experiments'), el('a', {href:'#favorites',id:'favorites-link'}, 'Saved collection')), el('div', {class:'rail-bottom'}, el('strong', {}, 'Built to be taken apart.'), el('br'), 'Python / Go / C++ / Web', el('br'), 'Source code. Real results.'));
+  const rail = el('aside', {class:'rail'},
+    el('a', {class:'wordmark',href:'#'},el('span',{class:'mark','aria-hidden':true},'fn'),el('span',{},'Fieldnotes',el('small',{},'An algorithm collection'))),
+    el('p',{class:'rail-caption'},'YOUR WORKBENCH'),
+    el('nav',{'aria-label':'Main navigation'},
+      el('a',{href:'#',class:'active',id:'all-link'},icon('grid'),el('span',{},'All experiments'),el('span',{class:'nav-count',id:'all-count'},'21')),
+      el('a',{href:'#favorites',id:'favorites-link'},icon('bookmark'),el('span',{},'Saved collection'),el('span',{class:'nav-count',id:'saved-count'},'0'))),
+    el('div',{class:'rail-note'},el('span',{class:'rail-dot','aria-hidden':'true'}),el('span',{},'A little theory.',el('br'),'A lot of trying things.')),
+    el('div',{class:'rail-bottom'},el('a',{href:'https://github.com/PRABHMANNAT/Data-Structure-And-Algorithm',target:'_blank',rel:'noopener noreferrer'},icon('code'),'Explore the source ↗'),el('p',{},'Python / Go / C++ / Web')));
   const main = el('main', {id:'main',class:'main',tabindex:'-1'});
   root.replaceChildren(el('div', {class:'shell'}, rail, main), el('p', {id:'live',class:'sr-only','aria-live':'polite'}));
   return main;
 }
 const main = shell();
+function updateRail(){
+  const saved=read('favorites',[]);
+  document.querySelector('#saved-count').textContent=projects.filter(project=>saved.includes(project.id)).length;
+  document.querySelector('#all-count').textContent=projects.length;
+  for(const [id,active] of [['all-link',!onlyFavorites],['favorites-link',onlyFavorites]]){
+    const link=document.getElementById(id);link.classList.toggle('active',active);
+    if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
+  }
+}
+
 function topline(text = 'A practical study of data & decisions') {
   return el('div', {class:'topline'}, el('span', {}, text), el('a', {href:'https://github.com/PRABHMANNAT/Data-Structure-And-Algorithm',target:'_blank',rel:'noopener noreferrer'}, 'View source ↗'));
 }
@@ -32,6 +50,7 @@ function collection() {
   main.append(count, list, footer());
   function renderRows() {
     const favorites = read('favorites', []);
+    updateRail();
     const available=projects.filter(p=>(!onlyFavorites||favorites.includes(p.id))&&`${p.title} ${p.description} ${p.category} ${p.language} ${lessons[p.id].topic}`.toLowerCase().includes(query.trim().toLowerCase()));
     const matched=available.filter(p=>filter==='All'||p.language===filter);
     filters.update(filter,available);
@@ -115,8 +134,7 @@ function route() {
   const selected=projects.find(project=>project.id===id);
   document.title=selected?selected.title+' / Fieldnotes':'Fieldnotes — Algorithms, made tangible.';
   onlyFavorites = location.hash === '#favorites';
-  document.querySelector('#all-link').classList.toggle('active',!onlyFavorites);
-  document.querySelector('#favorites-link').classList.toggle('active',onlyFavorites);
+  updateRail();
   if (id && location.hash !== '#' && location.hash !== '#favorites') workspace(id,version,section);
   else collection();
   if(location.hash==='#catalogue')document.querySelector('#catalogue')?.scrollIntoView();
