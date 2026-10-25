@@ -1,0 +1,37 @@
+{
+  "id": "number-system",
+  "title": "Number notebook",
+  "description": "Convert signed decimal integers into binary and inspect every division step.",
+  "category": "Number systems",
+  "language": "C++",
+  "fields": [
+    {
+      "key": "decimal",
+      "label": "Decimal number",
+      "type": "number",
+      "hint": "",
+      "min": -1000000,
+      "max": 1000000
+    }
+  ],
+  "presets": [
+    {
+      "name": "Forty-two",
+      "input": {
+        "decimal": "42"
+      }
+    },
+    {
+      "name": "Zero",
+      "input": {
+        "decimal": "0"
+      }
+    },
+    {
+      "name": "Negative input",
+      "input": {
+        "decimal": "-31"
+      }
+    }
+  ]
+}
