@@ -1,5 +1,6 @@
 import {el, button} from './dom.js';
 import {lessons} from './lessons.js';
+import {icon} from './icons.js';
 
 export function artwork(project, large = false) {
   const topic = lessons[project.id]?.topic || '';
@@ -46,13 +47,9 @@ export function learningPanel(project, section) {
 }
 
 export function collectionIntro() {
-  const states=[[7,3,6,2,5],[3,7,6,2,5],[3,6,7,2,5],[3,6,2,7,5],[3,6,2,5,7]];
-  let step=0;
-  const bars=el('div',{class:'hero-bars','aria-hidden':'true'}),caption=el('p',{class:'trace-caption','aria-live':'polite'});
-  const next=button('Next comparison →',()=>{step=(step+1)%states.length;draw();},'trace-next');
-  function draw(){bars.replaceChildren(...states[step].map((value,i)=>el('div',{class:i===step?'selected':''},el('span',{style:`height:${value*17}px`}),el('b',{},value))));caption.textContent=step===0?'Start · compare neighbors and move the larger right.':`Comparison ${step} of 4 · ${step===4?'7 has reached its final position.':'the largest value moves toward the end.'}`;next.textContent=step===4?'Replay this pass ↺':'Next comparison →';}
-  draw();
-  return el('section',{class:'collection-intro'},el('div',{class:'intro-copy'},el('p',{class:'eyebrow'},'FIELD GUIDE / 21 INTERACTIVE PROJECTS'),el('h1',{},'Get your hands',el('br'),'on the algorithm.'),el('p',{class:'intro-dek'},'Draw a route. Break a pattern. Balance a bill. Explore the ideas behind everyday software, one working experiment at a time.'),el('div',{class:'intro-links'},el('a',{href:'#project/routelab/demo',class:'solid-link'},'Start with RouteLab ↗'),el('a',{href:'#catalogue'},'Browse the collection ↓')),el('div',{class:'collection-facts'},el('span',{},'21 projects'),el('span',{},'4 languages'),el('span',{},'Real implementations'))),el('div',{class:'trace-board'},el('div',{class:'trace-heading'},el('span',{},'ON THE BENCH'),el('span',{},'01 / BUBBLE SORT')),bars,caption,next,el('small',{},'A single illustrative pass. Explore full sorting implementations below.')));
+  return el('section',{class:'collection-intro'},
+    el('div',{class:'intro-copy'},el('p',{class:'eyebrow'},'THE ALGORITHM COLLECTION'),el('h1',{},'Algorithms, hands on.'),el('p',{class:'intro-dek'},'21 working projects. Run the demo, understand the idea, try something new.')),
+    el('div',{class:'intro-actions'},el('a',{href:'https://github.com/PRABHMANNAT/Data-Structure-And-Algorithm',target:'_blank',rel:'noopener noreferrer',class:'github-star'},icon('star'),'Star on GitHub',el('span',{'aria-hidden':'true'},'↗')),el('span',{class:'intro-meta'},'Python · Go · C++ · JavaScript')));
 }
 
 export function studyRoutes() {
