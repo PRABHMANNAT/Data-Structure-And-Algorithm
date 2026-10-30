@@ -1,0 +1,50 @@
+{
+  "id": "dagflow",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/dagflow/web/cover.svg",
+  "title": "DAGflow",
+  "category": "Workflow scheduling",
+  "description": "Build a dependency graph, find critical tasks, and schedule work across a limited worker pool.",
+  "fields": [
+    {
+      "key": "tasks",
+      "label": "Task definitions",
+      "type": "textarea",
+      "hint": "name duration parent,parent — use - for no dependencies.",
+      "rows": 7
+    },
+    {
+      "key": "workers",
+      "label": "Workers",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Release pipeline",
+      "input": {
+        "tasks": "fetch 2 -\nbuild 5 fetch\nlint 3 fetch\ntest 4 build\npackage 2 test,lint\ndeploy 1 package",
+        "workers": 2
+      }
+    },
+    {
+      "name": "Parallel branches",
+      "input": {
+        "tasks": "a 3 -\nb 4 -\nc 2 a\nd 5 b\ne 1 c,d",
+        "workers": 2
+      }
+    },
+    {
+      "name": "One worker",
+      "input": {
+        "tasks": "a 4 -\nb 3 -\nc 2 a,b",
+        "workers": 1
+      }
+    }
+  ]
+}
