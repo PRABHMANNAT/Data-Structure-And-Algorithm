@@ -1,0 +1,9 @@
+{
+  "about": "Finding overlaps and choosing the best compatible set are different problems. An augmented AVL tree answers overlap queries; a dynamic program maximizes booking value.",
+  "outcome": "Query an augmented AVL interval tree and find the most valuable compatible booking set with dynamic programming.",
+  "instructions": [
+    "Load Studio bookings, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Load Greedy trap and compare the selected names with the overlap query."
+  ]
+}
