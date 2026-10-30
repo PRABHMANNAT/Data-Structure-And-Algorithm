@@ -1,0 +1,47 @@
+{
+  "id": "joinery",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/joinery/web/cover.svg",
+  "title": "Joinery",
+  "category": "Database optimization",
+  "description": "Enumerate left-deep join orders with subset dynamic programming. Compare the optimal estimated plan with input order.",
+  "fields": [
+    {
+      "key": "tables",
+      "label": "Table estimates",
+      "type": "textarea",
+      "hint": "name rows filter-selectivity — 2 to 8 relations; selectivity from 0 to 1."
+    },
+    {
+      "key": "joins",
+      "label": "Join predicates",
+      "type": "textarea",
+      "hint": "table table selectivity — missing predicates imply a Cartesian product."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop analytics",
+      "input": {
+        "tables": "orders 10000 0.4\nusers 1000 0.1\nitems 50000 1\nproducts 500 0.5",
+        "joins": "orders users 0.001\norders items 0.0001\nitems products 0.002"
+      }
+    },
+    {
+      "name": "Selective dimension",
+      "input": {
+        "tables": "facts 50000 1\nregion 100 0.01\ncategory 20 1",
+        "joins": "facts region 0.01\nfacts category 0.05"
+      }
+    },
+    {
+      "name": "Empty filtered relation",
+      "input": {
+        "tables": "a 100 0\nb 200 1",
+        "joins": "a b 0.1"
+      }
+    }
+  ]
+}
