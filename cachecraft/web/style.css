@@ -1,0 +1,4 @@
+.lab-cachecraft{--lab-color:hsl(85 24% 39%);--lab-wash:hsl(85 28% 92%)}
+.lab-cachecraft .metrics dd{color:var(--lab-color)}
+.lab-cachecraft .lab-track-fill,.lab-cachecraft .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-cachecraft .sequence>span{border-radius:9px;background:var(--lab-wash)}
