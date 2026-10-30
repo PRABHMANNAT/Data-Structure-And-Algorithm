@@ -1,0 +1,9 @@
+{
+  "about": "Probabilistic structures save memory by allowing specific errors. A Bloom filter may return a false positive; a Count-Min Sketch may overestimate frequency.",
+  "outcome": "Inspect a Bloom bitset and Count-Min Sketch beside exact ground truth. Explore collisions and the memory/accuracy tradeoff.",
+  "instructions": [
+    "Load Request membership, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Use Collision pressure and compare actual counts against estimates."
+  ]
+}
