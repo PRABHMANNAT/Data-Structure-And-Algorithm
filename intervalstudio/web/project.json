@@ -1,0 +1,59 @@
+{
+  "id": "intervalstudio",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/intervalstudio/web/cover.svg",
+  "title": "Interval Studio",
+  "category": "Scheduling & indexing",
+  "description": "Query an augmented AVL interval tree and find the most valuable compatible booking set with dynamic programming.",
+  "fields": [
+    {
+      "key": "bookings",
+      "label": "Booking proposals",
+      "type": "textarea",
+      "hint": "name start end value — intervals are half-open [start,end).",
+      "rows": 7
+    },
+    {
+      "key": "start",
+      "label": "Query starts",
+      "type": "number",
+      "hint": "",
+      "min": 0
+    },
+    {
+      "key": "end",
+      "label": "Query ends",
+      "type": "number",
+      "hint": "",
+      "min": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Studio bookings",
+      "input": {
+        "bookings": "podcast 0 3 6\nshoot 2 5 9\nworkshop 3 6 7\nlaunch 5 8 8\nmeeting 6 9 5",
+        "start": 3,
+        "end": 5
+      }
+    },
+    {
+      "name": "Greedy trap",
+      "input": {
+        "bookings": "long 0 10 10\nfirst 0 5 8\nsecond 5 10 8",
+        "start": 4,
+        "end": 6
+      }
+    },
+    {
+      "name": "Touching endpoints",
+      "input": {
+        "bookings": "a 0 2 3\nb 2 4 4\nc 4 6 5",
+        "start": 2,
+        "end": 4
+      }
+    }
+  ]
+}
