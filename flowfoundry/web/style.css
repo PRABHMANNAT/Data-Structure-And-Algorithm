@@ -1,0 +1,4 @@
+.lab-flowfoundry{--lab-color:hsl(25 24% 39%);--lab-wash:hsl(25 28% 92%)}
+.lab-flowfoundry .metrics dd{color:var(--lab-color)}
+.lab-flowfoundry .lab-track-fill,.lab-flowfoundry .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-flowfoundry .sequence>span{border-radius:9px;background:var(--lab-wash)}
