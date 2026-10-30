@@ -1,0 +1,9 @@
+{
+  "about": "A treap combines search-tree order with hash-derived heap priorities. Subtree sizes let it select a rank without sorting the whole window.",
+  "outcome": "Maintain exact rolling quartiles in an order-statistic treap. Flag incoming values using the previous window’s IQR.",
+  "instructions": [
+    "Load Latency spike, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Compare a spike against a constant window and a gradually rising stream."
+  ]
+}
