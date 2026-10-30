@@ -1,0 +1,4 @@
+.lab-shardring{--lab-color:hsl(40 24% 39%);--lab-wash:hsl(40 28% 92%)}
+.lab-shardring .metrics dd{color:var(--lab-color)}
+.lab-shardring .lab-track-fill,.lab-shardring .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-shardring .sequence>span{border-radius:9px;background:var(--lab-wash)}
