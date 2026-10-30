@@ -1,0 +1,57 @@
+{
+  "id": "flowfoundry",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/flowfoundry/web/cover.svg",
+  "title": "Flow Foundry",
+  "category": "Network optimization",
+  "description": "Push flow through a capacity network with Dinic’s algorithm, then verify the matching minimum cut.",
+  "fields": [
+    {
+      "key": "edges",
+      "label": "Directed capacity edges",
+      "type": "textarea",
+      "hint": "from to capacity — parallel and antiparallel edges are supported.",
+      "rows": 7
+    },
+    {
+      "key": "source",
+      "label": "Source",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "sink",
+      "label": "Sink",
+      "type": "text",
+      "hint": ""
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shared bottleneck",
+      "input": {
+        "edges": "s a 10\ns b 8\na b 3\na t 5\nb t 10",
+        "source": "s",
+        "sink": "t"
+      }
+    },
+    {
+      "name": "Parallel pipes",
+      "input": {
+        "edges": "s a 4\ns a 3\na s 2\na t 9",
+        "source": "s",
+        "sink": "t"
+      }
+    },
+    {
+      "name": "Disconnected sink",
+      "input": {
+        "edges": "s a 4\nb t 3",
+        "source": "s",
+        "sink": "t"
+      }
+    }
+  ]
+}
