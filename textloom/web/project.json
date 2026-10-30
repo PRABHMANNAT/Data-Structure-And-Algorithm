@@ -1,0 +1,51 @@
+{
+  "id": "textloom",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/textloom/web/cover.svg",
+  "title": "Textloom",
+  "category": "Version control",
+  "description": "Compute a shortest line-edit script with Myers, apply the patch, and verify its inverse restores the original text.",
+  "fields": [
+    {
+      "key": "old",
+      "label": "Original document",
+      "type": "textarea",
+      "hint": "",
+      "rows": 8,
+      "required": false
+    },
+    {
+      "key": "new",
+      "label": "Revised document",
+      "type": "textarea",
+      "hint": "",
+      "rows": 8,
+      "required": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review a release note",
+      "input": {
+        "old": "Release 1\nFast search\nOld cache\nShip Friday\n",
+        "new": "Release 2\nFast search\nLFU cache\nShip Friday\nDocs included\n"
+      }
+    },
+    {
+      "name": "Repeated lines",
+      "input": {
+        "old": "a\nb\na\nb\n",
+        "new": "b\na\nb\na\n"
+      }
+    },
+    {
+      "name": "Create a document",
+      "input": {
+        "old": "",
+        "new": "First line\nSecond line\n"
+      }
+    }
+  ]
+}

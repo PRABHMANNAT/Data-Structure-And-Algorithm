@@ -11,10 +11,10 @@ export function createForm(project, onRun) {
   for (const field of project.fields) {
     const id = 'field-' + field.key;
     const input = field.type === 'textarea'
-      ? el('textarea', {id, name:field.key, rows:field.rows || 5, spellcheck:'false', required:true, maxlength:12000})
+      ? el('textarea', {id, name:field.key, rows:field.rows || 5, spellcheck:'false', required:field.required!==false, maxlength:12000})
       : field.type === 'select'
         ? el('select', {id, name:field.key}, field.options.map(value => el('option', {value}, value)))
-        : el('input', {id, name:field.key, type:field.type || 'text', required:true, maxlength:12000, min:field.min, max:field.max, step:1});
+        : el('input', {id, name:field.key, type:field.type || 'text', required:field.required!==false, maxlength:12000, min:field.min, max:field.max, step:field.step||1});
     input.value = draft[field.key] ?? project.presets[0].input[field.key] ?? '';
     fields.set(field.key, input);
     input.setAttribute('aria-describedby',id+'-hint');
