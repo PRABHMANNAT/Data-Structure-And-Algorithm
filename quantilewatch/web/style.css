@@ -1,0 +1,4 @@
+.lab-quantilewatch{--lab-color:hsl(155 24% 39%);--lab-wash:hsl(155 28% 92%)}
+.lab-quantilewatch .metrics dd{color:var(--lab-color)}
+.lab-quantilewatch .lab-track-fill,.lab-quantilewatch .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-quantilewatch .sequence>span{border-radius:9px;background:var(--lab-wash)}
