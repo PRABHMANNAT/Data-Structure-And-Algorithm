@@ -1,0 +1,4 @@
+.lab-bloomgate{--lab-color:hsl(220 24% 39%);--lab-wash:hsl(220 28% 92%)}
+.lab-bloomgate .metrics dd{color:var(--lab-color)}
+.lab-bloomgate .lab-track-fill,.lab-bloomgate .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-bloomgate .sequence>span{border-radius:9px;background:var(--lab-wash)}
