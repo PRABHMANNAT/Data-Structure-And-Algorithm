@@ -1,0 +1,28 @@
+{
+  "topic": "Interval indexing & weighted scheduling",
+  "idea": "Finding overlaps and choosing the best compatible set are different problems. An augmented AVL tree answers overlap queries; a dynamic program maximizes booking value.",
+  "steps": [
+    "Insert bookings into a balanced tree with each subtree’s maximum endpoint.",
+    "Prune overlap searches using maximum ends and half-open boundaries.",
+    "Sort by finish time, binary-search predecessors and backtrack the optimal value DP."
+  ],
+  "example": "A long booking worth 10 loses to two touching bookings worth 8 each: total 16.",
+  "concepts": [
+    [
+      "Half-open intervals",
+      "[0,2) and [2,4) do not conflict."
+    ],
+    [
+      "Augmentation",
+      "Maximum endpoints must be recomputed after every rotation."
+    ],
+    [
+      "Weighted optimum",
+      "Earliest finish alone solves the unweighted count problem, not arbitrary values."
+    ]
+  ],
+  "question": "Can you greedily choose the most valuable booking first?",
+  "answer": "No. That booking can block several compatible ones whose combined value is larger.",
+  "challenge": "Load Greedy trap and compare the selected names with the overlap query.",
+  "cost": "AVL insertion O(log n); weighted scheduling O(n log n); overlap query may visit O(n) nodes."
+}
