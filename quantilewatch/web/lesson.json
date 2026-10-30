@@ -1,0 +1,28 @@
+{
+  "topic": "Order statistics & rolling windows",
+  "idea": "A treap combines search-tree order with hash-derived heap priorities. Subtree sizes let it select a rank without sorting the whole window.",
+  "steps": [
+    "Insert the new sample and delete the expired occurrence.",
+    "Use subtree sizes to select ranks and interpolate quartiles.",
+    "Score each incoming sample against the previous full window’s IQR."
+  ],
+  "example": "For [1,3,5,7], median is 4, Q1 is 2.5 and Q3 is 5.5 under linear interpolation.",
+  "concepts": [
+    [
+      "Multiplicity",
+      "Equal keys share a node but each occurrence counts toward rank."
+    ],
+    [
+      "Subtree size",
+      "Rotations and deletions must preserve occurrence totals."
+    ],
+    [
+      "No look-ahead",
+      "An incoming outlier is judged before it enters the reference window."
+    ]
+  ],
+  "question": "Is an IQR flag proof of a fault?",
+  "answer": "No. It is a statistical signal. A changed distribution can generate flags without a system failure; windows shorter than four are not scored.",
+  "challenge": "Compare a spike against a constant window and a gradually rising stream.",
+  "cost": "Expected O(log w) updates and rank selection; adversarial treap shape can degrade to O(w)."
+}
