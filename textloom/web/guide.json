@@ -1,0 +1,9 @@
+{
+  "about": "Myers follows the furthest reachable position on each edit diagonal, extending equal-line runs for free. Backtracking produces a shortest insert/delete script.",
+  "outcome": "Compute a shortest line-edit script with Myers, apply the patch, and verify its inverse restores the original text.",
+  "instructions": [
+    "Load Review a release note, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Try repeated lines and inspect one valid shortest script; ties can have different scripts."
+  ]
+}
