@@ -14,6 +14,9 @@ def projects():
     result = {}
     for path in manifests:
         record = json.loads(path.read_text(encoding="utf-8"))
+        for name in ('lesson', 'guide'):
+            metadata=path.parent/(name+'.json')
+            if metadata.is_file():record[name]=json.loads(metadata.read_text(encoding='utf-8'))
         record["folder"] = path.parent.parent.relative_to(ROOT).as_posix()
         result[record["id"]] = record
     return result

@@ -4,7 +4,7 @@ import {icon} from './icons.js';
 
 export function artwork(project, large = false) {
   return el('div',{class:'project-art generated-cover'+(large?' large':''),'aria-hidden':'true'},
-    el('img',{class:'cover-image',src:'/workbench/assets/covers/'+project.id+'.webp',alt:'',width:960,height:640,loading:'lazy',decoding:'async'}));
+    el('img',{class:'cover-image',src:project.cover||'/workbench/assets/covers/'+project.id+'.webp',alt:'',width:960,height:640,loading:'lazy',decoding:'async'}));
 }
 
 export function learningPanel(project, section) {
@@ -25,9 +25,9 @@ export function learningPanel(project, section) {
   return page;
 }
 
-export function collectionIntro() {
+export function collectionIntro(total = 31) {
   return el('section',{class:'collection-intro'},
-    el('div',{class:'intro-copy'},el('p',{class:'eyebrow'},'THE ALGORITHM COLLECTION'),el('h1',{},'Algorithms, hands on.'),el('p',{class:'intro-dek'},'21 working projects. Run the demo, understand the idea, try something new.')),
+    el('div',{class:'intro-copy'},el('p',{class:'eyebrow'},'THE ALGORITHM COLLECTION'),el('h1',{},'Algorithms, hands on.'),el('p',{class:'intro-dek'},`${total} working projects. Run the demo, understand the idea, try something new.`)),
     el('div',{class:'intro-actions'},el('a',{href:'https://github.com/PRABHMANNAT/Data-Structure-And-Algorithm',target:'_blank',rel:'noopener noreferrer',class:'github-star'},icon('star'),'Star on GitHub',el('span',{'aria-hidden':'true'},'↗')),el('span',{class:'intro-meta'},'Python · Go · C++ · JavaScript')));
 }
 

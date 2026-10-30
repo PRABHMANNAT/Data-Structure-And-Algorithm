@@ -6,7 +6,7 @@ import {collectionIntro, artwork, learningPanel} from './learning.js';
 import {lessons} from './lessons.js';
 import {searchBox,languageFilters,projectSwitcher} from './controls.js';
 import {icon} from './icons.js';
-import {projectIntroduction,demoGuide} from './guidance.js';
+import {projectIntroduction,demoGuide,introductions,demoInstructions} from './guidance.js';
 
 const browserProjects = [
   {id:'routelab',title:'RouteLab',description:'Draw a map. Watch Dijkstra and A* find their way through it.',language:'JavaScript',category:'Graph algorithms',href:'/11-map-routing-pathfinding-visualizer/01-source/'},
@@ -43,7 +43,7 @@ function topline(text = 'A practical study of data & decisions') {
 }
 function footer() { return el('footer', {class:'footnote'}, el('span', {}, 'FIELDNOTES / DATA STRUCTURES & ALGORITHMS'), el('span', {}, 'Made for the curious.')); }
 function collection() {
-  main.replaceChildren(topline(), collectionIntro(), el('div', {class:'catalogue-heading',id:'catalogue'}, el('div',{},el('p',{class:'eyebrow'},'THE COMPLETE INDEX'),el('h2',{},'Choose your next experiment.')),el('p',{},'Run it. Understand it. Make it your own.')));
+  main.replaceChildren(topline(), collectionIntro(projects.length), el('div', {class:'catalogue-heading',id:'catalogue'}, el('div',{},el('p',{class:'eyebrow'},'THE COMPLETE INDEX'),el('h2',{},'Choose your next experiment.')),el('p',{},'Run it. Understand it. Make it your own.')));
   const search = searchBox(query, value => {query=value;renderRows();});
   const filters=languageFilters(language=>{filter=language;renderRows();});
   main.append(el('div', {class:'collection-tools'},search,filters.node));
@@ -52,7 +52,7 @@ function collection() {
   function renderRows() {
     const favorites = read('favorites', []);
     updateRail();
-    const available=projects.filter(p=>(!onlyFavorites||favorites.includes(p.id))&&`${p.title} ${p.description} ${p.category} ${p.language} ${lessons[p.id].topic}`.toLowerCase().includes(query.trim().toLowerCase()));
+    const available=projects.filter(p=>(!onlyFavorites||favorites.includes(p.id))&&`${p.title} ${p.description} ${p.category} ${p.language} ${p.level||''} ${p.edition||''} ${lessons[p.id].topic}`.toLowerCase().includes(query.trim().toLowerCase()));
     const matched=available.filter(p=>filter==='All'||p.language===filter);
     filters.update(filter,available);
     count.textContent = `${String(matched.length).padStart(2,'0')} ${matched.length===1?'project':'projects'}${onlyFavorites?' in your saved collection':''}`;
@@ -61,7 +61,7 @@ function collection() {
       const saved = favorites.includes(project.id);
       const star = button(saved?'★':'☆', () => {favorite(project.id); renderRows();}, 'star');
       star.setAttribute('aria-label', `${saved?'Unsave':'Save'} ${project.title}`); star.setAttribute('aria-pressed', saved);
-      list.append(el('article', {class:'project-card'}, el('a',{href:'#project/'+project.id+'/demo',class:'art-link','aria-label':'Open '+project.title},artwork(project)),el('div',{class:'card-body'},el('div',{class:'card-meta'},el('span',{},String(projects.indexOf(project)+1).padStart(2,'0')+' / '+lessons[project.id].topic),el('span',{class:'language'},project.language)),el('a', {class:'project-link',href:'#project/'+project.id+'/demo'}, el('strong', {}, project.title), el('p', {}, project.description)),el('div',{class:'card-links'},el('a',{href:'#project/'+project.id+'/demo'},'Open demo ↗'),el('a',{href:'#project/'+project.id+'/logic'},'How it works'),star))));
+      list.append(el('article', {class:'project-card'}, el('a',{href:'#project/'+project.id+'/demo',class:'art-link','aria-label':'Open '+project.title},artwork(project)),el('div',{class:'card-body'},project.level?el('span',{class:'level-badge'},project.level+' / Python'):null,el('div',{class:'card-meta'},el('span',{},String(projects.indexOf(project)+1).padStart(2,'0')+' / '+lessons[project.id].topic),el('span',{class:'language'},project.language)),el('a', {class:'project-link',href:'#project/'+project.id+'/demo'}, el('strong', {}, project.title), el('p', {}, project.description)),el('div',{class:'card-links'},el('a',{href:'#project/'+project.id+'/demo'},'Open demo ↗'),el('a',{href:'#project/'+project.id+'/logic'},'How it works'),star))));
     });
     if (!matched.length) list.append(el('p', {class:'empty'}, onlyFavorites?'Save an experiment with the star to find it here.':'No experiments found. Try another search or language.'));
   }
@@ -153,6 +153,10 @@ try {
   const response = await fetch('/api/projects');
   if (!response.ok) throw new Error('Server unavailable');
   projects = [...browserProjects,...await response.json()];
+  for(const project of projects){
+    if(project.lesson)lessons[project.id]=project.lesson;
+    if(project.guide){introductions[project.id]=[project.guide.about,project.guide.outcome];demoInstructions[project.id]=project.guide.instructions;}
+  }
   window.addEventListener('hashchange',route); route();
 } catch {
   main.replaceChildren(topline(), el('header', {class:'workspace-title'}, el('h1', {}, 'Open your local workbench.'), el('p', {}, 'Start the server from the repository root, then open the address below.'), el('pre', {}, 'python -m workbench.server\nhttp://127.0.0.1:8765'), note('RouteLab and The Daily Grid also work with any static HTTP server.'), el('a', {href:browserProjects[0].href}, 'Open RouteLab ↗'), el('br'), el('br'), el('a', {href:browserProjects[1].href}, 'Open The Daily Grid ↗')));
