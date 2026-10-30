@@ -1,0 +1,9 @@
+{
+  "about": "A dependency graph separates what can run concurrently from what must wait. The critical path bounds completion time even with unlimited workers.",
+  "outcome": "Build a dependency graph, find critical tasks, and schedule work across a limited worker pool.",
+  "instructions": [
+    "Load Release pipeline, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Reduce workers from two to one and compare the critical bound with the actual schedule."
+  ]
+}
