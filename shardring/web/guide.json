@@ -1,0 +1,9 @@
+{
+  "about": "A placement function should move only a subset of keys when membership changes. Virtual nodes smooth a ring; weighted rendezvous scores each server independently.",
+  "outcome": "Compare virtual-node consistent hashing with weighted rendezvous hashing and measure key movement when a server joins.",
+  "instructions": [
+    "Load Add a cache server, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Change virtual nodes from one to 32 while keeping the exact same keys."
+  ]
+}
