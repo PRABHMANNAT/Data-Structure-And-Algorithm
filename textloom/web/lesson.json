@@ -1,0 +1,28 @@
+{
+  "topic": "Myers diff & reversible patches",
+  "idea": "Myers follows the furthest reachable position on each edit diagonal, extending equal-line runs for free. Backtracking produces a shortest insert/delete script.",
+  "steps": [
+    "Tokenize documents as lines while preserving newline characters.",
+    "Expand edit-distance frontiers until the revised document is reached.",
+    "Backtrack, apply the patch and apply its inverse to verify both directions."
+  ],
+  "example": "Changing a\nb to a\nc requires one deletion and one insertion; replacement is not a primitive operation.",
+  "concepts": [
+    [
+      "Edit diagonal",
+      "k=x−y identifies the difference between consumed source and target lines."
+    ],
+    [
+      "Snake",
+      "A maximal run of matching lines costs no edits."
+    ],
+    [
+      "Checked application",
+      "A patch must consume the exact source lines it claims to delete or preserve."
+    ]
+  ],
+  "question": "Is a replacement one edit here?",
+  "answer": "No. This model counts only insertions and deletions, so replacement costs two edits.",
+  "challenge": "Try repeated lines and inspect one valid shortest script; ties can have different scripts.",
+  "cost": "O((N+M)D) frontier work; saved backtracking frontiers use O(D²) memory; input is capped at 120 lines."
+}
