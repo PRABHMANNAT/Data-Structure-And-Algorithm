@@ -1,0 +1,9 @@
+{
+  "about": "A query planner compares join orders before executing work. Here every subset has an estimated cardinality, and the DP chooses its cheapest left-deep prefix.",
+  "outcome": "Enumerate left-deep join orders with subset dynamic programming. Compare the optimal estimated plan with input order.",
+  "instructions": [
+    "Load Shop analytics, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Load Selective dimension and compare both cost ledgers."
+  ]
+}
