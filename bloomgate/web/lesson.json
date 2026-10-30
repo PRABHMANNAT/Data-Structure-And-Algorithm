@@ -1,0 +1,28 @@
+{
+  "topic": "Bloom filters & Count-Min Sketch",
+  "idea": "Probabilistic structures save memory by allowing specific errors. A Bloom filter may return a false positive; a Count-Min Sketch may overestimate frequency.",
+  "steps": [
+    "Hash inserts into a shared bitset and several counter rows.",
+    "Check queries against both structures and exact ground truth.",
+    "Measure false positives, occupancy and estimated frequency error."
+  ],
+  "example": "A Bloom answer of absent is definitive after insert-only updates; maybe present requires an exact lookup.",
+  "concepts": [
+    [
+      "One-sided error",
+      "Inserted keys cannot become false negatives without deletion or corruption."
+    ],
+    [
+      "Counter collisions",
+      "Nonnegative updates mean sketch estimates cannot undercount."
+    ],
+    [
+      "Model vs observation",
+      "The standard FPR formula is an approximation, not a guarantee on this query sample."
+    ]
+  ],
+  "question": "Can I delete a key by clearing its Bloom bits?",
+  "answer": "No. Other keys can share those bits, so clearing them can introduce false negatives. A counting filter is a different structure.",
+  "challenge": "Use Collision pressure and compare actual counts against estimates.",
+  "cost": "Insert/query O(k + depth), bit memory O(m), counter memory O(width×depth); exact counts are instrumentation only."
+}
