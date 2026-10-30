@@ -1,0 +1,49 @@
+{
+  "id": "quantilewatch",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/quantilewatch/web/cover.svg",
+  "title": "Quantile Watch",
+  "category": "Streaming analytics",
+  "description": "Maintain exact rolling quartiles in an order-statistic treap. Flag incoming values using the previous window’s IQR.",
+  "fields": [
+    {
+      "key": "values",
+      "label": "Sample stream",
+      "type": "textarea",
+      "hint": "Comma- or space-separated integers, up to 300."
+    },
+    {
+      "key": "window",
+      "label": "Window length",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Latency spike",
+      "input": {
+        "values": "10 11 9 12 10 11 80 10 9 12 11 10",
+        "window": 5
+      }
+    },
+    {
+      "name": "Repeated readings",
+      "input": {
+        "values": "5 5 5 5 5 9 5 5 5",
+        "window": 4
+      }
+    },
+    {
+      "name": "Even-sized window",
+      "input": {
+        "values": "-4 2 8 1 7 3 0 -2",
+        "window": 4
+      }
+    }
+  ]
+}
