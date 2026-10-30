@@ -1,0 +1,67 @@
+{
+  "id": "shardring",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/shardring/web/cover.svg",
+  "title": "Shard Ring",
+  "category": "Distributed systems",
+  "description": "Compare virtual-node consistent hashing with weighted rendezvous hashing and measure key movement when a server joins.",
+  "fields": [
+    {
+      "key": "servers",
+      "label": "Server weights",
+      "type": "textarea",
+      "hint": "name positive-weight — weights from 1 to 5."
+    },
+    {
+      "key": "added",
+      "label": "Joining server",
+      "type": "text",
+      "hint": ""
+    },
+    {
+      "key": "keys",
+      "label": "Keys to place",
+      "type": "textarea",
+      "hint": "Space-separated keys; repeats represent repeated requests."
+    },
+    {
+      "key": "replicas",
+      "label": "Virtual nodes per weight",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Add a cache server",
+      "input": {
+        "servers": "alpha 1\nbeta 1\ngamma 1",
+        "added": "delta",
+        "keys": "user:1 user:2 user:3 user:4 user:5 user:6 user:7 user:8 user:9 user:10 user:11 user:12",
+        "replicas": 16
+      }
+    },
+    {
+      "name": "Unequal capacity",
+      "input": {
+        "servers": "large 3\nsmall 1",
+        "added": "new",
+        "keys": "a b c d e f g h i j k l m n o p",
+        "replicas": 32
+      }
+    },
+    {
+      "name": "One original server",
+      "input": {
+        "servers": "original 1",
+        "added": "second",
+        "keys": "a b c d e f",
+        "replicas": 8
+      }
+    }
+  ]
+}
