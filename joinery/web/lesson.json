@@ -1,0 +1,28 @@
+{
+  "topic": "Subset dynamic programming",
+  "idea": "A query planner compares join orders before executing work. Here every subset has an estimated cardinality, and the DP chooses its cheapest left-deep prefix.",
+  "steps": [
+    "Apply base-table filter selectivities.",
+    "Enumerate subset masks and append each possible final relation.",
+    "Reconstruct the cheapest order and compare its cost ledger with input order."
+  ],
+  "example": "A tiny filtered dimension can reduce intermediate estimates when joined early.",
+  "concepts": [
+    [
+      "Optimal substructure",
+      "The best order for a subset can extend the best prefix under this additive model."
+    ],
+    [
+      "Cardinality estimation",
+      "Independent predicate selectivities are an assumption, not measured row counts."
+    ],
+    [
+      "Search space",
+      "Only left-deep plans are considered; physical join methods and bushy trees are excluded."
+    ]
+  ],
+  "question": "Is this the actual PostgreSQL optimizer?",
+  "answer": "No. This is a bounded educational cost model; it does not parse or execute SQL and cannot predict real database latency.",
+  "challenge": "Load Selective dimension and compare both cost ledgers.",
+  "cost": "Subset DP O(n²2ⁿ) including cardinality work here; at most eight tables keep enumeration bounded."
+}
