@@ -1,0 +1,78 @@
+{
+  "id": "spatialdesk",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/spatialdesk/web/cover.svg",
+  "title": "Spatial Desk",
+  "category": "Spatial indexing",
+  "description": "Build a two-dimensional KD tree and compare exact nearest-neighbor and radius searches on your own locations.",
+  "fields": [
+    {
+      "key": "points",
+      "label": "Locations",
+      "type": "textarea",
+      "hint": "name x y — unique labels and finite Cartesian coordinates.",
+      "rows": 7
+    },
+    {
+      "key": "x",
+      "label": "Query X",
+      "type": "number",
+      "hint": ""
+    },
+    {
+      "key": "y",
+      "label": "Query Y",
+      "type": "number",
+      "hint": ""
+    },
+    {
+      "key": "k",
+      "label": "Nearest neighbors",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 150
+    },
+    {
+      "key": "radius",
+      "label": "Search radius",
+      "type": "number",
+      "hint": "",
+      "min": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neighborhood stops",
+      "input": {
+        "points": "cafe 1 2\npark 4 5\nhome 0 0\nshop 3 1\nstation 7 2\nlibrary 2 6",
+        "x": 2,
+        "y": 2,
+        "k": 3,
+        "radius": 3
+      }
+    },
+    {
+      "name": "Equal distances",
+      "input": {
+        "points": "east 1 0\nwest -1 0\nnorth 0 1\nsouth 0 -1",
+        "x": 0,
+        "y": 0,
+        "k": 2,
+        "radius": 1
+      }
+    },
+    {
+      "name": "Duplicate coordinates",
+      "input": {
+        "points": "a 0 0\nb 0 0\nc 3 4",
+        "x": 0,
+        "y": 0,
+        "k": 3,
+        "radius": 0
+      }
+    }
+  ]
+}
