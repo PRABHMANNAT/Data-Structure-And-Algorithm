@@ -1,0 +1,4 @@
+.lab-dagflow{--lab-color:hsl(175 24% 39%);--lab-wash:hsl(175 28% 92%)}
+.lab-dagflow .metrics dd{color:var(--lab-color)}
+.lab-dagflow .lab-track-fill,.lab-dagflow .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-dagflow .sequence>span{border-radius:9px;background:var(--lab-wash)}
