@@ -1,0 +1,28 @@
+{
+  "topic": "Residual networks & minimum cuts",
+  "idea": "Capacity constraints turn pathfinding into a flow problem. Reverse residual arcs let later augmentations undo earlier choices.",
+  "steps": [
+    "Construct an independent residual/reverse pair for every input edge.",
+    "Use BFS levels and blocking-flow DFS until the sink is unreachable.",
+    "Find the reachable residual side; outgoing original capacities form the minimum cut."
+  ],
+  "example": "s→a capacity 7 and a→t capacity 4 carry at most 4 units; the final cut has capacity 4.",
+  "concepts": [
+    [
+      "Residual capacity",
+      "How much additional flow an arc can carry."
+    ],
+    [
+      "Reverse edge",
+      "Allows existing flow to be canceled when rerouting."
+    ],
+    [
+      "Max-flow/min-cut",
+      "A cut with capacity equal to the feasible flow certifies optimality."
+    ]
+  ],
+  "question": "Can opposite input edges share the same reverse arc?",
+  "answer": "No. Original antiparallel and parallel edges need separate residual pairs to preserve capacities and flow accounting.",
+  "challenge": "Run Parallel pipes and verify conservation at a.",
+  "cost": "Dinic has a general O(V²E) bound; the bounded demo records one trace per BFS phase."
+}
