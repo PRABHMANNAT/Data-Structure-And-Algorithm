@@ -1,0 +1,80 @@
+{
+  "id": "bloomgate",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/bloomgate/web/cover.svg",
+  "title": "Bloomgate",
+  "category": "Probabilistic structures",
+  "description": "Inspect a Bloom bitset and Count-Min Sketch beside exact ground truth. Explore collisions and the memory/accuracy tradeoff.",
+  "fields": [
+    {
+      "key": "items",
+      "label": "Inserted keys",
+      "type": "textarea",
+      "hint": "Repeated keys increment the frequency sketch."
+    },
+    {
+      "key": "queries",
+      "label": "Lookup keys",
+      "type": "textarea",
+      "hint": ""
+    },
+    {
+      "key": "bits",
+      "label": "Bloom bits",
+      "type": "number",
+      "hint": "",
+      "min": 8,
+      "max": 4096
+    },
+    {
+      "key": "hashes",
+      "label": "Bloom hashes",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 12
+    },
+    {
+      "key": "width",
+      "label": "Sketch row width",
+      "type": "number",
+      "hint": "",
+      "min": 4,
+      "max": 256
+    }
+  ],
+  "presets": [
+    {
+      "name": "Request membership",
+      "input": {
+        "items": "api api auth image image image docs search api",
+        "queries": "api image missing docs checkout",
+        "bits": 128,
+        "hashes": 4,
+        "width": 32
+      }
+    },
+    {
+      "name": "Collision pressure",
+      "input": {
+        "items": "a b c d e f g h i j k l m n o p",
+        "queries": "a z y x w v u t",
+        "bits": 8,
+        "hashes": 4,
+        "width": 4
+      }
+    },
+    {
+      "name": "Unicode keys",
+      "input": {
+        "items": "café café 東京 data",
+        "queries": "café 東京 absent",
+        "bits": 64,
+        "hashes": 3,
+        "width": 16
+      }
+    }
+  ]
+}
