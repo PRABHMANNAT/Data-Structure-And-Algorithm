@@ -26,7 +26,7 @@ class ServerTests(unittest.TestCase):
 
     def test_collection_and_assets(self):
         status,body,headers=self.request('/api/projects')
-        self.assertEqual(status,200);self.assertEqual(len(json.loads(body)),19)
+        self.assertEqual(status,200);self.assertEqual(len(json.loads(body)),len(projects()))
         self.assertEqual(headers['X-Content-Type-Options'],'nosniff')
         self.assertEqual(self.request('/')[0],200)
         self.assertEqual(self.request('/workbench/app.js')[0],200)

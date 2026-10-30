@@ -18,7 +18,8 @@ tempfile.tempdir=str(TEMP)
 os.environ['TMP']=str(TEMP)
 os.environ['TEMP']=str(TEMP)
 PYTHON_PROJECTS=['intermediate_data_structures','advanced_delivery_network','algorithmic_transit_simulator',
-                 'versioned_search_engine','plagiarism_detection_system','string_algorithms_lab','graphforge','streamshield']
+                 'versioned_search_engine','plagiarism_detection_system','string_algorithms_lab','graphforge','streamshield',
+                 'cachecraft','dagflow','flowfoundry','spatialdesk','intervalstudio','textloom','quantilewatch','bloomgate','shardring','joinery']
 
 
 def command(args,cwd=ROOT,timeout=180):

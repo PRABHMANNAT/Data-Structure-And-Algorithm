@@ -1,6 +1,6 @@
 # Data Structures & Algorithms
 
-**Fieldnotes** is a collection of 21 hands-on experiments in Python, Go, C++, and JavaScript. Draw a route, inspect a tree, search a collection, settle a trip, or solve a small crossword. Each interface puts the input, the algorithm, and the result within reach.
+**Fieldnotes** is a collection of 31 hands-on experiments in Python, Go, C++, and JavaScript. Draw a route, inspect a tree, search a collection, settle a trip, or solve a small crossword. Each interface puts the input, the algorithm, and the result within reach.
 
 The original libraries and command-line tools remain available. The browser workspaces run their real implementations locally.
 
@@ -17,6 +17,31 @@ Every project has three separately addressable sections:
 For example, open `http://127.0.0.1:8765/#project/python-structures/logic`. Every project introduction explains its purpose and expected output. Switching between sections preserves the current demo inputs and results. Section changes have a short transition that respects reduced-motion settings.
 
 The searchable project switcher keeps the section you are reading when you choose another project. Type to filter, press Arrow Down to focus a result, use arrow keys or Home/End to move through results, and Enter to switch. Escape closes the switcher. Both standalone browser apps link back to their learning sections.
+
+## Advanced Python systems collection
+
+Ten additional projects focus on engineering problems beyond introductory data structures. They use only the Python standard library and share the browser collection’s demo / implementation explanation / study-note navigation.
+
+| Project | Algorithms | Interactive result |
+| --- | --- | --- |
+| [Cachecraft](cachecraft/) | Linked-list LRU, bucketed LFU | Side-by-side hit/miss traces and eviction snapshots |
+| [DAGflow](dagflow/) | Topological order, critical-path passes, worker scheduling | Resource timeline and per-task slack |
+| [Flow Foundry](flowfoundry/) | Dinic blocking flow, residual reachability | Flow/capacity graph and minimum-cut certificate |
+| [Spatial Desk](spatialdesk/) | KD-tree kNN and radius pruning | Cartesian location map and visited-point trace |
+| [Interval Studio](intervalstudio/) | Augmented AVL tree, weighted interval DP | Booking timeline, overlap query and optimal chosen set |
+| [Textloom](textloom/) | Myers shortest edit script, checked inverse patches | Line-by-line diff and round-trip verification |
+| [Quantile Watch](quantilewatch/) | Order-statistic treap, rolling IQR | Value/median plot and step inspector |
+| [Bloomgate](bloomgate/) | Bloom filter, Count-Min Sketch | Bitset, counter heatmap and exact error comparison |
+| [Shard Ring](shardring/) | Virtual-node consistent hashing, weighted rendezvous | Ownership ring and membership-change movement |
+| [Joinery](joinery/) | Subset DP over left-deep join orders | Optimal order, cost ledger and enumerated subsets |
+
+Type **Advanced** in the collection search to show just these ten projects.
+
+Try `python -m cachecraft --example 0` from the repository root. Every project supports `--input payload.json`, includes three bounded example workloads and its own README and solved exercise. New project covers are lightweight mathematical SVG illustrations; the original 21 generated covers remain in place.
+
+These are educational implementations of practical topics, rather than a measured popularity ranking. Background: [Redis eviction policies](https://redis.io/docs/latest/develop/reference/eviction/), [Airflow DAGs](https://airflow.apache.org/docs/apache-airflow/2.10.4/core-concepts/dags.html), [Cassandra Bloom filters](https://cassandra.apache.org/doc/3.11/cassandra/operating/bloom_filters.html), and [PostgreSQL planning](https://www.postgresql.org/docs/17/planner-optimizer.html). Production systems have additional approximations, durability and concurrency constraints described in their own documentation.
+
+Algorithm tests use independent references: exhaustive minimum cuts, all compatible booking subsets, full-scan nearest neighbors, sorted rolling windows, quadratic LCS, and brute-force join-order permutations. `python scripts/verify.py --python` now includes all 18 Python project suites; `--web` tests every bundled browser scenario over HTTP.
 
 ## Open the collection
 
