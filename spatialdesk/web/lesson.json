@@ -1,0 +1,28 @@
+{
+  "topic": "KD trees & geometric pruning",
+  "idea": "A KD tree divides Cartesian space along alternating axes. A subtree can be skipped when its split plane is farther away than the current search bound.",
+  "steps": [
+    "Median-split points recursively by X then Y.",
+    "Search the nearer branch and maintain the best k points in a max-heap.",
+    "Visit the far branch only when its split plane could improve the result."
+  ],
+  "example": "Four points one unit from the origin tie on distance; names break ties deterministically.",
+  "concepts": [
+    [
+      "Squared distance",
+      "Comparisons avoid square roots until display."
+    ],
+    [
+      "Branch and bound",
+      "A lower bound rejects regions that cannot improve the answer."
+    ],
+    [
+      "Degenerate data",
+      "Equal coordinates and large k can force a nearly full scan."
+    ]
+  ],
+  "question": "Does a KD tree guarantee logarithmic queries?",
+  "answer": "No. Its performance depends on dimension and geometry; worst-case search still visits every point.",
+  "challenge": "Use Equal distances, then set the radius to exactly one.",
+  "cost": "Build O(n log² n) with repeated sorting; average queries often prune well, worst case O(n log k)."
+}
