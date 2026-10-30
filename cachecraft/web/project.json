@@ -1,0 +1,49 @@
+{
+  "id": "cachecraft",
+  "language": "Python",
+  "level": "Advanced",
+  "edition": "Systems collection",
+  "cover": "/cachecraft/web/cover.svg",
+  "title": "Cachecraft",
+  "category": "Cache engineering",
+  "description": "Replay a workload through exact LRU and LFU caches. Inspect evictions, hit rates and the keys each policy protects.",
+  "fields": [
+    {
+      "key": "keys",
+      "label": "Request sequence",
+      "type": "textarea",
+      "hint": "Space-separated cache keys; each request inserts on a miss."
+    },
+    {
+      "key": "capacity",
+      "label": "Cache slots",
+      "type": "number",
+      "hint": "",
+      "min": 1,
+      "max": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hot keys and a scan",
+      "input": {
+        "keys": "a b a c a d e a b a c a",
+        "capacity": 3
+      }
+    },
+    {
+      "name": "A shifting working set",
+      "input": {
+        "keys": "a a a b b c d e d e d e",
+        "capacity": 2
+      }
+    },
+    {
+      "name": "All hits after warm-up",
+      "input": {
+        "keys": "a b c a b c a b c",
+        "capacity": 3
+      }
+    }
+  ]
+}
