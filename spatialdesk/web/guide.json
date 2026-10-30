@@ -1,0 +1,9 @@
+{
+  "about": "A KD tree divides Cartesian space along alternating axes. A subtree can be skipped when its split plane is farther away than the current search bound.",
+  "outcome": "Build a two-dimensional KD tree and compare exact nearest-neighbor and radius searches on your own locations.",
+  "instructions": [
+    "Load Neighborhood stops, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Use Equal distances, then set the radius to exactly one."
+  ]
+}
