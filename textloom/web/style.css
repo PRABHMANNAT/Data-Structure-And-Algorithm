@@ -1,0 +1,4 @@
+.lab-textloom{--lab-color:hsl(35 24% 39%);--lab-wash:hsl(35 28% 92%)}
+.lab-textloom .metrics dd{color:var(--lab-color)}
+.lab-textloom .lab-track-fill,.lab-textloom .trace-button[aria-pressed="true"]{background:var(--lab-color);color:white}
+.lab-textloom .sequence>span{border-radius:9px;background:var(--lab-wash)}
