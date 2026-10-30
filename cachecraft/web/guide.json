@@ -1,0 +1,9 @@
+{
+  "about": "Caches trade a bounded set of slots for fewer misses. LRU protects recent keys; LFU protects frequent ones and breaks ties by recency.",
+  "outcome": "Replay a workload through exact LRU and LFU caches. Inspect evictions, hit rates and the keys each policy protects.",
+  "instructions": [
+    "Load Hot keys and a scan, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Compare a hot key followed by a completely new working set."
+  ]
+}
