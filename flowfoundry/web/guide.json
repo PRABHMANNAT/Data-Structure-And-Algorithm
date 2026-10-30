@@ -1,0 +1,9 @@
+{
+  "about": "Capacity constraints turn pathfinding into a flow problem. Reverse residual arcs let later augmentations undo earlier choices.",
+  "outcome": "Push flow through a capacity network with Dinic’s algorithm, then verify the matching minimum cut.",
+  "instructions": [
+    "Load Shared bottleneck, or edit the labeled inputs below.",
+    "Run experiment to execute the Python implementation on your inputs.",
+    "Run Parallel pipes and verify conservation at a."
+  ]
+}
