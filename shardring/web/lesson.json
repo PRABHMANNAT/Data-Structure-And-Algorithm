@@ -1,0 +1,28 @@
+{
+  "topic": "Consistent & rendezvous hashing",
+  "idea": "A placement function should move only a subset of keys when membership changes. Virtual nodes smooth a ring; weighted rendezvous scores each server independently.",
+  "steps": [
+    "Place weighted virtual nodes on a stable hash ring.",
+    "Assign each key clockwise and independently with a weighted rendezvous race.",
+    "Add one server and compare old/new owners and distinct replica preferences."
+  ],
+  "example": "With one original server, adding a second moves only keys now owned by the newcomer.",
+  "concepts": [
+    [
+      "Virtual nodes",
+      "More tokens reduce but do not eliminate imbalance."
+    ],
+    [
+      "Stable hashing",
+      "SHA-256 gives deterministic placement across Python processes."
+    ],
+    [
+      "Membership change",
+      "Unchanged servers retain their pairwise rendezvous order."
+    ]
+  ],
+  "question": "Does a three-times weight guarantee three-times these sample keys?",
+  "answer": "No. Weight describes expected distribution over many keys; small samples can be uneven.",
+  "challenge": "Change virtual nodes from one to 32 while keeping the exact same keys.",
+  "cost": "Ring lookup O(log tokens); rendezvous O(servers) per key; replica enumeration can scan tokens."
+}
